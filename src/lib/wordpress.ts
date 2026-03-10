@@ -30,7 +30,7 @@ class WordPressAPI {
 
   async getCVBySlug(slug: string): Promise<CVPage | null> {
     const response = await fetch(
-      `${WP_API_URL}/wp/v2/cv?slug=${slug}&_embed`,
+      `${WP_API_URL}/wp/v2/cv?slug=${slug}`,
       {
         headers: this.getHeaders(),
         next: { revalidate: 60 },
@@ -42,12 +42,29 @@ class WordPressAPI {
     }
 
     const cvs = await response.json();
-    return cvs.length > 0 ? cvs[0] : null;
+    if (cvs.length === 0) return null;
+
+    const cv = cvs[0];
+    
+    const acfResponse = await fetch(
+      `${WP_API_URL}/acf/v3/cv/${cv.id}`,
+      {
+        headers: this.getHeaders(),
+        next: { revalidate: 60 },
+      }
+    );
+
+    if (acfResponse.ok) {
+      const acfData = await acfResponse.json();
+      cv.acf = acfData.acf || {};
+    }
+
+    return cv as CVPage;
   }
 
   async getCVById(id: number): Promise<CVPage | null> {
     const response = await fetch(
-      `${WP_API_URL}/wp/v2/cv/${id}?_embed`,
+      `${WP_API_URL}/wp/v2/cv/${id}`,
       {
         headers: this.getHeaders(),
         next: { revalidate: 60 },
@@ -58,7 +75,22 @@ class WordPressAPI {
       return null;
     }
 
-    return response.json();
+    const cv = await response.json();
+    
+    const acfResponse = await fetch(
+      `${WP_API_URL}/acf/v3/cv/${id}`,
+      {
+        headers: this.getHeaders(),
+        next: { revalidate: 60 },
+      }
+    );
+
+    if (acfResponse.ok) {
+      const acfData = await acfResponse.json();
+      cv.acf = acfData.acf || {};
+    }
+
+    return cv as CVPage;
   }
 
   async getPublishedCVs(): Promise<CVPage[]> {
