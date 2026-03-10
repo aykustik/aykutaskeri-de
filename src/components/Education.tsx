@@ -35,7 +35,7 @@ export function EducationSection({ acf }: EducationProps) {
   if (education.length === 0 && certifications.length === 0) return null;
 
   return (
-    <section className="py-16 bg-slate-50" id="education">
+    <section className="py-16 bg-slate-50 print-break-inside" id="education">
       <div className="section-container">
         {certifications.length > 0 && (
           <>

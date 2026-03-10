@@ -18,13 +18,16 @@ export function CVPageComponent({ cv }: CVPageProps) {
       <HeaderSection acf={acf} />
       <SocialLinks acf={acf} />
       <ContactInfo acf={acf} />
-      <AboutSection acf={acf} />
-      <SkillsSection acf={acf} />
-      <ExperienceSection acf={acf} />
-      <EducationSection acf={acf} />
-      <PortfolioSection acf={acf} />
       
-      <footer className="bg-dark-900 text-dark-300 py-12">
+      <div className="print-container">
+        <AboutSection acf={acf} />
+        <SkillsSection acf={acf} />
+        <ExperienceSection acf={acf} />
+        <EducationSection acf={acf} />
+        <PortfolioSection acf={acf} />
+      </div>
+      
+      <footer className="bg-dark-900 text-dark-300 py-12 no-print">
         <div className="section-container text-center">
           <p className="text-lg font-medium text-white mb-2">
             {acf.vorname} {acf.nachname}

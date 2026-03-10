@@ -39,7 +39,7 @@ export function SkillsSection({ acf }: SkillsProps) {
   if (hardSkills.length === 0 && softSkills.length === 0) return null;
 
   return (
-    <section className="py-16 bg-slate-50" id="skills">
+    <section className="py-16 bg-slate-50 print-break-inside" id="skills">
       <div className="section-container">
         <div className="mb-10">
           <h2 className="section-title">Meine Skills</h2>

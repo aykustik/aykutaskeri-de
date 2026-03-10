@@ -44,7 +44,7 @@ export function ExperienceSection({ acf }: ExperienceProps) {
   if (experiences.length === 0) return null;
 
   return (
-    <section className="py-16 bg-white" id="experience">
+    <section className="py-16 bg-white print-break-inside" id="experience">
       <div className="section-container">
         <div className="mb-10">
           <h2 className="section-title">Berufserfahrung</h2>

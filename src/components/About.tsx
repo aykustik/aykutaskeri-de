@@ -5,6 +5,12 @@ interface AboutProps {
   acf: ACFFields;
 }
 
+const LANGUAGE_COLORS = {
+  german: '#43C26E',
+  english: '#575CC2',
+  turkish: '#C2A73A',
+};
+
 function LanguageCircle({ name, percentage, color }: { name: string; percentage: number; color: string }) {
   const radius = 40;
   const circumference = 2 * Math.PI * radius;
@@ -13,14 +19,14 @@ function LanguageCircle({ name, percentage, color }: { name: string; percentage:
   return (
     <div className="flex flex-col items-center">
       <div className="relative w-24 h-24">
-        <svg className="w-24 h-24 transform -rotate-90">
+        <svg className="w-24 h-24 transform -rotate-90 language-circle-svg" viewBox="0 0 96 96">
           <circle
             cx="48"
             cy="48"
             r={radius}
             fill="none"
             stroke="currentColor"
-            strokeWidth="6"
+            strokeWidth="5"
             className="text-slate-200"
           />
           <circle
@@ -29,7 +35,7 @@ function LanguageCircle({ name, percentage, color }: { name: string; percentage:
             r={radius}
             fill="none"
             stroke={color}
-            strokeWidth="6"
+            strokeWidth="5"
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={offset}
@@ -63,10 +69,19 @@ export function AboutSection({ acf }: AboutProps) {
 
   const showLanguages = sprachen_anzeigen && sprachen_anzeigen !== 'Keine Sprache anzeigen';
 
+  const getLanguageColor = (lang: string | undefined, fallback: string) => {
+    if (!lang) return fallback;
+    const langLower = lang.toLowerCase();
+    if (langLower.includes('deutsch') || langLower.includes('german')) return LANGUAGE_COLORS.german;
+    if (langLower.includes('englisch') || langLower.includes('english')) return LANGUAGE_COLORS.english;
+    if (langLower.includes('türkisch') || langLower.includes('turkish') || langLower.includes('türkce')) return LANGUAGE_COLORS.turkish;
+    return fallback;
+  };
+
   if (!das_zeichnet_mich_aus && !das_mag_ich_nicht && !showLanguages) return null;
 
   return (
-    <section className="py-16 bg-white" id="about">
+    <section className="py-16 bg-white print-break-inside" id="about">
       <div className="section-container">
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
@@ -75,8 +90,8 @@ export function AboutSection({ acf }: AboutProps) {
                 {das_zeichnet_mich_aus && (
                   <div className="card-elevated p-6 animate-fade-in-up">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                        <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
+                        <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
@@ -127,21 +142,21 @@ export function AboutSection({ acf }: AboutProps) {
                     <LanguageCircle 
                       name={sprache_1} 
                       percentage={sprache_1_starke || 0} 
-                      color={sprache_1_farbe || '#0ea5e9'} 
+                      color={getLanguageColor(sprache_1, sprache_1_farbe || LANGUAGE_COLORS.german)} 
                     />
                   )}
                   {sprachen_anzeigen !== 'Eine Sprache anzeigen' && sprache_2 && (
                     <LanguageCircle 
                       name={sprache_2} 
                       percentage={sprache_2_starke || 0} 
-                      color={sprache_2_farbe || '#14b8a6'} 
+                      color={getLanguageColor(sprache_2, sprache_2_farbe || LANGUAGE_COLORS.english)} 
                     />
                   )}
                   {sprachen_anzeigen === 'Drei Sprachen' && sprache_3 && (
                     <LanguageCircle 
                       name={sprache_3} 
                       percentage={sprache_3_starke || 0} 
-                      color={sprache_3_farbe || '#8b5cf6'} 
+                      color={getLanguageColor(sprache_3, sprache_3_farbe || LANGUAGE_COLORS.turkish)} 
                     />
                   )}
                 </div>

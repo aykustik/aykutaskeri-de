@@ -55,7 +55,7 @@ export function PortfolioSection({ acf }: PortfolioProps) {
   if (projects.length === 0) return null;
 
   return (
-    <section className="py-16 bg-white" id="portfolio">
+    <section className="py-16 bg-white print-break-inside" id="portfolio">
       <div className="section-container">
         <div className="mb-10">
           <h2 className="section-title">Portfolio</h2>

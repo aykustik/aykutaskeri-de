@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-outfit: 'Outfit', sans-serif;
-  --color-primary: #0ea5e9;
-  --color-accent: #14b8a6;
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-roboto: 'Roboto', sans-serif;
+  --color-primary: #43C26E;
+  --color-accent: #575CC2;
 }
 
 html {
@@ -13,8 +16,12 @@ html {
 }
 
 body {
-  @apply bg-slate-50 text-dark-800 antialiased;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  @apply bg-slate-50 text-slate-800 antialiased;
+  font-family: var(--font-roboto);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat);
 }
 
 @layer components {
@@ -23,19 +30,19 @@ body {
   }
   
   .card {
-    @apply bg-white rounded-2xl shadow-card transition-all duration-300 hover:shadow-card-hover;
+    @apply bg-white rounded-2xl shadow-sm transition-all duration-300;
   }
   
   .card-elevated {
-    @apply bg-white rounded-2xl shadow-soft border border-slate-100;
+    @apply bg-white rounded-2xl border border-slate-100;
   }
   
   .section-title {
-    @apply text-2xl md:text-3xl font-bold text-dark-900 tracking-tight;
+    @apply text-2xl md:text-3xl font-bold text-slate-900 tracking-tight;
   }
   
   .section-subtitle {
-    @apply text-lg text-dark-500 font-normal mt-2;
+    @apply text-lg text-slate-500 font-normal mt-2;
   }
   
   .progress-bar {
@@ -51,15 +58,26 @@ body {
   }
   
   .badge-primary {
-    @apply badge bg-primary-50 text-primary-700 border border-primary-100;
+    @apply bg-green-50 text-green-700 border border-green-100;
   }
   
   .badge-accent {
-    @apply badge bg-accent-50 text-accent-700 border border-accent-100;
+    @apply bg-purple-50 text-purple-700 border border-purple-100;
   }
   
   .divider {
-    @apply w-16 h-1 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full;
+    @apply w-16 h-1 rounded-full;
+    background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+  }
+  
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-colors duration-200 shadow-md;
+    background-color: var(--color-primary);
+    @apply text-white hover:opacity-90;
+  }
+  
+  .btn-print {
+    @apply btn-primary gap-2;
   }
 }
 
@@ -81,20 +99,89 @@ body {
   }
 }
 
+@media print {
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+  
+  body {
+    @apply bg-white text-black;
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .print-break-inside {
+    break-inside: avoid;
+  }
+  
+  .print-break-before {
+    break-before: page;
+  }
+  
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+  
+  .section-title {
+    @apply text-xl font-bold text-black;
+  }
+  
+  .card, .card-elevated {
+    @apply bg-white;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+  
+  .bg-gradient-to-br, .bg-dark-800, .bg-dark-900 {
+    @apply bg-white !important;
+    color: black !important;
+  }
+  
+  img {
+    max-width: 120px !important;
+    max-height: 120px !important;
+  }
+  
+  .language-circle-svg circle {
+    stroke-width: 4 !important;
+  }
+  
+  section {
+    padding: 12pt 0 !important;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
   }
   
   body {
-    @apply bg-dark-950 text-dark-100;
+    @apply bg-slate-900 text-slate-100;
   }
   
-  .card {
-    @apply bg-dark-800 border border-dark-700;
+  .card, .card-elevated {
+    @apply bg-slate-800 border-slate-700;
   }
   
   .section-title {
-    @apply text-dark-50;
+    @apply text-slate-50;
   }
 }

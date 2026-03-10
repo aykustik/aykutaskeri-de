@@ -1,5 +1,6 @@
+'use client';
+
 import { ACFFields } from '@/types/wordpress';
-import { decodeHtml } from '@/lib/utils';
 
 interface HeaderProps {
   acf: ACFFields;
@@ -8,8 +9,12 @@ interface HeaderProps {
 export function HeaderSection({ acf }: HeaderProps) {
   const { profilbild, vorname, nachname, bereich } = acf;
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
-    <section className="relative bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 text-white py-16 md:py-24 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 text-white overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 -left-4 w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
         <div className="absolute top-0 -right-4 w-72 h-72 bg-accent-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-200"></div>
@@ -41,6 +46,17 @@ export function HeaderSection({ acf }: HeaderProps) {
             )}
             <div className="divider mt-6 mx-auto md:mx-0"></div>
           </div>
+          
+          <button 
+            onClick={handlePrint}
+            className="no-print btn-print bg-white text-dark-900 hover:bg-primary-50 hover:text-primary-700 ml-auto flex-shrink-0"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span className="hidden sm:inline">CV speichern</span>
+            <span className="sm:hidden">PDF</span>
+          </button>
         </div>
       </div>
     </section>
@@ -57,7 +73,7 @@ export function SocialLinks({ acf }: SocialLinksProps) {
   if (!facebook_link && !linkedin_link && !xing_link) return null;
 
   return (
-    <div className="bg-dark-800 border-b border-dark-700">
+    <div className="bg-dark-800 border-b border-dark-700 no-print">
       <div className="section-container py-4">
         <div className="flex justify-center md:justify-start gap-6">
           {facebook_link && (
@@ -115,7 +131,7 @@ export function ContactInfo({ acf }: ContactInfoProps) {
   if (!e_mail && !telefon && !adresse) return null;
 
   return (
-    <div className="bg-white border-b border-slate-100">
+    <div className="bg-white border-b border-slate-100 no-print">
       <div className="section-container py-4">
         <div className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 text-sm">
           {telefon && (
