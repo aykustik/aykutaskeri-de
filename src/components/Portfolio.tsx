@@ -1,4 +1,5 @@
 import { ACFFields, WPImage } from '@/types/wordpress';
+import { decodeHtml } from '@/lib/utils';
 
 interface PortfolioProps {
   acf: ACFFields;
@@ -54,53 +55,56 @@ export function PortfolioSection({ acf }: PortfolioProps) {
   if (projects.length === 0) return null;
 
   return (
-    <section className="bg-gray-50 py-12">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">
-          Portfolio
-        </h2>
+    <section className="py-16 bg-white" id="portfolio">
+      <div className="section-container">
+        <div className="mb-10">
+          <h2 className="section-title">Portfolio</h2>
+          <div className="divider mt-4"></div>
+        </div>
 
         {acf.portfolio_text && (
-          <p className="text-gray-600 mb-8">{acf.portfolio_text}</p>
+          <p className="text-dark-600 mb-10 max-w-2xl leading-relaxed">{decodeHtml(acf.portfolio_text)}</p>
         )}
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <div
+            <a
               key={index}
-              className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+              href={project.link || '#'}
+              target={project.link ? '_blank' : '_self'}
+              rel={project.link ? 'noopener noreferrer' : undefined}
+              className="card-elevated overflow-hidden group hover:shadow-xl transition-all duration-300 animate-fade-in-up"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
               {project.image && (
                 <div className="h-48 overflow-hidden">
                   <img
                     src={project.image.url}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               )}
-              <div className="p-4">
-                <h3 className="font-semibold text-gray-900 mb-2">
+              <div className="p-5">
+                <h3 className="font-bold text-dark-900 mb-2 group-hover:text-primary-600 transition-colors">
                   {project.title}
                 </h3>
                 {project.text && (
                   <div 
-                    className="text-gray-600 text-sm mb-3 prose prose-sm max-w-none"
-                    dangerouslySetInnerHTML={{ __html: project.text }}
+                    className="text-dark-500 text-sm mb-3 line-clamp-2 leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: decodeHtml(project.text) }}
                   />
                 )}
                 {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline text-sm font-medium"
-                  >
-                    Projekt ansehen →
-                  </a>
+                  <span className="inline-flex items-center text-sm font-medium text-primary-600 group-hover:underline">
+                    Projekt ansehen 
+                    <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </span>
                 )}
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

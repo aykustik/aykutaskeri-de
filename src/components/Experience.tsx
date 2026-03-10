@@ -1,4 +1,5 @@
 import { ACFFields } from '@/types/wordpress';
+import { decodeHtml } from '@/lib/utils';
 
 interface ExperienceProps {
   acf: ACFFields;
@@ -8,6 +9,7 @@ interface Experience {
   period: string;
   title: string;
   description: string;
+  company?: string;
 }
 
 export function ExperienceSection({ acf }: ExperienceProps) {
@@ -42,34 +44,49 @@ export function ExperienceSection({ acf }: ExperienceProps) {
   if (experiences.length === 0) return null;
 
   return (
-    <section className="bg-gray-50 py-12">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">
-          Berufserfahrung
-        </h2>
+    <section className="py-16 bg-white" id="experience">
+      <div className="section-container">
+        <div className="mb-10">
+          <h2 className="section-title">Berufserfahrung</h2>
+          <div className="divider mt-4"></div>
+        </div>
 
         {acf.berufserfahrung_text && (
-          <p className="text-gray-600 mb-8">{acf.berufserfahrung_text}</p>
+          <div className="text-dark-600 mb-10 max-w-2xl leading-relaxed" dangerouslySetInnerHTML={{ __html: decodeHtml(acf.berufserfahrung_text) }} />
         )}
 
-        <div className="space-y-8">
-          {experiences.map((exp, index) => (
-            <div key={index} className="relative pl-8 border-l-2 border-blue-500">
-              <div className="absolute -left-[9px] top-0 w-4 h-4 bg-blue-500 rounded-full" />
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <span className="text-sm text-gray-500 font-medium">
-                  {exp.period}
-                </span>
-                <h3 className="text-lg font-semibold text-gray-900 mt-1">
-                  {exp.title}
-                </h3>
-                <div
-                  className="text-gray-600 mt-3 prose prose-sm max-w-none"
-                  dangerouslySetInnerHTML={{ __html: exp.description }}
-                />
+        <div className="relative">
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 via-accent-500 to-primary-300"></div>
+          
+          <div className="space-y-10">
+            {experiences.map((exp, index) => (
+              <div 
+                key={index} 
+                className={`relative flex items-center ${
+                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                }`}
+              >
+                <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-primary-500 rounded-full border-4 border-white shadow-lg transform -translate-x-1/2 z-10"></div>
+                
+                <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
+                  <div className="card-elevated p-6 hover:shadow-lg transition-all duration-300 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+                    <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full mb-3">
+                      {exp.period}
+                    </span>
+                    <h3 className="text-lg font-bold text-dark-900 mb-1">
+                      {exp.title}
+                    </h3>
+                    <div 
+                      className="text-dark-600 prose prose-sm max-w-none mt-3"
+                      dangerouslySetInnerHTML={{ __html: decodeHtml(exp.description) }}
+                    />
+                  </div>
+                </div>
+                
+                <div className="hidden md:block md:w-1/2"></div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

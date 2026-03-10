@@ -1,5 +1,5 @@
 import { CVPage } from '@/types/wordpress';
-import { HeaderSection, SocialLinks } from './Header';
+import { HeaderSection, SocialLinks, ContactInfo } from './Header';
 import { AboutSection } from './About';
 import { SkillsSection } from './Skills';
 import { ExperienceSection } from './Experience';
@@ -14,19 +14,23 @@ export function CVPageComponent({ cv }: CVPageProps) {
   const { acf } = cv;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-slate-50">
       <HeaderSection acf={acf} />
       <SocialLinks acf={acf} />
+      <ContactInfo acf={acf} />
       <AboutSection acf={acf} />
       <SkillsSection acf={acf} />
       <ExperienceSection acf={acf} />
       <EducationSection acf={acf} />
       <PortfolioSection acf={acf} />
       
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="max-w-6xl mx-auto px-4 text-center">
+      <footer className="bg-dark-900 text-dark-300 py-12">
+        <div className="section-container text-center">
+          <p className="text-lg font-medium text-white mb-2">
+            {acf.vorname} {acf.nachname}
+          </p>
           <p className="text-sm">
-            © {new Date().getFullYear()} {acf.vorname} {acf.nachname}. Alle Rechte vorbehalten.
+            © {new Date().getFullYear()} Alle Rechte vorbehalten.
           </p>
         </div>
       </footer>
