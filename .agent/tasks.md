@@ -17,12 +17,10 @@
 
 ---
 
-- Status: todo
-- Priority: medium
-- Notes: **Icons vereinheitlichen und Icon-Bibliothek nutzen**
-  - Aktuelle Situation: Icons sind als hardcodierte Inline-SVGs in Komponenten. Keine zentrale Bibliothek. ACF-Felder für Icons (`bereich_1_icon` bis `bereich_4_icon`) existieren, werden aber nicht verwendet.
-  - Ziel: Zentrale Icon-Bibliothek (z.B. Lucide React), Icons über ACF auswählbar, einheitliches Look & Feel
-  - Lösungsansatz: Lucide React installieren, ACF um Icon-Select erweitern, zentrale Icon-Komponente erstellen, Migration aller inline SVGs
+- Status: completed
+- Priority: low
+- Notes: **`ausbildung_text` und `weiterbildung_text` in WordPress korrigiert**
+  - Erledigt: Texte in WP angepasst, sind jetzt unterschiedlich
 
 ---
 
@@ -85,6 +83,9 @@
   - Metadata-Generation in `cv/[slug]/page.tsx` angepasst
   - Unterstützung für Title, Description, Canonical, Robots, Open Graph, Twitter Cards
   - OG Image Hinweis dokumentiert (kein Fallback für Custom Post Types)
+- ✅ **ACF Textfelder korrigiert**:
+  - `ausbildung_text` und `weiterbildung_text` in WordPress angepasst
+  - Texte sind jetzt unterschiedlich für beide Sections
 - ✅ **Print-CV vollständig implementiert und in main gemerged**:
   - 2-Spalten Layout (35/65) mit Inter Font
   - Header mit Profilbild, Name, Titel, Kontakt
