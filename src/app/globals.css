@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -491,9 +491,21 @@ input[type="radio"]:focus {
     transition: none !important;
   }
 
-  /* ── Hide non-content elements ────────────────── */
-  nav, form, .btn,
-  #intro, #cta-section, #kennenlernen,
+  /* ── Hide ALL web sections ───────────────────── */
+  header,
+  nav, 
+  form, 
+  .btn,
+  #intro, 
+  #ueber-mich,
+  #skills, 
+  #cta-section, 
+  #berufserfahrung,
+  #weiterbildung,
+  #ausbildung,
+  #portfolio,
+  #kennenlernen,
+  footer,
   .progress-track,
   .language-circle-svg,
   .timeline-line,
@@ -511,9 +523,9 @@ input[type="radio"]:focus {
   body {
     background: #fff !important;
     color: #111 !important;
-    font-size: 9.5pt;
+    font-size: 10.5pt;
     line-height: 1.45;
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Inter', Arial, sans-serif;
   }
 
   /* ── Typography ──────────────────────────────── */
@@ -627,5 +639,26 @@ input[type="radio"]:focus {
   [style*="brand-emerald-light"],
   [style*="brand-brick-light"] {
     display: none !important;
+  }
+
+  /* Job descriptions - ensure bullet points are visible */
+  .job-description ul,
+  .job-description ol {
+    margin: 4pt 0;
+    padding-left: 16pt;
+  }
+
+  .job-description li {
+    margin-bottom: 2pt;
+    font-size: 10.5pt;
+    line-height: 1.4;
+  }
+
+  .job-description ul li {
+    list-style-type: disc;
+  }
+
+  .job-description ol li {
+    list-style-type: decimal;
   }
 }

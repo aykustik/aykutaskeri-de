@@ -8,6 +8,7 @@ import { ExperienceSection } from './Experience';
 import { WeiterbildungSection, AusbildungSection } from './Education';
 import { PortfolioSection } from './Portfolio';
 import { ContactSection } from './Contact';
+import { PrintCV } from './PrintCV';
 
 interface CVPageProps { cv: CVPage }
 
@@ -15,16 +16,38 @@ export function CVPageComponent({ cv }: CVPageProps) {
   const { acf } = cv;
   return (
     <div className="min-h-screen" style={{ background: '#f8fafc' }}>
+      {/* Print-only CV Section - ABSOLUT POSITIONIERT */}
+      <section 
+        className="print-only" 
+        style={{ 
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          minHeight: '100vh',
+          padding: '1.5cm',
+          background: 'white',
+          zIndex: 9999
+        }}
+      >
+        <PrintCV acf={acf} />
+      </section>
+
+      {/* Web-Sections (werden im Print ausgeblendet) */}
       <HeaderSection acf={acf} />
       <HeroSection acf={acf} />
-      <AboutSection acf={acf} />
+      <section className="no-print">
+        <AboutSection acf={acf} />
+      </section>
       <SkillsSection acf={acf} />
       <CTASection acf={acf} />
 
       {/* Career first, then continuing education, then formal education last */}
       <ExperienceSection acf={acf} />
-      <WeiterbildungSection acf={acf} />
-      <AusbildungSection acf={acf} />
+      <section className="no-print">
+        <WeiterbildungSection acf={acf} />
+        <AusbildungSection acf={acf} />
+      </section>
 
       <PortfolioSection acf={acf} />
       <ContactSection acf={acf} />
