@@ -18,7 +18,7 @@ export function HeroSection({ acf }: HeroProps) {
             <h2 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
               Hi!<br />
               <span>Ich bin </span>
-              <span style={{ color: 'var(--brand-green)' }}>{vorname}.</span>
+              <span style={{ color: 'var(--brand-purple)' }}>{vorname}.</span>
             </h2>
             {bereich && (
               <p className="mt-4 text-xl md:text-2xl text-slate-500 font-medium">
@@ -30,7 +30,7 @@ export function HeroSection({ acf }: HeroProps) {
           <div className="flex flex-col gap-3 md:items-end animate-fade-in-up delay-200">
             <button
               onClick={() => scrollTo('skills')}
-              className="btn btn-green"
+              className="btn btn-primary"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />

@@ -1,0 +1,7 @@
+{
+  "githubTokenEnv": "GH_TOKEN",
+  "defaultBranchPrefix": "ai-task",
+  "projectID": "wordpress-headless",
+  "workspaceStartupScript": "npm install",
+  "autoUpdateTasks": true
+}

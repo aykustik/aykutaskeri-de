@@ -13,7 +13,7 @@ export function CTASection({ acf }: CTAProps) {
   };
 
   return (
-    <section className="py-16 no-print" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
+    <section className="py-16 no-print" id="cta-section" style={{ background: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 55%, #0f172a 100%)' }}>
       <div className="section-container">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           <div>
@@ -31,7 +31,7 @@ export function CTASection({ acf }: CTAProps) {
           </div>
           <button
             onClick={scrollToKontakt}
-            className="btn btn-green flex-shrink-0 text-base px-8 py-4"
+            className="btn btn-orange flex-shrink-0 text-base px-8 py-4"
           >
             Jetzt kennenlernen
           </button>

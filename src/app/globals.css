@@ -7,8 +7,26 @@
 :root {
   --font-montserrat: 'Montserrat', sans-serif;
   --font-roboto: 'Roboto', sans-serif;
-  --brand-green: #43C26E;
-  --brand-purple: #575CC2;
+
+  /* ── Primary: Purple ─────────────────────────── */
+  --brand-purple:        #575CC2;
+  --brand-purple-dark:   #3d4194;
+  --brand-purple-light:  #eeeffe;
+  --brand-purple-grad:   #818cf8;
+
+  /* ── Secondary: Emerald (achievements / positive) */
+  --brand-emerald:       #059669;
+  --brand-emerald-light: #d1fae5;
+
+  /* ── Semantic-only accents ───────────────────── */
+  --brand-orange:        #F97316;   /* CTA button only */
+  --brand-brick:         #e5533d;   /* "Mag ich nicht" icon only */
+  --brand-brick-light:   #fef3f2;
+
+  /* ── Language circles (intentional, not UI chrome) */
+  --lang-green:   #43C26E;
+  --lang-purple:  #575CC2;
+  --lang-gold:    #C2A73A;
 }
 
 html {
@@ -26,7 +44,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-montserrat);
 }
 
-/* ── Layout ────────────────────────────────────── */
+/* ── Layout ─────────────────────────────────────── */
 .section-container {
   max-width: 1200px;
   margin-left: auto;
@@ -35,19 +53,19 @@ h1, h2, h3, h4, h5, h6 {
   padding-right: 1.5rem;
 }
 
-/* ── Cards ─────────────────────────────────────── */
+/* ── Cards ──────────────────────────────────────── */
 .card {
   background: #ffffff;
   border-radius: 1rem;
   border: 1px solid #e2e8f0;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 .card:hover {
-  box-shadow: 0 8px 24px -4px rgba(0,0,0,0.10);
-  transform: translateY(-1px);
+  box-shadow: 0 10px 28px -6px rgba(87, 92, 194, 0.13);
+  transform: translateY(-2px) scale(1.005);
 }
 
-/* ── Typography ────────────────────────────────── */
+/* ── Typography ─────────────────────────────────── */
 .section-title {
   font-family: var(--font-montserrat);
   font-size: 1.75rem;
@@ -65,15 +83,15 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.75;
 }
 
-/* ── Divider ───────────────────────────────────── */
+/* ── Divider ────────────────────────────────────── */
 .divider {
   width: 3.5rem;
   height: 3px;
   border-radius: 9999px;
-  background: linear-gradient(to right, var(--brand-green), var(--brand-purple));
+  background: linear-gradient(to right, var(--brand-purple), var(--brand-purple-grad));
 }
 
-/* ── Buttons ───────────────────────────────────── */
+/* ── Buttons ────────────────────────────────────── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -89,33 +107,49 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   text-decoration: none;
 }
-.btn-green {
-  background-color: var(--brand-green);
+
+/* Primary: purple — main CTAs */
+.btn-primary {
+  background-color: var(--brand-purple);
   color: #ffffff;
 }
-.btn-green:hover {
-  background-color: #33a358;
-  box-shadow: 0 4px 14px rgba(67,194,110,0.35);
+.btn-primary:hover {
+  background-color: var(--brand-purple-dark);
+  box-shadow: 0 4px 16px rgba(87, 92, 194, 0.4);
 }
+
+/* Outline: purple border/text */
 .btn-outline {
   background: transparent;
-  color: var(--brand-green);
-  border: 2px solid var(--brand-green);
+  color: var(--brand-purple);
+  border: 2px solid var(--brand-purple);
 }
 .btn-outline:hover {
-  background-color: var(--brand-green);
+  background-color: var(--brand-purple);
   color: #ffffff;
 }
+
+/* Orange: used exclusively on the CTA section */
+.btn-orange {
+  background-color: var(--brand-orange);
+  color: #ffffff;
+}
+.btn-orange:hover {
+  background-color: #ea6c00;
+  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.45);
+}
+
+/* White: for dark section backgrounds */
 .btn-white {
   background: #ffffff;
   color: #0f172a;
 }
 .btn-white:hover {
   background: #f1f5f9;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
-/* ── Progress bars ─────────────────────────────── */
+/* ── Progress bars ──────────────────────────────── */
 .progress-track {
   width: 100%;
   height: 7px;
@@ -126,9 +160,10 @@ h1, h2, h3, h4, h5, h6 {
 .progress-fill {
   height: 100%;
   border-radius: 9999px;
+  background: linear-gradient(to right, var(--brand-purple), var(--brand-purple-grad));
 }
 
-/* ── Badges ────────────────────────────────────── */
+/* ── Badges ─────────────────────────────────────── */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -137,60 +172,145 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.8125rem;
   font-weight: 500;
 }
-.badge-green {
-  background-color: #e8f8ee;
-  color: #1a7a42;
-  border: 1px solid #bbf0d0;
+.badge-emerald {
+  background-color: var(--brand-emerald-light);
+  color: #065f46;
+  border: 1px solid #a7f3d0;
 }
 
-/* ── Section backgrounds ───────────────────────── */
+/* ── Section backgrounds ────────────────────────── */
 .section-white { background-color: #ffffff; }
 .section-gray  { background-color: #f8fafc; }
 .section-dark  { background-color: #0f172a; }
 
-/* ── Animation helpers ─────────────────────────── */
+/* ── Animation helpers ──────────────────────────── */
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
 .delay-500 { animation-delay: 500ms; }
 
-/* ── Print ─────────────────────────────────────── */
-@media print {
-  @page { size: A4; margin: 1.2cm; }
+/* ── Utility ────────────────────────────────────── */
+.screen-only  { }                          /* visible on screen, hidden in print */
+.print-only   { display: none; }          /* hidden on screen, shown in print */
+.print-only-flex { display: none; }
 
-  body {
-    background: #fff !important;
-    color: #000 !important;
-    font-size: 10.5pt;
-    line-height: 1.45;
+/* ── Print ──────────────────────────────────────── */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 2cm 2.5cm;
   }
 
-  .no-print { display: none !important; }
+  /* ── Show/hide ───────────────────────────────── */
+  .no-print          { display: none !important; }
+  .screen-only       { display: none !important; }
+  .print-only        { display: block !important; }
+  .print-only-flex   { display: flex !important; }
 
+  /* ── Hide decorative / interactive elements ───── */
+  nav,
+  form,
+  .btn,
+  #intro,
+  #cta-section,
+  #kontakt,
+  .progress-track,
+  .language-circle-svg,
+  .timeline-line,
+  .timeline-dot
+  { display: none !important; }
+
+  /* ── Base ────────────────────────────────────── */
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  a { color: inherit !important; text-decoration: none !important; }
-
-  .card {
-    border: 1px solid #ddd !important;
-    box-shadow: none !important;
-    transform: none !important;
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 10pt;
+    line-height: 1.5;
+    font-family: 'Roboto', Arial, sans-serif;
   }
 
-  section { padding: 10pt 0 !important; }
+  /* ── Typography ──────────────────────────────── */
+  h1 { font-size: 20pt; font-weight: 700; margin-bottom: 4pt; color: #000 !important; }
+  h2 {
+    font-size: 12pt;
+    font-weight: 700;
+    border-bottom: 1pt solid #000;
+    padding-bottom: 3pt;
+    margin-top: 16pt;
+    margin-bottom: 6pt;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #000 !important;
+  }
+  h3 { font-size: 10.5pt; font-weight: 600; margin-bottom: 2pt; color: #000 !important; }
+  h4 { font-size: 10pt; font-weight: 600; color: #000 !important; }
+  p, li { color: #000 !important; margin-bottom: 3pt; }
 
-  h2 { font-size: 14pt !important; }
-  h3 { font-size: 12pt !important; }
+  /* ── Strip card decoration ───────────────────── */
+  .card {
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    transform: none !important;
+    margin-bottom: 6pt;
+  }
 
-  .section-dark {
+  /* ── Dark / colored sections → white ─────────── */
+  .section-dark,
+  .section-gray,
+  .section-white {
     background: #fff !important;
     color: #000 !important;
   }
 
+  /* ── Section padding ─────────────────────────── */
+  section { padding: 4pt 0 !important; }
+
+  /* ── Header ──────────────────────────────────── */
+  header {
+    background: #fff !important;
+    color: #000 !important;
+    padding: 0 0 10pt 0 !important;
+    border-bottom: 1.5pt solid #000;
+    margin-bottom: 2pt;
+  }
+  header h1 { color: #000 !important; }
+  header p, header span, header a { color: #555 !important; font-size: 9pt; }
+
+  /* ── Divider ─────────────────────────────────── */
+  .divider {
+    background: #ccc !important;
+    height: 1pt !important;
+    width: 2rem !important;
+  }
+
+  /* ── Links ───────────────────────────────────── */
+  a { color: #000 !important; text-decoration: none !important; }
+
+  /* ── Timeline items ──────────────────────────── */
+  .timeline-item { padding-left: 0 !important; margin-bottom: 10pt; }
+  .period-badge {
+    background: transparent !important;
+    color: #444 !important;
+    padding: 0 !important;
+    font-size: 8.5pt;
+    font-weight: 600;
+  }
+
+  /* ── Grid → block flow ───────────────────────── */
+  .grid { display: block !important; }
+  .grid > * { margin-bottom: 5pt; }
+
+  /* ── Page breaks ─────────────────────────────── */
+  #berufserfahrung { break-before: page; }
+  .print-avoid     { break-inside: avoid; }
   .print-break-before { break-before: page; }
-  .print-avoid        { break-inside: avoid; }
 }

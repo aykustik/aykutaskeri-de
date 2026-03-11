@@ -9,18 +9,18 @@ function numVal(v: number | string | undefined): number {
 
 export function SkillsSection({ acf }: SkillsProps) {
   const hardSkills = [
-    { name: acf.hard_skill_1,  strength: numVal(acf.hard_skill_1_starke),  color: acf.hard_skill_1_farbe  },
-    { name: acf.hard_skill_2,  strength: numVal(acf.hard_skill_2_starke),  color: acf.hard_skill_2_farbe  },
-    { name: acf.hard_skill_3,  strength: numVal(acf.hard_skill_3_starke),  color: acf.hard_skill_3_farbe  },
-    { name: acf.hard_skill_4,  strength: numVal(acf.hard_skill_4_starke),  color: acf.hard_skill_4_farbe  },
-    { name: acf.hard_skill_5,  strength: numVal(acf.hard_skill_5_starke),  color: acf.hard_skill_5_farbe  },
-    { name: acf.hard_skill_6,  strength: numVal(acf.hard_skill_6_starke),  color: acf.hard_skill_6_farbe  },
-    { name: acf.hard_skill_7,  strength: numVal(acf.hard_skill_7_starke),  color: acf.hard_skill_7_farbe  },
-    { name: acf.hard_skill_8,  strength: numVal(acf.hard_skill_8_starke),  color: acf.hard_skill_8_farbe  },
-    { name: acf.hard_skill_9,  strength: numVal(acf.hard_skill_9_starke),  color: acf.hard_skill_9_farbe  },
-    { name: acf.hard_skill_10, strength: numVal(acf.hard_skill_10_starke), color: acf.hard_skill_10_farbe },
-    { name: acf.hard_skill_11, strength: numVal(acf.hard_skill_11_starke), color: acf.hard_skill_11_farbe },
-    { name: acf.hard_skill_12, strength: numVal(acf.hard_skill_12_starke), color: acf.hard_skill_12_farbe },
+    { name: acf.hard_skill_1,  strength: numVal(acf.hard_skill_1_starke)  },
+    { name: acf.hard_skill_2,  strength: numVal(acf.hard_skill_2_starke)  },
+    { name: acf.hard_skill_3,  strength: numVal(acf.hard_skill_3_starke)  },
+    { name: acf.hard_skill_4,  strength: numVal(acf.hard_skill_4_starke)  },
+    { name: acf.hard_skill_5,  strength: numVal(acf.hard_skill_5_starke)  },
+    { name: acf.hard_skill_6,  strength: numVal(acf.hard_skill_6_starke)  },
+    { name: acf.hard_skill_7,  strength: numVal(acf.hard_skill_7_starke)  },
+    { name: acf.hard_skill_8,  strength: numVal(acf.hard_skill_8_starke)  },
+    { name: acf.hard_skill_9,  strength: numVal(acf.hard_skill_9_starke)  },
+    { name: acf.hard_skill_10, strength: numVal(acf.hard_skill_10_starke) },
+    { name: acf.hard_skill_11, strength: numVal(acf.hard_skill_11_starke) },
+    { name: acf.hard_skill_12, strength: numVal(acf.hard_skill_12_starke) },
   ].filter(s => s.name);
 
   const softSkills = [
@@ -46,21 +46,32 @@ export function SkillsSection({ acf }: SkillsProps) {
         {hardSkills.length > 0 && (
           <div className="mb-10">
             <h3 className="font-heading font-semibold text-slate-700 text-base mb-5">Technische Fähigkeiten</h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {hardSkills.map((skill, i) => {
-                const clr = skill.color || '#43C26E';
-                return (
-                  <div key={i} className="card p-5">
-                    <div className="flex justify-between items-center mb-3">
-                      <span className="font-medium text-slate-800 text-sm">{skill.name}</span>
-                      <span className="text-xs font-semibold tabular-nums" style={{ color: clr }}>{skill.strength}%</span>
-                    </div>
-                    <div className="progress-track">
-                      <div className="progress-fill" style={{ width: `${skill.strength}%`, backgroundColor: clr }} />
-                    </div>
+
+            {/* Screen: progress bar cards */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 screen-only">
+              {hardSkills.map((skill, i) => (
+                <div key={i} className="card p-5">
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="font-medium text-slate-800 text-sm">{skill.name}</span>
+                    <span className="text-xs font-semibold tabular-nums"
+                          style={{ color: 'var(--brand-purple)' }}>
+                      {skill.strength}%
+                    </span>
                   </div>
-                );
-              })}
+                  <div className="progress-track">
+                    <div className="progress-fill" style={{ width: `${skill.strength}%` }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Print: plain text list — two columns via CSS columns */}
+            <div className="print-only" style={{ columns: 2, columnGap: '2rem' }}>
+              {hardSkills.map((skill, i) => (
+                <div key={i} style={{ breakInside: 'avoid', marginBottom: '3pt' }}>
+                  {skill.name} — {skill.strength}%
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -68,11 +79,16 @@ export function SkillsSection({ acf }: SkillsProps) {
         {softSkills.length > 0 && (
           <div>
             <h3 className="font-heading font-semibold text-slate-700 text-base mb-4">Soft Skills</h3>
-            <div className="flex flex-wrap gap-2">
+            {/* Screen: emerald badges */}
+            <div className="flex flex-wrap gap-2 screen-only">
               {softSkills.map((skill, i) => (
-                <span key={i} className="badge badge-green">{skill}</span>
+                <span key={i} className="badge badge-emerald">{skill}</span>
               ))}
             </div>
+            {/* Print: comma-separated plain text */}
+            <p className="print-only" style={{ margin: 0 }}>
+              {softSkills.join(' · ')}
+            </p>
           </div>
         )}
       </div>

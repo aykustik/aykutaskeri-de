@@ -14,7 +14,7 @@ export function HeaderSection({ acf }: HeaderProps) {
           {profilbild && (
             <div className="relative flex-shrink-0">
               <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden"
-                   style={{ border: '3px solid rgba(67,194,110,0.4)' }}>
+                   style={{ border: '3px solid rgba(87,92,194,0.5)' }}>
                 <img src={profilbild.url} alt={`${vorname} ${nachname}`}
                      className="w-full h-full object-cover" />
               </div>
@@ -27,7 +27,7 @@ export function HeaderSection({ acf }: HeaderProps) {
               {vorname} {nachname}
             </h1>
             {bereich && (
-              <p className="text-lg mt-2 font-medium" style={{ color: '#43C26E' }}>{bereich}</p>
+              <p className="text-lg mt-2 font-medium" style={{ color: 'var(--brand-purple-grad)' }}>{bereich}</p>
             )}
             <div className="divider mt-4 mx-auto md:mx-0" />
 

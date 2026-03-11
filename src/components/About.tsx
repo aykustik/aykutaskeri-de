@@ -72,9 +72,9 @@ export function AboutSection({ acf }: AboutProps) {
     bereich_3, bereich_3_text,
     bereich_4, bereich_4_text,
     sprachen_anzeigen,
-    sprache_1, sprache_1_starke, sprache_1_farbe,
-    sprache_2, sprache_2_starke, sprache_2_farbe,
-    sprache_3, sprache_3_starke, sprache_3_farbe,
+    sprache_1, sprache_1_starke,
+    sprache_2, sprache_2_starke,
+    sprache_3, sprache_3_starke,
   } = acf;
 
   const langCount = showLangCount(sprachen_anzeigen);
@@ -85,6 +85,12 @@ export function AboutSection({ acf }: AboutProps) {
     { title: bereich_4, text: bereich_4_text, n: 4 },
   ].filter(b => b.title);
 
+  const languages = [
+    { name: sprache_1, pct: numVal(sprache_1_starke) },
+    { name: sprache_2, pct: numVal(sprache_2_starke) },
+    { name: sprache_3, pct: numVal(sprache_3_starke) },
+  ].filter((l, i) => l.name && langCount > i);
+
   return (
     <section className="section-gray py-16 print-avoid" id="ueber-mich">
       <div className="section-container space-y-12">
@@ -92,10 +98,8 @@ export function AboutSection({ acf }: AboutProps) {
         {/* Über mich Text */}
         {uber_mich_text && (
           <div>
-            <div className="flex items-center gap-4 mb-6">
-              <h2 className="section-title">Über mich</h2>
-            </div>
-            <div className="divider mb-6" />
+            <h2 className="section-title">Über mich</h2>
+            <div className="divider mt-4 mb-6" />
             <div
               className="body-text prose prose-slate max-w-3xl"
               dangerouslySetInnerHTML={{ __html: decodeHtml(uber_mich_text) }}
@@ -103,32 +107,35 @@ export function AboutSection({ acf }: AboutProps) {
           </div>
         )}
 
-        {/* 4 Bereichs-Kacheln */}
+        {/* 4 Bereichs-Kacheln — screen only */}
         {bereiche.length > 0 && (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 screen-only">
             {bereiche.map(({ title, text, n }) => (
               <div key={n} className="card p-6 print-avoid">
                 <div
-                  className="w-10 h-10 mb-4 text-[color:var(--brand-green)]"
+                  className="w-10 h-10 mb-4"
+                  style={{ color: 'var(--brand-purple)' }}
                   dangerouslySetInnerHTML={{ __html: BEREICH_ICONS[n] }}
                 />
-                <h3 className="font-heading font-700 text-slate-900 text-base mb-2">{title}</h3>
+                <h3 className="font-heading font-semibold text-slate-900 text-base mb-2">{title}</h3>
                 {text && <p className="text-slate-500 text-sm leading-relaxed">{text}</p>}
               </div>
             ))}
           </div>
         )}
 
-        {/* Das zeichnet mich aus / Das mag ich nicht + Sprachen */}
+        {/* Das zeichnet / Mag nicht + Sprachen */}
         {(das_zeichnet_mich_aus || das_mag_ich_nicht || langCount > 0) && (
           <div className="grid lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 grid md:grid-cols-2 gap-5">
+
               {das_zeichnet_mich_aus && (
                 <div className="card p-6 print-avoid">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
-                         style={{ background: '#e8f8ee' }}>
-                      <svg className="w-5 h-5" fill="none" stroke="#43C26E" viewBox="0 0 24 24">
+                    {/* Emerald = positive / strength */}
+                    <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 screen-only"
+                         style={{ background: 'var(--brand-emerald-light)' }}>
+                      <svg className="w-5 h-5" fill="none" stroke="var(--brand-emerald)" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
@@ -140,12 +147,14 @@ export function AboutSection({ acf }: AboutProps) {
                   />
                 </div>
               )}
+
               {das_mag_ich_nicht && (
                 <div className="card p-6 print-avoid">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
-                         style={{ background: '#fef2f2' }}>
-                      <svg className="w-5 h-5" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
+                    {/* Brick = dislike / negative signal */}
+                    <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 screen-only"
+                         style={{ background: 'var(--brand-brick-light)' }}>
+                      <svg className="w-5 h-5" fill="none" stroke="var(--brand-brick)" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </div>
@@ -162,34 +171,30 @@ export function AboutSection({ acf }: AboutProps) {
             {langCount > 0 && (
               <div className="card p-6 print-avoid">
                 <h3 className="font-heading font-semibold text-slate-800 mb-6 text-sm flex items-center gap-2">
-                  <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 flex-shrink-0 screen-only" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                   </svg>
                   Sprachen
                 </h3>
-                <div className="flex flex-wrap justify-center gap-6">
-                  {sprache_1 && langCount >= 1 && (
+
+                {/* Screen: colorful circles */}
+                <div className="flex flex-wrap justify-center gap-6 screen-only">
+                  {languages.map(({ name, pct }) => (
                     <LanguageCircle
-                      name={sprache_1}
-                      pct={numVal(sprache_1_starke)}
-                      color={langColor(sprache_1, sprache_1_farbe || '#43C26E')}
+                      key={name}
+                      name={name!}
+                      pct={pct}
+                      color={langColor(name, '#575CC2')}
                     />
-                  )}
-                  {sprache_2 && langCount >= 2 && (
-                    <LanguageCircle
-                      name={sprache_2}
-                      pct={numVal(sprache_2_starke)}
-                      color={langColor(sprache_2, sprache_2_farbe || '#575CC2')}
-                    />
-                  )}
-                  {sprache_3 && langCount >= 3 && (
-                    <LanguageCircle
-                      name={sprache_3}
-                      pct={numVal(sprache_3_starke)}
-                      color={langColor(sprache_3, sprache_3_farbe || '#C2A73A')}
-                    />
-                  )}
+                  ))}
                 </div>
+
+                {/* Print: plain text list */}
+                <ul className="print-only" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                  {languages.map(({ name, pct }) => (
+                    <li key={name} style={{ marginBottom: '2pt' }}>{name} — {pct}%</li>
+                  ))}
+                </ul>
               </div>
             )}
           </div>

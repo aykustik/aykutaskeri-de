@@ -28,20 +28,21 @@ export function ExperienceSection({ acf }: ExperienceProps) {
         )}
 
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-4 md:left-6 top-2 bottom-2 w-0.5"
-               style={{ background: 'linear-gradient(to bottom, #43C26E, #575CC2)' }} />
+          {/* Timeline line — screen only */}
+          <div className="timeline-line absolute left-4 md:left-6 top-2 bottom-2 w-0.5 screen-only"
+               style={{ background: 'linear-gradient(to bottom, var(--brand-purple), var(--brand-purple-grad))' }} />
 
           <div className="space-y-8">
             {jobs.map((job, i) => (
-              <div key={i} className="relative pl-12 md:pl-16 print-avoid">
-                {/* Dot */}
-                <div className="absolute left-2 md:left-4 top-5 w-5 h-5 rounded-full border-2 border-white shadow-md"
-                     style={{ background: '#43C26E' }} />
+              <div key={i} className="timeline-item relative pl-12 md:pl-16 print-avoid">
+                {/* Timeline dot — screen only */}
+                <div className="timeline-dot absolute left-2 md:left-4 top-5 w-5 h-5 rounded-full border-2 border-white shadow-md screen-only"
+                     style={{ background: 'var(--brand-purple)' }} />
+
                 <div className="card p-6">
                   {job.period && (
-                    <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3 text-white"
-                          style={{ background: '#43C26E' }}>
+                    <span className="period-badge inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3 text-white"
+                          style={{ background: 'var(--brand-purple)' }}>
                       {job.period}
                     </span>
                   )}

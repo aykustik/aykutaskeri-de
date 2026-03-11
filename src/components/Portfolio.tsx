@@ -1,4 +1,4 @@
-import { ACFFields, WPImage } from '@/types/wordpress';
+import { ACFFields } from '@/types/wordpress';
 import { decodeHtml } from '@/lib/utils';
 
 interface PortfolioProps { acf: ACFFields }
@@ -16,7 +16,7 @@ export function PortfolioSection({ acf }: PortfolioProps) {
   if (!projects.length) return null;
 
   return (
-    <section className="section-gray py-16" id="portfolio">
+    <section className="section-gray py-16 screen-only" id="portfolio">
       <div className="section-container">
         <h2 className="section-title">Portfolio</h2>
         <div className="divider mt-4 mb-8" />
@@ -33,7 +33,7 @@ export function PortfolioSection({ acf }: PortfolioProps) {
               href={p.link || '#'}
               target={p.link ? '_blank' : '_self'}
               rel={p.link ? 'noopener noreferrer' : undefined}
-              className="card block overflow-hidden group"
+              className="card block overflow-hidden group cursor-pointer"
             >
               {p.image && (
                 <div className="h-40 overflow-hidden bg-slate-100 flex items-center justify-center p-6">
@@ -45,7 +45,10 @@ export function PortfolioSection({ acf }: PortfolioProps) {
                 </div>
               )}
               <div className="p-5">
-                <h3 className="font-heading font-bold text-slate-900 text-base mb-2 group-hover:text-[color:var(--brand-green)] transition-colors">
+                <h3 className="font-heading font-bold text-slate-900 text-base mb-2 transition-colors"
+                    style={{ color: undefined }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--brand-purple)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '')}>
                   {p.title}
                 </h3>
                 {p.text && (
@@ -54,7 +57,7 @@ export function PortfolioSection({ acf }: PortfolioProps) {
                 )}
                 {p.link && (
                   <span className="inline-flex items-center gap-1 mt-3 text-sm font-semibold"
-                        style={{ color: '#43C26E' }}>
+                        style={{ color: 'var(--brand-emerald)' }}>
                     Ansehen
                     <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
