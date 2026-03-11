@@ -34,12 +34,11 @@
 
 ---
 
-- Status: todo
+- Status: completed
 - Priority: medium
-- Notes: **Portfolio: „Ansehen"-Span unten bündig ausrichten**
-  - Der grüne "Ansehen"-Span soll unabhängig von der Textlänge immer unten in der Card platziert sein
-  - Alle "Ansehen"-Spans sollen in einer Reihe bündig sein (gleiche vertikale Position)
-  - CSS: `mt-auto` auf dem Span oder Card-Container mit Flexbox/Grid
+- Notes: **Portfolio: „Ansehen"-Span unten bündig ausgerichtet**
+  - Erledigt: `Portfolio.tsx` mit Flexbox angepasst
+  - Cards: `flex flex-col`, Content: `flex-grow`, Span: `mt-auto pt-3`
 
 ---
 
