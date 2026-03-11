@@ -8,11 +8,12 @@ interface ContactProps { acf: ACFFields }
 export function ContactSection({ acf }: ContactProps) {
   const { 
     kontakt_text, e_mail, telefon, adresse, plz, ort,
-    stellenbezeichnung, anstellungsart_gewunscht, beworbene_anstellungsart, firma, ansprechpartner
+    stellenbezeichnung, anstellungsart_gewunscht, beworbene_anstellungsart, firma, ansprechpartner,
+    ansprechpartner_e_mail
   } = acf;
   const [response, setResponse] = useState<'yes' | 'no' | ''>('');
   const [message, setMessage] = useState('');
-  const [absenderEmail, setAbsenderEmail] = useState('');
+  const [absenderEmail, setAbsenderEmail] = useState(ansprechpartner_e_mail || '');
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');

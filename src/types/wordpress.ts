@@ -14,6 +14,7 @@ export interface ACFFields {
   firma?: string;
   stellenbezeichnung?: string;
   ansprechpartner?: string;
+  ansprechpartner_e_mail?: string;
   anstellungsart_gewunscht?: string;
   profilbild?: WPImage;
   vorname?: string;
