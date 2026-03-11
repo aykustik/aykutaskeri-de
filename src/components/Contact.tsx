@@ -14,13 +14,18 @@ export function ContactSection({ acf }: ContactProps) {
   const [response, setResponse] = useState<'yes' | 'no' | ''>('');
   const [message, setMessage] = useState('');
   const [absenderEmail, setAbsenderEmail] = useState(ansprechpartner_e_mail || '');
+  const [responseError, setResponseError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!response || !absenderEmail) return;
+    if (!response) {
+      setResponseError(true);
+      return;
+    }
+    setResponseError(false);
 
     setIsLoading(true);
     setError('');
@@ -145,9 +150,8 @@ export function ContactSection({ acf }: ContactProps) {
                     name="response"
                     value="yes"
                     checked={response === 'yes'}
-                    onChange={() => setResponse('yes')}
+                    onChange={() => { setResponse('yes'); setResponseError(false); }}
                     className="peer sr-only"
-                    required
                   />
                   <span className="flex items-center gap-2 px-5 py-3 rounded-full border-2 border-slate-200 transition-all duration-200 ease-apple hover:border-brand-purple hover:shadow-md hover:-translate-y-0.5 peer-checked:border-brand-purple peer-checked:bg-brand-purple-light">
                     <svg className="w-4 h-4 text-brand-purple opacity-60 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,9 +168,8 @@ export function ContactSection({ acf }: ContactProps) {
                     name="response"
                     value="no"
                     checked={response === 'no'}
-                    onChange={() => setResponse('no')}
+                    onChange={() => { setResponse('no'); setResponseError(false); }}
                     className="peer sr-only"
-                    required
                   />
                   <span className="flex items-center gap-2 px-5 py-3 rounded-full border-2 border-slate-200 transition-all duration-200 ease-apple hover:border-brand-brick hover:shadow-md hover:-translate-y-0.5 peer-checked:border-brand-brick peer-checked:bg-brand-brick-light">
                     <svg className="w-4 h-4 text-brand-brick opacity-60 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -178,6 +181,9 @@ export function ContactSection({ acf }: ContactProps) {
                   </span>
                 </label>
               </div>
+              {responseError && (
+                <p className="mt-2 text-sm text-red-600">Bitte wähle eine Option aus.</p>
+              )}
             </div>
 
             <div>
@@ -212,7 +218,7 @@ export function ContactSection({ acf }: ContactProps) {
             <button
               type="submit"
               className="btn btn-primary w-full justify-center"
-              disabled={!response || !absenderEmail || isLoading}
+              disabled={isLoading}
             >
               {isLoading ? (
                 <>
@@ -244,11 +250,7 @@ export function ContactSection({ acf }: ContactProps) {
               </p>
             )}
 
-            {!isSuccess && !error && (
-              <p className="text-xs text-slate-400 text-center">
-                Nutze das Textfeld für ein kurzes Feedback oder Informationen zu den nächsten Schritten wie z. B. Terminvorschläge.
-              </p>
-            )}
+
           </form>
         </div>
       </div>
