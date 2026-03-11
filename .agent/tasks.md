@@ -43,6 +43,32 @@
 ---
 
 - Status: todo
+- Priority: high
+- Notes: **RankMath SEO Integration für Headless CMS**
+  - Issue: #16
+  - Ziel: SEO-Metadaten (Title, Description, OG, Schema.org) aus RankMath verwenden
+  - Dokumentation: `RANKMATH-SEO.md` erstellt
+  - Implementation: In Progress (Branch: `feat/16-rankmath-seo-integration`)
+  - Änderungen:
+    - Types: `RankMathMeta` und `RankMathAPIResponse` Interfaces
+    - API-Client: `getRankMathMeta()` und `parseRankMathHead()` Methoden
+    - Metadata-Generation: `cv/[slug]/page.tsx` angepasst
+  - Test-CV: 9kau1e4q (Post ID 1212)
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **Print-Ansicht: Enthusiast-Suffix fehlt im Header**
+  - Issue: #15
+  - Problem: Im Print-Header fehlt "-Enthusiast" hinter dem Bereich-Text
+  - Screen zeigt korrekt: "Online-Marketing-Enthusiast"
+  - Print zeigt nur: "Online-Marketing"
+  - Möglicherweise andere Komponente/Layout für Print verwendet
+
+---
+
+- Status: todo
 - Priority: low
 - Notes: `ausbildung_text` und `weiterbildung_text` sind in WordPress identisch — Aykut muss das in WP korrigieren
 

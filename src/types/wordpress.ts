@@ -164,3 +164,26 @@ export interface WPImage {
 export interface CVPage extends WPCV {
   acf: ACFFields;
 }
+
+// RankMath SEO Types
+export interface RankMathMeta {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  robots?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogUrl?: string;
+  ogType?: string;
+  twitterCard?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  schema?: Array<Record<string, unknown>>;
+}
+
+export interface RankMathAPIResponse {
+  success: boolean;
+  head: string;
+}
