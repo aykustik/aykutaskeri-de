@@ -41,7 +41,7 @@ export function PortfolioSection({ acf }: PortfolioProps) {
               href={p.link || '#'}
               target={p.link ? '_blank' : '_self'}
               rel={p.link ? 'noopener noreferrer' : undefined}
-              className="card-interactive block overflow-hidden group cursor-pointer"
+              className="card-interactive flex flex-col overflow-hidden group cursor-pointer"
             >
               {p.image && (
                 <div className="h-40 overflow-hidden bg-slate-100 flex items-center justify-center p-6">
@@ -54,16 +54,17 @@ export function PortfolioSection({ acf }: PortfolioProps) {
                   />
                 </div>
               )}
-              <div className="p-5">
+              <div className="p-5 flex flex-col flex-grow">
                 <h3 className="font-heading font-bold text-slate-900 text-base mb-2 transition-colors group-hover:text-brand-purple">
                   {p.title}
                 </h3>
                 {p.text && (
-                  <div className="prose text-slate-500 text-sm leading-relaxed line-clamp-3"
+                  <div className="prose text-slate-500 text-sm leading-relaxed line-clamp-3 flex-grow"
                        dangerouslySetInnerHTML={{ __html: decodeHtml(p.text) }} />
                 )}
+                {!p.text && <div className="flex-grow" />}
                 {p.link && (
-                  <span className="inline-flex items-center gap-1 mt-3 text-sm font-semibold"
+                  <span className="inline-flex items-center gap-1 mt-auto pt-3 text-sm font-semibold"
                         style={{ color: 'var(--brand-emerald)' }}>
                     Ansehen
                     <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
