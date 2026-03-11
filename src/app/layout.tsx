@@ -9,6 +9,7 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://staging.aykutaskeri.de'),
   title: 'Aykut Askeri - Online-Marketing Experte',
   description: 'Wissenshungrig mit viel Geduld und Verständnis für unterschiedliche Perspektiven. Online-Marketing Enthusiast.',
   keywords: ['Online-Marketing', 'Digital Marketing', 'CV', 'Lebenslauf', 'Aykut Askeri'],

@@ -1,3 +1,5 @@
+'use client';
+import { useEffect, useRef, useState } from 'react';
 import { ACFFields } from '@/types/wordpress';
 import { decodeHtml } from '@/lib/utils';
 
@@ -5,6 +7,45 @@ interface SkillsProps { acf: ACFFields }
 
 function numVal(v: number | string | undefined): number {
   return typeof v === 'string' ? parseInt(v, 10) || 0 : (v ?? 0);
+}
+
+function SkillBar({ name, strength }: { name: string; strength: number }) {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="card p-5">
+      <div className="flex justify-between items-center mb-3">
+        <span className="font-medium text-slate-800 text-sm">{name}</span>
+        <span
+          className="text-xs font-semibold tabular-nums transition-opacity duration-500"
+          style={{ color: 'var(--brand-purple)', opacity: visible ? 1 : 0 }}
+        >
+          {strength}%
+        </span>
+      </div>
+      <div className="progress-track">
+        <div
+          className="progress-fill"
+          style={{
+            width: visible ? `${strength}%` : '0%',
+            transition: visible ? 'width 0.8s cubic-bezier(0.4,0,0.2,1)' : 'none',
+          }}
+        />
+      </div>
+    </div>
+  );
 }
 
 export function SkillsSection({ acf }: SkillsProps) {
@@ -45,27 +86,18 @@ export function SkillsSection({ acf }: SkillsProps) {
 
         {hardSkills.length > 0 && (
           <div className="mb-10">
-            <h3 className="font-heading font-semibold text-slate-700 text-base mb-5">Technische Fähigkeiten</h3>
+            <h3 className="font-heading font-semibold text-slate-700 text-base mb-5">
+              Technische Fähigkeiten
+            </h3>
 
-            {/* Screen: progress bar cards */}
+            {/* Screen: animated progress bar cards */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 screen-only">
               {hardSkills.map((skill, i) => (
-                <div key={i} className="card p-5">
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="font-medium text-slate-800 text-sm">{skill.name}</span>
-                    <span className="text-xs font-semibold tabular-nums"
-                          style={{ color: 'var(--brand-purple)' }}>
-                      {skill.strength}%
-                    </span>
-                  </div>
-                  <div className="progress-track">
-                    <div className="progress-fill" style={{ width: `${skill.strength}%` }} />
-                  </div>
-                </div>
+                <SkillBar key={i} name={skill.name!} strength={skill.strength} />
               ))}
             </div>
 
-            {/* Print: plain text list — two columns via CSS columns */}
+            {/* Print: plain two-column text list */}
             <div className="print-only" style={{ columns: 2, columnGap: '2rem' }}>
               {hardSkills.map((skill, i) => (
                 <div key={i} style={{ breakInside: 'avoid', marginBottom: '3pt' }}>
@@ -78,14 +110,16 @@ export function SkillsSection({ acf }: SkillsProps) {
 
         {softSkills.length > 0 && (
           <div>
-            <h3 className="font-heading font-semibold text-slate-700 text-base mb-4">Soft Skills</h3>
+            <h3 className="font-heading font-semibold text-slate-700 text-base mb-4">
+              Soft Skills
+            </h3>
             {/* Screen: emerald badges */}
             <div className="flex flex-wrap gap-2 screen-only">
               {softSkills.map((skill, i) => (
                 <span key={i} className="badge badge-emerald">{skill}</span>
               ))}
             </div>
-            {/* Print: comma-separated plain text */}
+            {/* Print: plain text */}
             <p className="print-only" style={{ margin: 0 }}>
               {softSkills.join(' · ')}
             </p>

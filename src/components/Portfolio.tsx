@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ACFFields } from '@/types/wordpress';
 import { decodeHtml } from '@/lib/utils';
 
@@ -37,9 +38,11 @@ export function PortfolioSection({ acf }: PortfolioProps) {
             >
               {p.image && (
                 <div className="h-40 overflow-hidden bg-slate-100 flex items-center justify-center p-6">
-                  <img
+                  <Image
                     src={p.image.url}
-                    alt={p.title}
+                    alt={p.title || ''}
+                    width={400}
+                    height={160}
                     className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>

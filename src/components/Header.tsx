@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { ACFFields } from '@/types/wordpress';
 
 interface HeaderProps { acf: ACFFields }
@@ -15,8 +16,9 @@ export function HeaderSection({ acf }: HeaderProps) {
             <div className="relative flex-shrink-0">
               <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden"
                    style={{ border: '3px solid rgba(87,92,194,0.5)' }}>
-                <img src={profilbild.url} alt={`${vorname} ${nachname}`}
-                     className="w-full h-full object-cover" />
+                <Image src={profilbild.url} alt={`${vorname} ${nachname}`}
+                     className="w-full h-full object-cover"
+                     width={176} height={176} />
               </div>
             </div>
           )}

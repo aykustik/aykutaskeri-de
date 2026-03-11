@@ -254,6 +254,31 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-montserrat); }
 .delay-400 { animation-delay: 400ms; }
 .delay-500 { animation-delay: 500ms; }
 
+/* ── Respect reduced-motion preference ──────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .progress-fill {
+    animation: none !important;
+  }
+  .language-circle-float {
+    animation: none !important;
+  }
+  .btn-orange {
+    animation: none !important;
+  }
+  .timeline-dot-first {
+    animation: none !important;
+  }
+  .divider {
+    animation: none !important;
+    background: linear-gradient(to right, var(--brand-purple), var(--brand-purple-grad));
+  }
+}
+
 /* ── Utility ────────────────────────────────────── */
 .screen-only     { }
 .print-only      { display: none; }
