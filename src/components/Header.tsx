@@ -29,7 +29,9 @@ export function HeaderSection({ acf }: HeaderProps) {
               {vorname} {nachname}
             </h1>
             {bereich && (
-              <p className="text-lg mt-2 font-medium" style={{ color: 'var(--brand-purple-grad)' }}>{bereich}</p>
+              <p className="text-lg mt-2 font-medium" style={{ color: 'var(--brand-purple-grad)' }}>
+                {bereich} <span className="opacity-70">Enthusiast</span>
+              </p>
             )}
             <div className="divider mt-4 mx-auto md:mx-0" />
 

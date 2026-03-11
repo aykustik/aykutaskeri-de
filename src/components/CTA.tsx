@@ -34,6 +34,9 @@ export function CTASection({ acf }: CTAProps) {
             className="btn btn-orange flex-shrink-0 text-base px-8 py-4"
           >
             Jetzt kennenlernen
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </button>
         </div>
       </div>

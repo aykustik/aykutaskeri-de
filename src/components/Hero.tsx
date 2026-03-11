@@ -72,19 +72,22 @@ export function HeroSection({ acf }: HeroProps) {
             <button
               onClick={() => scrollTo('skills')}
               className="btn btn-primary"
-              style={{ minWidth: '160px' }}
+              style={{ minWidth: '172px' }}
             >
+              Zu den Skills
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-              Zu den Skills
             </button>
             <button
               onClick={() => scrollTo('kontakt')}
               className="btn btn-outline"
-              style={{ minWidth: '160px' }}
+              style={{ minWidth: '172px' }}
             >
               Kennenlernen
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </button>
           </div>
 
