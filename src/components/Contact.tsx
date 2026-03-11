@@ -15,17 +15,42 @@ export function ContactSection({ acf }: ContactProps) {
   const [message, setMessage] = useState('');
   const [absenderEmail, setAbsenderEmail] = useState(ansprechpartner_e_mail || '');
   const [responseError, setResponseError] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [emailTouched, setEmailTouched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
 
+  const validateEmail = (value: string): string => {
+    if (!value) return 'Bitte gib deine E-Mail-Adresse ein.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Bitte gib eine gültige E-Mail-Adresse ein.';
+    return '';
+  };
+
+  const handleEmailBlur = () => {
+    setEmailTouched(true);
+    setEmailError(validateEmail(absenderEmail));
+  };
+
+  const handleEmailChange = (value: string) => {
+    setAbsenderEmail(value);
+    if (emailTouched) setEmailError(validateEmail(value));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const currentEmailError = validateEmail(absenderEmail);
+    setEmailTouched(true);
+    setEmailError(currentEmailError);
+
     if (!response) {
       setResponseError(true);
+      if (currentEmailError) return;
       return;
     }
     setResponseError(false);
+    if (currentEmailError) return;
 
     setIsLoading(true);
     setError('');
@@ -62,6 +87,8 @@ export function ContactSection({ acf }: ContactProps) {
         setResponse('');
         setMessage('');
         setAbsenderEmail('');
+        setEmailTouched(false);
+        setEmailError('');
         setTimeout(() => setIsSuccess(false), 5000);
       } else {
         setError(data.message || 'Fehler beim Senden');
@@ -207,12 +234,15 @@ export function ContactSection({ acf }: ContactProps) {
               <input
                 type="email"
                 value={absenderEmail}
-                onChange={e => setAbsenderEmail(e.target.value)}
+                onChange={e => handleEmailChange(e.target.value)}
+                onBlur={handleEmailBlur}
                 placeholder="damit ich dir antworten kann"
-                required
-                className="w-full px-4 py-3 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:border-transparent transition"
+                className={`w-full px-4 py-3 border rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:border-transparent transition ${emailError ? 'border-red-400' : 'border-slate-200'}`}
                 style={{ '--tw-ring-color': 'var(--brand-purple)' } as React.CSSProperties}
               />
+              {emailError && (
+                <p className="mt-2 text-sm text-red-600">{emailError}</p>
+              )}
             </div>
 
             <button
