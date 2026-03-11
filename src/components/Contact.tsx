@@ -170,7 +170,7 @@ export function ContactSection({ acf }: ContactProps) {
           </div>
 
           {/* Right: Simple Form */}
-          <form onSubmit={handleSubmit} className="card p-8 space-y-6">
+          <form onSubmit={handleSubmit} noValidate className="card p-8 space-y-6">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-3">
                 Sollen wir uns kennenlernen?
@@ -237,8 +237,7 @@ export function ContactSection({ acf }: ContactProps) {
                 Deine E-Mail-Adresse
               </label>
               <input
-                type="text"
-                inputMode="email"
+                type="email"
                 autoComplete="email"
                 value={absenderEmail}
                 onChange={e => handleEmailChange(e.target.value)}
