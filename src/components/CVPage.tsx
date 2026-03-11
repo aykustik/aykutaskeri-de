@@ -31,9 +31,11 @@ export function CVPageComponent({ cv }: CVPageProps) {
 
       <footer className="section-dark text-slate-400 py-8 no-print text-center text-sm">
         <div className="section-container">
-          <span>© {new Date().getFullYear()} {acf.vorname} {acf.nachname}</span>
-          {acf.copyright_text && (
-            <span className="ml-2">— <span dangerouslySetInnerHTML={{ __html: acf.copyright_text }} /></span>
+          <span>© {new Date().getFullYear()}</span>
+          {acf.copyright_text ? (
+            <span className="ml-1">— <span dangerouslySetInnerHTML={{ __html: acf.copyright_text }} /></span>
+          ) : (
+            <span className="ml-1"> {acf.vorname} {acf.nachname}</span>
           )}
         </div>
       </footer>
