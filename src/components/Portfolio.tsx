@@ -52,7 +52,7 @@ export function PortfolioSection({ acf }: PortfolioProps) {
                   {p.title}
                 </h3>
                 {p.text && (
-                  <div className="text-slate-500 text-sm leading-relaxed line-clamp-3"
+                  <div className="prose text-slate-500 text-sm leading-relaxed line-clamp-3"
                        dangerouslySetInnerHTML={{ __html: decodeHtml(p.text) }} />
                 )}
                 {p.link && (

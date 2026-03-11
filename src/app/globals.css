@@ -96,9 +96,6 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-montserrat); }
 }
 
 /* ── Buttons ────────────────────────────────────── */
-/* Apple-style easing: fast start, smooth finish */
---ease-apple: cubic-bezier(0.4, 0, 0.2, 1);
-
 .btn {
   display: inline-flex;
   align-items: center;
@@ -112,18 +109,17 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-montserrat); }
   border-radius: 0.625rem;
   transition:
     background-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow      0.22s cubic-bezier(0.4, 0, 0.2, 1),
-    transform       0.16s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color    0.22s cubic-bezier(0.4, 0, 0.2, 1),
-    color           0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow       0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    transform        0.16s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color     0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    color            0.22s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   border: 2px solid transparent;
   text-decoration: none;
   white-space: nowrap;
 }
-/* Icon always last (right side) — enforce via CSS order */
-.btn svg { order: 1; flex-shrink: 0; }
-.btn span, .btn > *:not(svg) { order: 0; }
+/* Icons sit inline inside the flex row — SVG after text in JSX = icon on the right */
+.btn svg { flex-shrink: 0; display: inline-block; }
 
 .btn:hover  { transform: translateY(-1px); }
 .btn:active { transform: scale(0.97) translateY(0); }
@@ -316,6 +312,121 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-montserrat); }
     animation: none !important;
     background: linear-gradient(to right, var(--brand-purple), var(--brand-purple-grad));
   }
+}
+
+/* ── Prose — rich-text from WordPress HTML ──────── */
+/* Covers all containers using dangerouslySetInnerHTML with WP content.
+   No @tailwindcss/typography plugin needed — we own every rule. */
+
+.prose p {
+  margin-bottom: 0.875em;
+  line-height: 1.7;
+  color: #475569; /* slate-600 */
+}
+.prose p:last-child { margin-bottom: 0; }
+
+/* Lists */
+.prose ul,
+.prose ol {
+  margin: 0.5em 0 0.875em 0;
+  padding-left: 1.375em;
+}
+.prose ul { list-style-type: disc; }
+.prose ol { list-style-type: decimal; }
+.prose li {
+  margin-bottom: 0.3em;
+  line-height: 1.65;
+  color: #475569;
+}
+.prose li::marker { color: var(--brand-purple); }
+
+/* Nested lists */
+.prose ul ul,
+.prose ol ol,
+.prose ul ol,
+.prose ol ul {
+  margin: 0.25em 0 0.25em 0;
+}
+
+/* Links */
+.prose a {
+  color: var(--brand-purple);
+  text-decoration: underline;
+  text-decoration-color: rgba(87, 92, 194, 0.35);
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              text-decoration-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.prose a:hover {
+  color: var(--brand-purple-dark);
+  text-decoration-color: var(--brand-purple-dark);
+}
+.prose a[target="_blank"]::after {
+  content: ' ↗';
+  font-size: 0.7em;
+  opacity: 0.55;
+  vertical-align: super;
+}
+
+/* Inline text */
+.prose strong { font-weight: 600; color: #1e293b; }
+.prose em     { font-style: italic; }
+
+/* Headings inside rich text (rare, but WP can output them) */
+.prose h3 {
+  font-family: var(--font-montserrat);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 1.25em 0 0.4em;
+}
+.prose h4 {
+  font-family: var(--font-montserrat);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 1em 0 0.35em;
+}
+
+/* Blockquote */
+.prose blockquote {
+  border-left: 3px solid var(--brand-purple);
+  padding-left: 1rem;
+  margin: 0.875em 0;
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Dark-background prose (CTA section) */
+.prose-invert p,
+.prose-invert li  { color: #cbd5e1; }
+.prose-invert strong { color: #f1f5f9; }
+.prose-invert a {
+  color: #a5b4fc;
+  text-decoration-color: rgba(165, 180, 252, 0.4);
+}
+.prose-invert a:hover {
+  color: #c7d2fe;
+  text-decoration-color: #c7d2fe;
+}
+.prose-invert li::marker { color: #818cf8; }
+
+/* Small variant — used in cards, timeline descriptions */
+.prose-sm p  { font-size: 0.875rem; margin-bottom: 0.6em; }
+.prose-sm li { font-size: 0.875rem; }
+.prose-sm ul,
+.prose-sm ol { margin: 0.35em 0 0.6em 0; }
+
+/* Print */
+@media print {
+  .prose a {
+    color: #000 !important;
+    text-decoration: underline !important;
+    text-decoration-color: #666 !important;
+  }
+  .prose a[target="_blank"]::after { content: none; }
+  .prose li::marker { color: #000 !important; }
 }
 
 /* ── Utility ────────────────────────────────────── */
