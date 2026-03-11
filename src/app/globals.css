@@ -95,6 +95,31 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-montserrat); }
   background: linear-gradient(to right, var(--brand-purple), var(--brand-purple-grad));
 }
 
+/* ── Form elements ──────────────────────────────── */
+input[type="radio"] {
+  appearance: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 2px solid #cbd5e1;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+input[type="radio"]:checked {
+  border-color: var(--brand-purple);
+  background: var(--brand-purple);
+  box-shadow: inset 0 0 0 3px #fff;
+}
+input[type="radio"]:hover {
+  border-color: var(--brand-purple);
+}
+input[type="radio"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(87, 92, 194, 0.2);
+}
+
 /* ── Buttons ────────────────────────────────────── */
 .btn {
   display: inline-flex;

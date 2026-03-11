@@ -120,7 +120,7 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
               <label className="block text-sm font-medium text-slate-700 mb-3">
                 Sollen wir uns kennenlernen?
               </label>
-              <div className="flex gap-6">
+              <div className="flex flex-wrap gap-6">
                 <label className="flex items-center gap-2 cursor-pointer group">
                   <input
                     type="radio"
@@ -128,7 +128,7 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
                     value="yes"
                     checked={response === 'yes'}
                     onChange={() => setResponse('yes')}
-                    className="w-4 h-4 text-brand-purple focus:ring-brand-purple"
+                    className="w-4 h-4 text-brand-purple focus:ring-brand-purple border-slate-300"
                     required
                   />
                   <span className="text-slate-700 group-hover:text-brand-purple transition-colors">
@@ -142,7 +142,7 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
                     value="no"
                     checked={response === 'no'}
                     onChange={() => setResponse('no')}
-                    className="w-4 h-4 text-brand-purple focus:ring-brand-purple"
+                    className="w-4 h-4 text-brand-purple focus:ring-brand-purple border-slate-300"
                     required
                   />
                   <span className="text-slate-700 group-hover:text-brand-purple transition-colors">
