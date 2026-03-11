@@ -5,6 +5,17 @@
 
 ## Offene Tasks (Backlog)
 
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **Icons vereinheitlichen und Icon-Bibliothek nutzen**
+  - Aktuelle Situation: Icons sind als hardcodierte Inline-SVGs in Komponenten. Keine zentrale Bibliothek. ACF-Felder für Icons (`bereich_1_icon` bis `bereich_4_icon`) existieren, werden aber nicht verwendet.
+  - Ziel: Zentrale Icon-Bibliothek (z.B. Lucide React), Icons über ACF auswählbar, einheitliches Look & Feel
+  - Lösungsansatz: Lucide React installieren, ACF um Icon-Select erweitern, zentrale Icon-Komponente erstellen, Migration aller inline SVGs
+
+---
+
 - Status: todo
 - Priority: low
 - Notes: **Header: Bindestrich vor „Enthusiast" hinzufügen**
