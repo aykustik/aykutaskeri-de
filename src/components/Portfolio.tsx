@@ -45,10 +45,7 @@ export function PortfolioSection({ acf }: PortfolioProps) {
                 </div>
               )}
               <div className="p-5">
-                <h3 className="font-heading font-bold text-slate-900 text-base mb-2 transition-colors"
-                    style={{ color: undefined }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--brand-purple)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = '')}>
+                <h3 className="font-heading font-bold text-slate-900 text-base mb-2 transition-colors group-hover:text-brand-purple">
                   {p.title}
                 </h3>
                 {p.text && (
