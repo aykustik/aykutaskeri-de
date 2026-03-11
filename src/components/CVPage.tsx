@@ -31,10 +31,7 @@ export function CVPageComponent({ cv }: CVPageProps) {
 
       <footer className="section-dark text-slate-400 py-8 no-print text-center text-sm">
         <div className="section-container">
-          {acf.copyright_text
-            ? <span dangerouslySetInnerHTML={{ __html: acf.copyright_text }} />
-            : <span>© {new Date().getFullYear()} {acf.vorname} {acf.nachname}</span>
-          }
+          <span>© {new Date().getFullYear()} {acf.vorname} {acf.nachname}</span>
         </div>
       </footer>
     </div>

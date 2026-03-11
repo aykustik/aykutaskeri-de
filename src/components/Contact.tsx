@@ -1,21 +1,27 @@
 'use client';
+import { useState } from 'react';
 import { ACFFields } from '@/types/wordpress';
 import { decodeHtml } from '@/lib/utils';
-import { useState } from 'react';
 
 interface ContactProps { acf: ACFFields }
 
 export function ContactSection({ acf }: ContactProps) {
   const { kontakt_text, e_mail, telefon, adresse, plz, ort } = acf;
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [response, setResponse] = useState<'yes' | 'no' | ''>('');
   const [message, setMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Kontaktaufnahme von ${name}`);
-    const body = encodeURIComponent(`Von: ${name}\nE-Mail: ${email}\n\n${message}`);
-    window.location.href = `mailto:${e_mail}?subject=${subject}&body=${body}`;
+    if (!response) return;
+    
+    const subject = response === 'yes' 
+      ? 'Ja, ich möchte Aykut kennenlernen!' 
+      : 'Nein, Interesse leider nicht';
+    const body = response === 'yes'
+      ? `Hallo Aykut,\n\nich bin interessiert und würde mich gerne mit dir unterhalten.\n\nMeine Nachricht:\n${message}`
+      : `Hallo Aykut,\n\nleider ist es dieses Mal nicht passend. Aber ich danke für deine Zeit!\n\nMeine Nachricht:\n${message}`;
+    
+    window.location.href = `mailto:${e_mail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   return (
@@ -75,41 +81,72 @@ export function ContactSection({ acf }: ContactProps) {
             </div>
           </div>
 
-          {/* Right: Form */}
-          <form onSubmit={handleSubmit} className="card p-8 space-y-5">
+          {/* Right: Simple Form */}
+          <form onSubmit={handleSubmit} className="card p-8 space-y-6">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Name</label>
-              <input
-                type="text" required value={name} onChange={e => setName(e.target.value)}
-                placeholder="Dein Name"
-                className="w-full px-4 py-3 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:border-transparent transition"
-                style={{ '--tw-ring-color': 'var(--brand-purple)' } as React.CSSProperties}
-              />
+              <label className="block text-sm font-medium text-slate-700 mb-3">
+                Sollen wir uns kennenlernen?
+              </label>
+              <div className="flex gap-6">
+                <label className="flex items-center gap-2 cursor-pointer group">
+                  <input
+                    type="radio"
+                    name="response"
+                    value="yes"
+                    checked={response === 'yes'}
+                    onChange={() => setResponse('yes')}
+                    className="w-4 h-4 text-brand-purple focus:ring-brand-purple"
+                    required
+                  />
+                  <span className="text-slate-700 group-hover:text-brand-purple transition-colors">
+                    Ja, auf jeden Fall!
+                  </span>
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer group">
+                  <input
+                    type="radio"
+                    name="response"
+                    value="no"
+                    checked={response === 'no'}
+                    onChange={() => setResponse('no')}
+                    className="w-4 h-4 text-brand-purple focus:ring-brand-purple"
+                    required
+                  />
+                  <span className="text-slate-700 group-hover:text-brand-purple transition-colors">
+                    Nein, lieber nicht.
+                  </span>
+                </label>
+              </div>
             </div>
+
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">E-Mail</label>
-              <input
-                type="email" required value={email} onChange={e => setEmail(e.target.value)}
-                placeholder="deine@email.de"
-                className="w-full px-4 py-3 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:border-transparent transition"
-                style={{ '--tw-ring-color': 'var(--brand-purple)' } as React.CSSProperties}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Nachricht</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                Nachricht
+              </label>
               <textarea
-                required rows={5} value={message} onChange={e => setMessage(e.target.value)}
-                placeholder="Terminvorschlag, Feedback oder kurze Vorstellung..."
+                rows={4}
+                value={message}
+                onChange={e => setMessage(e.target.value)}
+                placeholder="z. B. Weitere Informationen, Terminvorschläge, Ansprechpartner"
                 className="w-full px-4 py-3 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:border-transparent transition resize-none"
                 style={{ '--tw-ring-color': 'var(--brand-purple)' } as React.CSSProperties}
               />
             </div>
-            <button type="submit" className="btn btn-primary w-full justify-center">
+
+            <button
+              type="submit"
+              className="btn btn-primary w-full justify-center"
+              disabled={!response}
+            >
               Nachricht senden
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
               </svg>
             </button>
+
+            <p className="text-xs text-slate-400 text-center">
+              Nutze das Textfeld für ein kurzes Feedback oder Informationen zu den nächsten Schritten wie z. B. Terminvorschläge.
+            </p>
           </form>
         </div>
       </div>
