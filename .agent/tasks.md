@@ -1,18 +1,42 @@
-# aykutaskeri.de Tasks
-# (Automatisch gepflegt vom AI-Agenten)
-
-# Tasks – echte Arbeitseinheiten
-# Format pro Task:
-# - GitHub Issue: URL zum Issue
-# - Branch: Worktree / Feature-Branch
-# - Status: todo | in-progress | done
-# - Priority: low | medium | high
-# - Notes: kurze Beschreibung / zusätzliche Infos
+# aykutaskeri.de — Tasks & Backlog
+# Automatisch gepflegt vom AI-Agenten nach jeder Session
 
 <!-- TASKS-START -->
+
+## Offene Tasks (Backlog)
+
+- Status: todo
+- Priority: medium
+- Notes: Scroll-triggered fade-in-up Entrance-Animationen für Sections (About, Experience, Portfolio) via IntersectionObserver — ähnlich wie Skill-Bars
+
+---
+
+- Status: todo
+- Priority: low
+- Notes: Produktiv-Deployment auf aykutaskeri.de (aktuell nur staging). Erst wenn Aykut zufrieden mit dem Stand ist.
+
+---
+
+- Status: todo
+- Priority: low
+- Notes: `ausbildung_text` und `weiterbildung_text` sind in WordPress identisch — Aykut muss das in WP korrigieren (verschiedene Intro-Texte für die beiden Sections)
+
 <!-- TASKS-END -->
 
-# Notes / temporäre Ideen
-# Werden nicht automatisch abgearbeitet, nur als Referenz
 <!-- NOTES-START -->
+
+## Erledigte Punkte (diese Session)
+
+- ✅ Skills.tsx: WP `hard_skill_N_farbe` als Bar-Farbe, `resolveColor()` für Elementor-Var-Fallback
+- ✅ Card-Hover: `.card` (statisch) vs `.card-interactive` (nur klickbare Cards)
+- ✅ Progress-Bar: `bar-grow` Keyframe entfernt, Width 100% JS-gesteuert via IntersectionObserver
+- ✅ Staging-Domain-Problem behoben: Alias muss nach jedem Deploy manuell gesetzt werden
+- ✅ Header: `{bereich} Enthusiast` Sub-Headline
+- ✅ Buttons: Apple-easing, Icon rechts (SVG nach Text im JSX), optimierte Shadows
+- ✅ Soft-Skill-Badges: Hover entfernt (nicht klickbar)
+- ✅ Education.tsx: Accordion für Weiterbildung + Ausbildung, alle zugeklappt
+- ✅ Prose-Styles: vollständige eigene Implementierung (p, ul, ol, li, a, strong, em, h3, h4, blockquote, prose-sm, prose-invert)
+- ✅ Button-CSS-Bug: `--ease-apple` außerhalb Selektor hat gesamten .btn-Block invalidiert — behoben
+- ✅ `.agent/AGENT.md` + `tasks.md` aktualisiert
+
 <!-- NOTES-END -->
