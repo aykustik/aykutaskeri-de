@@ -250,6 +250,7 @@ export function PrintCV({ acf }: PrintCVProps) {
                     {job.beschreibung && (
                       <div 
                         style={{ ...textStyle, marginLeft: '0' }}
+                        className="job-description"
                         dangerouslySetInnerHTML={{ __html: job.beschreibung }}
                       />
                     )}
@@ -307,7 +308,7 @@ export function PrintCV({ acf }: PrintCVProps) {
           <div style={{ flex: '0 0 65%' }}>
             {jobsPage2.length > 0 && (
               <div>
-                <h2 style={{ ...sectionTitleStyle, color: 'transparent', borderBottom: '1pt solid transparent' }}>&nbsp;</h2>
+                <h2 style={sectionTitleStyle}>Berufserfahrung</h2>
                 
                 {jobsPage2.map((job, i) => (
                   <div key={i} style={{ marginBottom: i < jobsPage2.length - 1 ? '12pt' : 0, pageBreakInside: 'avoid' }}>
@@ -330,6 +331,7 @@ export function PrintCV({ acf }: PrintCVProps) {
                     {job.beschreibung && (
                       <div 
                         style={{ ...textStyle, marginLeft: '0' }}
+                        className="job-description"
                         dangerouslySetInnerHTML={{ __html: job.beschreibung }}
                       />
                     )}

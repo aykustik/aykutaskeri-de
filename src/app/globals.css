@@ -640,4 +640,25 @@ input[type="radio"]:focus {
   [style*="brand-brick-light"] {
     display: none !important;
   }
+
+  /* Job descriptions - ensure bullet points are visible */
+  .job-description ul,
+  .job-description ol {
+    margin: 4pt 0;
+    padding-left: 16pt;
+  }
+
+  .job-description li {
+    margin-bottom: 2pt;
+    font-size: 10.5pt;
+    line-height: 1.4;
+  }
+
+  .job-description ul li {
+    list-style-type: disc;
+  }
+
+  .job-description ol li {
+    list-style-type: decimal;
+  }
 }
