@@ -241,7 +241,7 @@ export function PrintCV({ acf }: PrintCVProps) {
                     <p style={{ 
                       margin: '0 0 4pt 0', 
                       color: '#555',
-                      fontSize: '10.5pt',
+                      fontSize: '9pt',
                       fontStyle: 'italic'
                     }}>
                       {job.zeitraum}
@@ -322,7 +322,7 @@ export function PrintCV({ acf }: PrintCVProps) {
                     <p style={{ 
                       margin: '0 0 4pt 0', 
                       color: '#555',
-                      fontSize: '10.5pt',
+                      fontSize: '9pt',
                       fontStyle: 'italic'
                     }}>
                       {job.zeitraum}
