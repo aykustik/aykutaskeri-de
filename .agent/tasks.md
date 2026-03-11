@@ -53,7 +53,14 @@
 
 ## Erledigte Punkte (diese Session)
 
-- ✅ Kontaktformular: POST an WordPress REST-API, SMTP-Versand, Success/Error-States, Loading-Spinner
+- ✅ Kontaktformular vollständig umgebaut (Issue #6):
+  - Mu-Plugin `contact-api.php` v1.2 → `/wp-content/mu-plugins/` (lokal: `contact-api.php`)
+  - SMTP via WP Mail SMTP, Empfänger aus ACF `e_mail`, Reply-To: Absender-E-Mail
+  - From-Name: `{ansprechpartner} von {firma}` oder nur `{firma}`
+  - Betreff: `Positive/Negative Rückmeldung von {firma} auf „aykutaskeri.de"`
+  - Neues Pflichtfeld: E-Mail des Absenders, blur-Validierung, kein Browser-Tooltip (`noValidate`)
+  - E-Mail-Feld aus ACF `ansprechpartner_e_mail` vorbelegt
+  - Feldkennzeichnung: nur optionale Felder mit `(optional)`
 - ✅ Skills.tsx: WP `hard_skill_N_farbe` als Bar-Farbe, `resolveColor()` für Elementor-Var-Fallback
 - ✅ Card-Hover: `.card` (statisch) vs `.card-interactive` (nur klickbare Cards)
 - ✅ Progress-Bar: `bar-grow` Keyframe entfernt, Width 100% JS-gesteuert via IntersectionObserver
