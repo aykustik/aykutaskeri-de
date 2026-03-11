@@ -9,13 +9,11 @@ export function PrintCV({ acf }: PrintCVProps) {
     vorname,
     nachname,
     bereich,
-    firma,
-    ansprechpartner,
     e_mail,
     telefon,
     linkedin_link,
+    profilbild,
     das_zeichnet_mich_aus,
-    das_mag_ich_nicht,
   } = acf;
 
   // Skills in 3 Gruppen aufteilen (1-4, 5-8, 9-12)
@@ -60,19 +58,6 @@ export function PrintCV({ acf }: PrintCVProps) {
     },
   ].filter(j => j.titel);
 
-  // Weiterbildung (alle 12)
-  const weiterbildungen = [
-    acf.weiterbildung_1_titel, acf.weiterbildung_2_titel, acf.weiterbildung_3_titel,
-    acf.weiterbildung_4_titel, acf.weiterbildung_5_titel, acf.weiterbildung_6_titel,
-    acf.weiterbildung_7_titel, acf.weiterbildung_8_titel, acf.weiterbildung_9_titel,
-    acf.weiterbildung_10_titel, acf.weiterbildung_11_titel, acf.weiterbildung_12_titel,
-  ].filter((w): w is string => !!w && w.trim() !== '');
-
-  // Ausbildung (alle 3)
-  const ausbildungen = [
-    acf.ausbildung_1_titel, acf.ausbildung_2_titel, acf.ausbildung_3_titel,
-  ].filter((a): a is string => !!a && a.trim() !== '');
-
   // Sprachen
   const sprachen = [];
   if (acf.sprache_1) sprachen.push(acf.sprache_1);
@@ -85,7 +70,7 @@ export function PrintCV({ acf }: PrintCVProps) {
     margin: '0 0 8pt 0',
     textTransform: 'uppercase' as const,
     letterSpacing: '0.02em',
-    color: '#2563eb', // Blau wie im Screenshot
+    color: '#2563eb',
     borderBottom: '1pt solid #2563eb',
     paddingBottom: '3pt',
   };
@@ -98,96 +83,105 @@ export function PrintCV({ acf }: PrintCVProps) {
 
   return (
     <section className="print-only" style={{ fontFamily: 'Inter, sans-serif' }}>
-      {/* HEADER */}
-      <div style={{ marginBottom: '16pt' }}>
-        <h1 style={{ 
-          fontSize: '30pt', 
-          fontWeight: 700, 
-          margin: 0, 
-          lineHeight: 1.1,
-          letterSpacing: '-0.02em',
-          color: '#000'
-        }}>
-          {vorname} {nachname}
-        </h1>
-        <p style={{ 
-          fontSize: '13pt', 
-          margin: '6pt 0 0 0', 
-          color: '#333',
-          fontWeight: 500
-        }}>
-          {bereich} | {firma}
-        </p>
-        <p style={{ 
-          fontSize: '10.5pt', 
-          margin: '6pt 0 0 0', 
-          color: '#555' 
-        }}>
-          {e_mail} • {telefon} • {firma} • LinkedIn
-        </p>
+      {/* HEADER MIT BILD */}
+      <div style={{ 
+        marginBottom: '16pt', 
+        paddingBottom: '12pt', 
+        borderBottom: '2pt solid #000',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '20pt'
+      }}>
+        {profilbild?.url && (
+          <img 
+            src={profilbild.url} 
+            alt={`${vorname} ${nachname}`}
+            style={{
+              width: '80pt',
+              height: '80pt',
+              borderRadius: '50%',
+              objectFit: 'cover',
+              border: '2pt solid #ddd'
+            }}
+          />
+        )}
+        <div style={{ flex: 1 }}>
+          <h1 style={{ 
+            fontSize: '30pt', 
+            fontWeight: 700, 
+            margin: 0, 
+            lineHeight: 1.1,
+            letterSpacing: '-0.02em',
+            color: '#000'
+          }}>
+            {vorname} {nachname}
+          </h1>
+          <p style={{ 
+            fontSize: '13pt', 
+            margin: '6pt 0 0 0', 
+            color: '#333',
+            fontWeight: 500
+          }}>
+            {bereich}
+          </p>
+          <p style={{ 
+            fontSize: '10.5pt', 
+            margin: '6pt 0 0 0', 
+            color: '#555' 
+          }}>
+            {e_mail} • {telefon} • LinkedIn
+          </p>
+        </div>
       </div>
 
-      {/* DAS ZEICHNET MICH AUS / DAS MAG ICH NICHT */}
-      {(das_zeichnet_mich_aus || das_mag_ich_nicht) && (
-        <div style={{ display: 'flex', gap: '24pt', marginBottom: '16pt', pageBreakInside: 'avoid' }}>
-          {das_zeichnet_mich_aus && (
-            <div style={{ flex: 1 }}>
-              <h2 style={sectionTitleStyle}>Das zeichnet mich aus</h2>
-              <div style={textStyle} dangerouslySetInnerHTML={{ __html: das_zeichnet_mich_aus }} />
-            </div>
-          )}
-          
-          {das_mag_ich_nicht && (
-            <div style={{ flex: 1 }}>
-              <h2 style={sectionTitleStyle}>Das mag ich nicht</h2>
-              <div style={textStyle} dangerouslySetInnerHTML={{ __html: das_mag_ich_nicht }} />
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* HAUPT-LAYOUT: 2 SPALTEN */}
+      {/* HAUPT-LAYOUT: 2 SPALTEN (35/65) */}
       <div style={{ display: 'flex', gap: '32pt' }}>
         
         {/* LINKE SPALTE (35%) */}
         <div style={{ flex: '0 0 35%' }}>
           
-          {/* SKILLS GRUPPE 1 */}
-          {skillsGroup1.length > 0 && (
-            <div style={{ marginBottom: '12pt' }}>
-              <ul style={{ margin: 0, padding: '0 0 0 16pt', ...textStyle }}>
-                {skillsGroup1.map((skill, i) => (
-                  <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
-                ))}
-              </ul>
+          {/* DAS ZEICHNET MICH AUS */}
+          {das_zeichnet_mich_aus && (
+            <div style={{ marginBottom: '16pt' }}>
+              <h2 style={sectionTitleStyle}>Das zeichnet mich aus</h2>
+              <div style={textStyle} dangerouslySetInnerHTML={{ __html: das_zeichnet_mich_aus }} />
             </div>
           )}
 
-          {/* SKILLS GRUPPE 2 */}
-          {skillsGroup2.length > 0 && (
-            <div style={{ marginBottom: '12pt' }}>
-              <ul style={{ margin: 0, padding: '0 0 0 16pt', ...textStyle }}>
-                {skillsGroup2.map((skill, i) => (
-                  <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+          {/* SKILLS */}
+          {(skillsGroup1.length > 0 || skillsGroup2.length > 0 || skillsGroup3.length > 0) && (
+            <div style={{ marginBottom: '16pt' }}>
+              <h2 style={sectionTitleStyle}>Skills</h2>
+              
+              {skillsGroup1.length > 0 && (
+                <ul style={{ margin: '0 0 8pt 0', padding: '0 0 0 16pt', ...textStyle }}>
+                  {skillsGroup1.map((skill, i) => (
+                    <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
+                  ))}
+                </ul>
+              )}
 
-          {/* SKILLS GRUPPE 3 */}
-          {skillsGroup3.length > 0 && (
-            <div style={{ marginBottom: '12pt' }}>
-              <ul style={{ margin: 0, padding: '0 0 0 16pt', ...textStyle }}>
-                {skillsGroup3.map((skill, i) => (
-                  <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
-                ))}
-              </ul>
+              {skillsGroup2.length > 0 && (
+                <ul style={{ margin: '0 0 8pt 0', padding: '0 0 0 16pt', ...textStyle }}>
+                  {skillsGroup2.map((skill, i) => (
+                    <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
+                  ))}
+                </ul>
+              )}
+
+              {skillsGroup3.length > 0 && (
+                <ul style={{ margin: 0, padding: '0 0 0 16pt', ...textStyle }}>
+                  {skillsGroup3.map((skill, i) => (
+                    <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           )}
 
           {/* SPRACHEN */}
           {sprachen.length > 0 && (
-            <div style={{ marginBottom: '12pt' }}>
+            <div>
               <h2 style={sectionTitleStyle}>Sprachen</h2>
               <ul style={{ margin: 0, padding: '0 0 0 16pt', ...textStyle }}>
                 {sprachen.map((sprache, i) => (
@@ -221,7 +215,7 @@ export function PrintCV({ acf }: PrintCVProps) {
                     fontSize: '10.5pt',
                     fontStyle: 'italic'
                   }}>
-                    {firma} | {job.zeitraum}
+                    {job.zeitraum}
                   </p>
                   
                   {job.beschreibung && (
@@ -236,44 +230,6 @@ export function PrintCV({ acf }: PrintCVProps) {
           )}
         </div>
       </div>
-
-      {/* SEITE 2 */}
-      {(weiterbildungen.length > 0 || ausbildungen.length > 0) && (
-        <div style={{ pageBreakBefore: 'always', marginTop: '24pt' }}>
-          <div style={{ display: 'flex', gap: '32pt' }}>
-            
-            {/* WEITERBILDUNG / AUSBILDUNG (links) */}
-            <div style={{ flex: '0 0 35%' }}>
-              {weiterbildungen.length > 0 && (
-                <div style={{ marginBottom: '16pt' }}>
-                  <h2 style={sectionTitleStyle}>Weiterbildung</h2>
-                  <ul style={{ margin: 0, padding: '0 0 0 16pt', ...textStyle }}>
-                    {weiterbildungen.map((w, i) => (
-                      <li key={i} style={{ marginBottom: '3pt' }}>{w}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {ausbildungen.length > 0 && (
-                <div>
-                  <h2 style={sectionTitleStyle}>Ausbildung</h2>
-                  <ul style={{ margin: 0, padding: '0 0 0 16pt', ...textStyle }}>
-                    {ausbildungen.map((a, i) => (
-                      <li key={i} style={{ marginBottom: '3pt' }}>{a}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            {/* LEERER BEREICH RECHTS (falls Rest Berufserfahrung) */}
-            <div style={{ flex: '0 0 65%' }}>
-              {/* Hier könnte restliche Berufserfahrung rein */}
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

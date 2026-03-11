@@ -491,9 +491,21 @@ input[type="radio"]:focus {
     transition: none !important;
   }
 
-  /* ── Hide non-content elements ────────────────── */
-  nav, form, .btn,
-  #intro, #cta-section, #kennenlernen,
+  /* ── Hide ALL web sections ───────────────────── */
+  header,
+  nav, 
+  form, 
+  .btn,
+  #intro, 
+  #ueber-mich,
+  #skills, 
+  #cta-section, 
+  #berufserfahrung,
+  #weiterbildung,
+  #ausbildung,
+  #portfolio,
+  #kennenlernen,
+  footer,
   .progress-track,
   .language-circle-svg,
   .timeline-line,

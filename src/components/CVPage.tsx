@@ -16,6 +16,24 @@ export function CVPageComponent({ cv }: CVPageProps) {
   const { acf } = cv;
   return (
     <div className="min-h-screen" style={{ background: '#f8fafc' }}>
+      {/* Print-only CV Section - ABSOLUT POSITIONIERT */}
+      <section 
+        className="print-only" 
+        style={{ 
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          minHeight: '100vh',
+          padding: '1.5cm',
+          background: 'white',
+          zIndex: 9999
+        }}
+      >
+        <PrintCV acf={acf} />
+      </section>
+
+      {/* Web-Sections (werden im Print ausgeblendet) */}
       <HeaderSection acf={acf} />
       <HeroSection acf={acf} />
       <section className="no-print">
@@ -33,18 +51,6 @@ export function CVPageComponent({ cv }: CVPageProps) {
 
       <PortfolioSection acf={acf} />
       <ContactSection acf={acf} />
-
-      {/* Print-only CV Section - full width, no margins */}
-      <section 
-        className="print-only" 
-        style={{ 
-          padding: '0 2.5cm', 
-          margin: '0',
-          fontFamily: 'Inter, sans-serif'
-        }}
-      >
-        <PrintCV acf={acf} />
-      </section>
 
       <footer className="section-dark text-slate-400 py-8 no-print text-center text-sm">
         <div className="section-container">
