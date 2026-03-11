@@ -26,11 +26,11 @@
 
 ---
 
-- Status: todo
+- Status: completed
 - Priority: low
-- Notes: **Header: Bindestrich vor „Enthusiast" hinzufügen**
-  - Aktuell: "X Enthusiast"
-  - Soll: "X-Enthusiast" (mit Bindestrich direkt am Wort)
+- Notes: **Header: Bindestrich vor „Enthusiast" hinzugefügt**
+  - Erledigt: `Header.tsx` und `layout.tsx` angepasst
+  - "X Enthusiast" → "X-Enthusiast"
 
 ---
 
