@@ -50,8 +50,15 @@ export function WeiterbildungSection({ acf }: EducationProps) {
   return (
     <section className="section-white py-16" id="weiterbildung">
       <div className="section-container">
-        <h2 className="section-title">Weiterbildung</h2>
-        <div className="divider mt-4 mb-8" />
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'var(--brand-emerald-light)' }}>
+            <svg className="w-5 h-5" fill="none" stroke="var(--brand-emerald)" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+            </svg>
+          </div>
+          <h2 className="section-title mb-0">Weiterbildung</h2>
+        </div>
+        <div className="divider mt-2 mb-8" />
         {acf.weiterbildung_text && (
           <div className="body-text mb-8 max-w-2xl prose prose-slate"
                dangerouslySetInnerHTML={{ __html: decodeHtml(acf.weiterbildung_text) }} />
@@ -131,8 +138,15 @@ export function AusbildungSection({ acf }: EducationProps) {
   return (
     <section className="section-gray py-16" id="ausbildung">
       <div className="section-container">
-        <h2 className="section-title">Ausbildung</h2>
-        <div className="divider mt-4 mb-8" />
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'var(--brand-purple-light)' }}>
+            <svg className="w-5 h-5" fill="none" stroke="var(--brand-purple)" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+            </svg>
+          </div>
+          <h2 className="section-title mb-0">Ausbildung</h2>
+        </div>
+        <div className="divider mt-2 mb-8" />
         {acf.ausbildung_text && (
           <div className="body-text mb-8 max-w-2xl prose prose-slate"
                dangerouslySetInnerHTML={{ __html: decodeHtml(acf.ausbildung_text) }} />
