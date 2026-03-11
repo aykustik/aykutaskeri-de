@@ -1,21 +1,76 @@
+'use client';
+import { useEffect, useRef, useState } from 'react';
 import { ACFFields } from '@/types/wordpress';
 import { decodeHtml } from '@/lib/utils';
 
 interface ExperienceProps { acf: ACFFields }
 
+interface Job {
+  period: string | undefined;
+  title: string | undefined;
+  desc: string | undefined;
+}
+
 export function ExperienceSection({ acf }: ExperienceProps) {
-  const jobs = [
+  const jobs: Job[] = [
     { period: acf.berufserfahrung_1_zeitraum, title: acf.berufserfahrung_1_titel, desc: acf.berufserfahrung_1_beschreibung },
     { period: acf.berufserfahrung_2_zeitraum, title: acf.berufserfahrung_2_titel, desc: acf.berufserfahrung_2_beschreibung },
     { period: acf.berufserfahrung_3_zeitraum, title: acf.berufserfahrung_3_titel, desc: acf.berufserfahrung_3_beschreibung },
     { period: acf.berufserfahrung_4_zeitraum, title: acf.berufserfahrung_4_titel, desc: acf.berufserfahrung_4_beschreibung },
     { period: acf.berufserfahrung_5_zeitraum, title: acf.berufserfahrung_5_titel, desc: acf.berufserfahrung_5_beschreibung },
-  ].filter(j => j.title);
+  ].filter((j): j is Job => Boolean(j.title));
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const [maxActiveIndex, setMaxActiveIndex] = useState(-1);
+  const [isSectionVisible, setIsSectionVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const cardRefs: HTMLElement[] = [];
+    const cards = section.querySelectorAll('.timeline-card');
+    cards.forEach((card) => cardRefs.push(card as HTMLElement));
+
+    if (cardRefs.length === 0) return;
+
+    const observers: IntersectionObserver[] = [];
+
+    const sectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsSectionVisible(true);
+          setMaxActiveIndex(0);
+          sectionObserver.disconnect();
+        }
+      },
+      { threshold: 0 }
+    );
+    sectionObserver.observe(section);
+    observers.push(sectionObserver);
+
+    cardRefs.forEach((card, index) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setMaxActiveIndex((prev) => Math.max(prev, index));
+          }
+        },
+        { threshold: 0.3 }
+      );
+      observer.observe(card);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((obs) => obs.disconnect());
+  }, []);
+
+  const lineHeight = isSectionVisible ? `${Math.min((maxActiveIndex + 1) * 140, jobs.length * 140)}px` : '0px';
 
   if (!jobs.length) return null;
 
   return (
-    <section className="section-gray py-16 print-avoid" id="berufserfahrung">
+    <section ref={sectionRef} className="section-gray py-16 print-avoid" id="berufserfahrung">
       <div className="section-container">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'var(--brand-purple-light)' }}>
@@ -35,34 +90,52 @@ export function ExperienceSection({ acf }: ExperienceProps) {
         )}
 
         <div className="relative">
-          {/* Timeline line — screen only */}
-          <div className="timeline-line absolute left-4 md:left-6 top-2 bottom-2 w-0.5 screen-only"
-               style={{ background: 'linear-gradient(to bottom, var(--brand-purple), var(--brand-purple-grad))' }} />
+          <div
+            className="timeline-line absolute left-4 md:left-6 top-2 w-0.5 screen-only"
+            style={{
+              background: 'linear-gradient(to bottom, var(--brand-purple), var(--brand-purple-grad))',
+              height: lineHeight,
+              transition: 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+            }}
+          />
 
           <div className="space-y-8">
-            {jobs.map((job, i) => (
-              <div key={i} className="timeline-item relative pl-12 md:pl-16 print-avoid">
-                {/* Timeline dot — first dot pulses, rest are static */}
-                <div className={`absolute left-2 md:left-4 top-5 w-5 h-5 rounded-full border-2 border-white shadow-md screen-only ${i === 0 ? 'timeline-dot-first' : 'timeline-dot'}`}
-                     style={{ background: 'var(--brand-purple)' }} />
+            {jobs.map((job, i) => {
+              const isActive = isSectionVisible && i <= maxActiveIndex;
+              return (
+                <div key={i} className="timeline-item relative pl-12 md:pl-16 print-avoid">
+                  <div
+                    className={`timeline-dot absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-white shadow-md screen-only transition-all duration-500 ${
+                      isActive ? 'timeline-dot-active' : 'timeline-dot-inactive'
+                    }`}
+                    style={{
+                      background: isActive ? 'var(--brand-purple)' : 'var(--slate-300)',
+                      transform: isActive ? 'scale(1.1) translateY(-50%)' : 'scale(1) translateY(-50%)',
+                    }}
+                  />
 
-                <div className="card p-6">
-                  {job.period && (
-                    <span className="period-badge inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3 text-white"
-                          style={{ background: 'var(--brand-purple)' }}>
-                      {job.period}
-                    </span>
-                  )}
-                  <h3 className="font-heading font-bold text-slate-900 text-lg mb-3">{job.title}</h3>
-                  {job.desc && (
-                    <div
-                      className="prose prose-sm prose-slate max-w-none body-text"
-                      dangerouslySetInnerHTML={{ __html: decodeHtml(job.desc) }}
-                    />
-                  )}
+                  <div
+                    className={`timeline-card card p-6 transition-all duration-500 ${
+                      isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                    }`}
+                  >
+                    {job.period && (
+                      <span className="period-badge inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3 text-white"
+                            style={{ background: 'var(--brand-purple)' }}>
+                        {job.period}
+                      </span>
+                    )}
+                    <h3 className="font-heading font-bold text-slate-900 text-lg mb-3">{job.title}</h3>
+                    {job.desc && (
+                      <div
+                        className="prose prose-sm prose-slate max-w-none body-text"
+                        dangerouslySetInnerHTML={{ __html: decodeHtml(job.desc) }}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

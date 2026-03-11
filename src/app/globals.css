@@ -289,14 +289,16 @@ input[type="radio"]:focus {
   50%       { box-shadow: 0 4px 28px rgba(249,115,22,0.6), 0 0 0 4px rgba(249,115,22,0.08); }
 }
 
-/* Timeline dot pulse */
-@keyframes dot-ping {
-  0%   { box-shadow: 0 0 0 0 rgba(87,92,194,0.5); }
-  70%  { box-shadow: 0 0 0 8px rgba(87,92,194,0); }
-  100% { box-shadow: 0 0 0 0 rgba(87,92,194,0); }
+/* Timeline dot pulse - removed: now uses IntersectionObserver instead */
+
+/* Timeline dot active/inactive states */
+.timeline-dot-active {
+  box-shadow: 0 0 0 3px rgba(87, 92, 194, 0.25);
 }
-.timeline-dot-first {
-  animation: dot-ping 2s ease-out infinite;
+
+.timeline-dot-inactive {
+  background: #cbd5e1 !important;
+  box-shadow: none;
 }
 
 /* Divider shimmer */
@@ -339,8 +341,9 @@ input[type="radio"]:focus {
   .btn-orange {
     animation: none !important;
   }
-  .timeline-dot-first {
-    animation: none !important;
+  .timeline-dot-active,
+  .timeline-dot-inactive {
+    transition: none !important;
   }
   .divider {
     animation: none !important;
@@ -495,7 +498,8 @@ input[type="radio"]:focus {
   .language-circle-svg,
   .timeline-line,
   .timeline-dot,
-  .timeline-dot-first
+  .timeline-dot-active,
+  .timeline-dot-inactive
   { display: none !important; }
 
   /* ── Base ────────────────────────────────────── */
