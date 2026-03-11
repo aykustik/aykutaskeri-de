@@ -120,8 +120,8 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
               <label className="block text-sm font-medium text-slate-700 mb-3">
                 Sollen wir uns kennenlernen?
               </label>
-              <div className="flex flex-wrap gap-6">
-                <label className="flex items-center gap-2 cursor-pointer group">
+              <div className="flex flex-wrap gap-4">
+                <label className="cursor-pointer group">
                   <input
                     type="radio"
                     name="response"
@@ -131,16 +131,16 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
                     className="peer sr-only"
                     required
                   />
-                  <span className="flex items-center gap-2 px-4 py-2 rounded-full border-2 transition-all duration-200 peer-checked:border-brand-purple peer-checked:bg-brand-purple-light">
-                    <svg className="w-4 h-4 text-brand-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span className="flex items-center gap-2 px-5 py-3 rounded-full border-2 border-slate-200 transition-all duration-200 ease-apple hover:border-brand-purple hover:shadow-md hover:-translate-y-0.5 peer-checked:border-brand-purple peer-checked:bg-brand-purple-light">
+                    <svg className="w-4 h-4 text-brand-purple opacity-60 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-sm font-medium text-slate-700 peer-checked:text-brand-purple">
+                    <span className="text-sm font-medium text-slate-600 group-hover:text-brand-purple peer-checked:text-brand-purple transition-colors">
                       Ja, auf jeden Fall!
                     </span>
                   </span>
                 </label>
-                <label className="flex items-center gap-2 cursor-pointer group">
+                <label className="cursor-pointer group">
                   <input
                     type="radio"
                     name="response"
@@ -150,11 +150,11 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
                     className="peer sr-only"
                     required
                   />
-                  <span className="flex items-center gap-2 px-4 py-2 rounded-full border-2 transition-all duration-200 peer-checked:border-brand-brick peer-checked:bg-brand-brick-light">
-                    <svg className="w-4 h-4 text-brand-brick" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span className="flex items-center gap-2 px-5 py-3 rounded-full border-2 border-slate-200 transition-all duration-200 ease-apple hover:border-brand-brick hover:shadow-md hover:-translate-y-0.5 peer-checked:border-brand-brick peer-checked:bg-brand-brick-light">
+                    <svg className="w-4 h-4 text-brand-brick opacity-60 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
-                    <span className="text-sm font-medium text-slate-700 peer-checked:text-brand-brick">
+                    <span className="text-sm font-medium text-slate-600 group-hover:text-brand-brick peer-checked:text-brand-brick transition-colors">
                       Nein, lieber nicht.
                     </span>
                   </span>
