@@ -119,10 +119,39 @@ export function AusbildungSection({ acf }: EducationProps) {
   ].filter(e => e.title);
 
   const [openSet, setOpenSet] = useState<Set<number>>(new Set());
-  const sectionRef = useRef<HTMLElement>(null);
-  const lineRef = useRef<HTMLDivElement>(null);
-  const [maxActiveIndex, setMaxActiveIndex] = useState(-1);
-  const [lineHeight, setLineHeight] = useState(0);
+  const [activeIndices, setActiveIndices] = useState<Set<number>>(new Set());
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const cards = container.querySelectorAll('.timeline-card');
+    if (cards.length === 0) return;
+
+    const observers: IntersectionObserver[] = [];
+
+    cards.forEach((card, index) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveIndices((prev) => {
+              const next = new Set(prev);
+              next.add(index);
+              return next;
+            });
+          }
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(card);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((obs) => obs.disconnect());
+  }, []);
+
+  const maxActiveIndex = activeIndices.size > 0 ? Math.max(...Array.from(activeIndices)) : -1;
 
   const toggle = (i: number) =>
     setOpenSet(prev => {
@@ -131,67 +160,10 @@ export function AusbildungSection({ acf }: EducationProps) {
       return next;
     });
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    const line = lineRef.current;
-    if (!section || !line) return;
-
-    const cardRefs: HTMLElement[] = [];
-    const cards = section.querySelectorAll('.timeline-card');
-    cards.forEach((card) => cardRefs.push(card as HTMLElement));
-
-    if (cardRefs.length === 0) return;
-
-    const updateLineHeight = () => {
-      const activeIndex = maxActiveIndex;
-      if (activeIndex < 0) {
-        setLineHeight(0);
-        return;
-      }
-      
-      const activeCard = cardRefs[activeIndex];
-      if (!activeCard) {
-        setLineHeight(0);
-        return;
-      }
-
-      const sectionRect = section.getBoundingClientRect();
-      const cardRect = activeCard.getBoundingClientRect();
-      const relativeTop = cardRect.top - sectionRect.top + cardRect.height / 2;
-      setLineHeight(Math.max(0, relativeTop - 8));
-    };
-
-    updateLineHeight();
-
-    const observers: IntersectionObserver[] = [];
-
-    cardRefs.forEach((card, index) => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setMaxActiveIndex((prev) => Math.max(prev, index));
-          }
-        },
-        { threshold: 0.3 }
-      );
-      observer.observe(card);
-      observers.push(observer);
-    });
-
-    window.addEventListener('scroll', updateLineHeight, { passive: true });
-    window.addEventListener('resize', updateLineHeight);
-
-    return () => {
-      observers.forEach((obs) => obs.disconnect());
-      window.removeEventListener('scroll', updateLineHeight);
-      window.removeEventListener('resize', updateLineHeight);
-    };
-  }, [maxActiveIndex]);
-
   if (!ausbildung.length) return null;
 
   return (
-    <section ref={sectionRef} className="section-gray py-16" id="ausbildung">
+    <section className="section-gray py-16" id="ausbildung">
       <div className="section-container">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'var(--brand-purple-light)' }}>
@@ -207,39 +179,29 @@ export function AusbildungSection({ acf }: EducationProps) {
                dangerouslySetInnerHTML={{ __html: decodeHtml(acf.ausbildung_text) }} />
         )}
 
-        <div className="relative">
-          <div
-            ref={lineRef}
-            className="timeline-line absolute left-4 md:left-6 top-2 w-0.5 screen-only"
-            style={{
-              background: 'linear-gradient(to bottom, var(--brand-purple), var(--brand-purple-grad))',
-              height: `${lineHeight}px`,
-              transition: 'height 0.3s ease-out',
-            }}
-          />
+        <div ref={containerRef} className="relative">
+          <TimelineLine containerRef={containerRef} maxIndex={maxActiveIndex} />
 
           <div className="space-y-4">
             {ausbildung.map((edu, i) => {
               const isOpen = openSet.has(i);
               const hasContent = !!edu.content;
-              const isActive = i <= maxActiveIndex;
+              const isActive = activeIndices.has(i);
 
               return (
                 <div key={i} className="timeline-item relative pl-12 md:pl-16 print-avoid">
                   <div
-                    className={`timeline-dot absolute left-2 md:left-4 w-5 h-5 rounded-full border-2 border-white shadow-md screen-only transition-all duration-500 ${
+                    className={`absolute left-2 md:left-4 w-5 h-5 rounded-full border-2 border-white shadow-md screen-only transition-all duration-500 ${
                       isActive ? 'timeline-dot-active' : 'timeline-dot-inactive'
                     }`}
                     style={{
                       background: isActive ? 'var(--brand-purple)' : '#cbd5e1',
-                      top: '50%',
-                      transform: isActive ? 'scale(1.1)' : 'scale(1)',
-                      marginTop: '-10px',
+                      top: '28px',
                     }}
                   />
 
                   <div
-                    className={`timeline-card card overflow-hidden${hasContent ? ' card-interactive cursor-pointer' : ''} transition-all duration-500 ${
+                    className={`timeline-card card overflow-hidden${hasContent ? ' card-interactive cursor-pointer' : ''} transition-all duration-700 ${
                       isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                     }`}
                     onClick={hasContent ? () => toggle(i) : undefined}
@@ -283,6 +245,59 @@ export function AusbildungSection({ acf }: EducationProps) {
         </div>
       </div>
     </section>
+  );
+}
+
+function TimelineLine({ containerRef, maxIndex }: { containerRef: React.RefObject<HTMLDivElement>; maxIndex: number }) {
+  const lineRef = useRef<HTMLDivElement>(null);
+  const [fillHeight, setFillHeight] = useState(0);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const line = lineRef.current;
+    if (!container || !line) return;
+
+    const cards = container.querySelectorAll('.timeline-card');
+    if (cards.length === 0) return;
+
+    const updateHeight = () => {
+      if (maxIndex < 0) {
+        setFillHeight(0);
+        return;
+      }
+
+      const activeCard = cards[maxIndex] as HTMLElement;
+      if (!activeCard) {
+        setFillHeight(0);
+        return;
+      }
+
+      const containerRect = container.getBoundingClientRect();
+      const cardRect = activeCard.getBoundingClientRect();
+      const relativeTop = cardRect.top - containerRect.top + cardRect.height / 2;
+      setFillHeight(Math.max(0, relativeTop - 8));
+    };
+
+    updateHeight();
+    window.addEventListener('scroll', updateHeight, { passive: true });
+    window.addEventListener('resize', updateHeight);
+
+    return () => {
+      window.removeEventListener('scroll', updateHeight);
+      window.removeEventListener('resize', updateHeight);
+    };
+  }, [containerRef, maxIndex]);
+
+  return (
+    <div ref={lineRef} className="timeline-line absolute left-4 md:left-6 top-2 bottom-2 w-0.5 screen-only">
+      <div
+        style={{
+          background: 'linear-gradient(to bottom, var(--brand-purple), var(--brand-purple-grad))',
+          height: `${fillHeight}px`,
+          transition: 'height 0.3s ease-out',
+        }}
+      />
+    </div>
   );
 }
 
