@@ -8,6 +8,7 @@ import { ExperienceSection } from './Experience';
 import { WeiterbildungSection, AusbildungSection } from './Education';
 import { PortfolioSection } from './Portfolio';
 import { ContactSection } from './Contact';
+import { PrintCV } from './PrintCV';
 
 interface CVPageProps { cv: CVPage }
 
@@ -17,17 +18,33 @@ export function CVPageComponent({ cv }: CVPageProps) {
     <div className="min-h-screen" style={{ background: '#f8fafc' }}>
       <HeaderSection acf={acf} />
       <HeroSection acf={acf} />
-      <AboutSection acf={acf} />
+      <section className="no-print">
+        <AboutSection acf={acf} />
+      </section>
       <SkillsSection acf={acf} />
       <CTASection acf={acf} />
 
       {/* Career first, then continuing education, then formal education last */}
       <ExperienceSection acf={acf} />
-      <WeiterbildungSection acf={acf} />
-      <AusbildungSection acf={acf} />
+      <section className="no-print">
+        <WeiterbildungSection acf={acf} />
+        <AusbildungSection acf={acf} />
+      </section>
 
       <PortfolioSection acf={acf} />
       <ContactSection acf={acf} />
+
+      {/* Print-only CV Section - full width, no margins */}
+      <section 
+        className="print-only" 
+        style={{ 
+          padding: '0 2.5cm', 
+          margin: '0',
+          fontFamily: 'Inter, sans-serif'
+        }}
+      >
+        <PrintCV acf={acf} />
+      </section>
 
       <footer className="section-dark text-slate-400 py-8 no-print text-center text-sm">
         <div className="section-container">
