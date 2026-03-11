@@ -9,7 +9,7 @@ export function CTASection({ acf }: CTAProps) {
   if (!cta_header && !cta_text) return null;
 
   const scrollToKontakt = () => {
-    document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('kennenlernen')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (

@@ -79,7 +79,7 @@ export function HeroSection({ acf }: HeroProps) {
               </svg>
             </button>
             <button
-              onClick={() => scrollTo('kontakt')}
+              onClick={() => scrollTo('kennenlernen')}
               className="btn btn-outline w-full"
             >
               Kennenlernen

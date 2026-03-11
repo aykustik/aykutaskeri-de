@@ -490,7 +490,7 @@ input[type="radio"]:focus {
 
   /* ── Hide non-content elements ────────────────── */
   nav, form, .btn,
-  #intro, #cta-section, #kontakt,
+  #intro, #cta-section, #kennenlernen,
   .progress-track,
   .language-circle-svg,
   .timeline-line,

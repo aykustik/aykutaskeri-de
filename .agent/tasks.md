@@ -7,6 +7,17 @@
 
 - Status: todo
 - Priority: medium
+- Notes: **Timeline-Animation beim Scrollen**
+  - Die vertikale Linie soll sich mit dem Scrollen mitbewegen (scroll-synced)
+  - Punkte sollen "aktiviert" werden wenn sie in den Viewport kommen (IntersectionObserver)
+  - Punkte sollen bündig (zentriert) sein mit dem ersten Element innerhalb des timeline-items:
+    - Bei Berufserfahrung: Punkt zentriert mit period-badge
+    - Bei Ausbildung: Punkt zentriert mit icon innerhalb der card
+
+---
+
+- Status: todo
+- Priority: medium
 - Notes: Scroll-triggered fade-in-up Entrance-Animationen für Sections (About, Experience, Portfolio) via IntersectionObserver — ähnlich wie Skill-Bars
 
 ---

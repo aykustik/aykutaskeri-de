@@ -58,10 +58,10 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
   };
 
   return (
-    <section className="section-gray py-16 no-print" id="kontakt">
+    <section className="section-gray py-16 no-print" id="kennenlernen">
       <div className="section-container">
         <div className="mb-10">
-          <h2 className="section-title">Kontakt</h2>
+          <h2 className="section-title">Kurz und schmerzlos</h2>
           <div className="divider mt-4" />
         </div>
 
