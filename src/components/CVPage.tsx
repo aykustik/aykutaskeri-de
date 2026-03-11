@@ -1,40 +1,36 @@
 import { CVPage } from '@/types/wordpress';
-import { HeaderSection, SocialLinks, ContactInfo } from './Header';
+import { HeaderSection } from './Header';
+import { HeroSection } from './Hero';
 import { AboutSection } from './About';
+import { CTASection } from './CTA';
 import { SkillsSection } from './Skills';
 import { ExperienceSection } from './Experience';
 import { EducationSection } from './Education';
 import { PortfolioSection } from './Portfolio';
+import { ContactSection } from './Contact';
 
-interface CVPageProps {
-  cv: CVPage;
-}
+interface CVPageProps { cv: CVPage }
 
 export function CVPageComponent({ cv }: CVPageProps) {
   const { acf } = cv;
-
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen" style={{ background: '#f8fafc' }}>
       <HeaderSection acf={acf} />
-      <SocialLinks acf={acf} />
-      <ContactInfo acf={acf} />
-      
-      <div className="print-container">
-        <AboutSection acf={acf} />
-        <SkillsSection acf={acf} />
-        <ExperienceSection acf={acf} />
-        <EducationSection acf={acf} />
-        <PortfolioSection acf={acf} />
-      </div>
-      
-      <footer className="bg-dark-900 text-dark-300 py-12 no-print">
-        <div className="section-container text-center">
-          <p className="text-lg font-medium text-white mb-2">
-            {acf.vorname} {acf.nachname}
-          </p>
-          <p className="text-sm">
-            © {new Date().getFullYear()} Alle Rechte vorbehalten.
-          </p>
+      <HeroSection acf={acf} />
+      <AboutSection acf={acf} />
+      <SkillsSection acf={acf} />
+      <CTASection acf={acf} />
+      <ExperienceSection acf={acf} />
+      <EducationSection acf={acf} />
+      <PortfolioSection acf={acf} />
+      <ContactSection acf={acf} />
+
+      <footer className="section-dark text-slate-400 py-8 no-print text-center text-sm">
+        <div className="section-container">
+          {acf.copyright_text
+            ? <span dangerouslySetInnerHTML={{ __html: acf.copyright_text }} />
+            : <span>© {new Date().getFullYear()} {acf.vorname} {acf.nachname}</span>
+          }
         </div>
       </footer>
     </div>

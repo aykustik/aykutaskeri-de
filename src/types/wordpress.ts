@@ -1,76 +1,36 @@
 export interface WPCV {
   id: number;
-  date: string;
-  date_gmt: string;
-  guid: {
-    rendered: string;
-  };
-  modified: string;
-  modified_gmt: string;
   slug: string;
   status: 'publish' | 'draft' | 'private';
   type: 'cv';
   link: string;
-  title: {
-    rendered: string;
-  };
-  content: {
-    rendered: string;
-    protected: boolean;
-  };
-  excerpt: {
-    rendered: string;
-    protected: boolean;
-  };
-  author: number;
-  featured_media: number;
-  parent: number;
-  menu_order: number;
-  comment_status: 'open' | 'closed';
-  ping_status: 'open' | 'closed';
-  template: string;
-  meta: Record<string, unknown>;
+  title: { rendered: string };
+  content: { rendered: string; protected: boolean };
   acf: ACFFields;
   _links: Record<string, unknown>;
 }
 
 export interface ACFFields {
-  // / Unternehmensdaten
   firma?: string;
   stellenbezeichnung?: string;
   ansprechpartner?: string;
   anstellungsart_gewunscht?: string;
-
-  // bewerberdaten
   profilbild?: WPImage;
   vorname?: string;
   nachname?: string;
   adresse?: string;
-  plz?: number;
+  plz?: number | string;
   ort?: string;
   e_mail?: string;
   telefon?: string;
   bereich?: string;
   beworbene_anstellungsart?: string;
-  das_zeichnet_mich_aus?: string;
-  das_mag_ich_nicht?: string;
+  copyright_text?: string;
   facebook_link?: string;
   linkedin_link?: string;
   xing_link?: string;
-
-  // sprachen
-  sprachen_anzeigen?: 'Keine Sprache anzeigen' | 'Eine Sprache anzeigen' | 'Zwei Sprachen' | 'Drei Sprachen';
-  sprache_1?: string;
-  sprache_2?: string;
-  sprache_3?: string;
-  sprache_1_starke?: number;
-  sprache_2_starke?: number;
-  sprache_3_starke?: number;
-  sprache_1_farbe?: string;
-  sprache_2_farbe?: string;
-  sprache_3_farbe?: string;
-
-  // about
+  das_zeichnet_mich_aus?: string;
+  das_mag_ich_nicht?: string;
   uber_mich_text?: string;
   bereich_1?: string;
   bereich_1_text?: string;
@@ -86,8 +46,16 @@ export interface ACFFields {
   bereich_4_icon?: WPImage;
   cta_header?: string;
   cta_text?: string;
-
-  // skills
+  sprachen_anzeigen?: string;
+  sprache_1?: string;
+  sprache_2?: string;
+  sprache_3?: string;
+  sprache_1_starke?: number | string;
+  sprache_2_starke?: number | string;
+  sprache_3_starke?: number | string;
+  sprache_1_farbe?: string;
+  sprache_2_farbe?: string;
+  sprache_3_farbe?: string;
   skills_text?: string;
   hard_skill_1?: string;
   hard_skill_2?: string;
@@ -101,18 +69,18 @@ export interface ACFFields {
   hard_skill_10?: string;
   hard_skill_11?: string;
   hard_skill_12?: string;
-  hard_skill_1_starke?: number;
-  hard_skill_2_starke?: number;
-  hard_skill_3_starke?: number;
-  hard_skill_4_starke?: number;
-  hard_skill_5_starke?: number;
-  hard_skill_6_starke?: number;
-  hard_skill_7_starke?: number;
-  hard_skill_8_starke?: number;
-  hard_skill_9_starke?: number;
-  hard_skill_10_starke?: number;
-  hard_skill_11_starke?: number;
-  hard_skill_12_starke?: number;
+  hard_skill_1_starke?: number | string;
+  hard_skill_2_starke?: number | string;
+  hard_skill_3_starke?: number | string;
+  hard_skill_4_starke?: number | string;
+  hard_skill_5_starke?: number | string;
+  hard_skill_6_starke?: number | string;
+  hard_skill_7_starke?: number | string;
+  hard_skill_8_starke?: number | string;
+  hard_skill_9_starke?: number | string;
+  hard_skill_10_starke?: number | string;
+  hard_skill_11_starke?: number | string;
+  hard_skill_12_starke?: number | string;
   hard_skill_1_farbe?: string;
   hard_skill_2_farbe?: string;
   hard_skill_3_farbe?: string;
@@ -131,8 +99,6 @@ export interface ACFFields {
   soft_skill_4?: string;
   soft_skill_5?: string;
   soft_skill_6?: string;
-
-  // berufserfahrung
   berufserfahrung_text?: string;
   berufserfahrung_1_zeitraum?: string;
   berufserfahrung_1_titel?: string;
@@ -149,69 +115,31 @@ export interface ACFFields {
   berufserfahrung_5_zeitraum?: string;
   berufserfahrung_5_titel?: string;
   berufserfahrung_5_beschreibung?: string;
-
-  // weiterbildung
   weiterbildung_text?: string;
-  weiterbildung_1_titel?: string;
-  weiterbildung_1_inhalt?: string;
-  weiterbildung_2_titel?: string;
-  weiterbildung_2_inhalt?: string;
-  weiterbildung_3_titel?: string;
-  weiterbildung_3_inhalt?: string;
-  weiterbildung_4_titel?: string;
-  weiterbildung_4_inhalt?: string;
-  weiterbildung_5_titel?: string;
-  weiterbildung_5_inhalt?: string;
-  weiterbildung_6_titel?: string;
-  weiterbildung_6_inhalt?: string;
-  weiterbildung_7_titel?: string;
-  weiterbildung_7_inhalt?: string;
-  weiterbildung_8_titel?: string;
-  weiterbildung_8_inhalt?: string;
-  weiterbildung_9_titel?: string;
-  weiterbildung_9_inhalt?: string;
-  weiterbildung_10_titel?: string;
-  weiterbildung_10_inhalt?: string;
-  weiterbildung_11_titel?: string;
-  weiterbildung_11_inhalt?: string;
-  weiterbildung_12_titel?: string;
-  weiterbildung_12_inhalt?: string;
-
-  // ausbildung
+  weiterbildung_1_titel?: string;  weiterbildung_1_inhalt?: string;
+  weiterbildung_2_titel?: string;  weiterbildung_2_inhalt?: string;
+  weiterbildung_3_titel?: string;  weiterbildung_3_inhalt?: string;
+  weiterbildung_4_titel?: string;  weiterbildung_4_inhalt?: string;
+  weiterbildung_5_titel?: string;  weiterbildung_5_inhalt?: string;
+  weiterbildung_6_titel?: string;  weiterbildung_6_inhalt?: string;
+  weiterbildung_7_titel?: string;  weiterbildung_7_inhalt?: string;
+  weiterbildung_8_titel?: string;  weiterbildung_8_inhalt?: string;
+  weiterbildung_9_titel?: string;  weiterbildung_9_inhalt?: string;
+  weiterbildung_10_titel?: string; weiterbildung_10_inhalt?: string;
+  weiterbildung_11_titel?: string; weiterbildung_11_inhalt?: string;
+  weiterbildung_12_titel?: string; weiterbildung_12_inhalt?: string;
   ausbildung_text?: string;
-  ausbildung_1_titel?: string;
-  ausbildung_1_inhalt?: string;
-  ausbildung_2_titel?: string;
-  ausbildung_2_inhalt?: string;
-  ausbildung_3_titel?: string;
-  ausbildung_3_inhalt?: string;
-
-  // portfolio
+  ausbildung_1_titel?: string;  ausbildung_1_inhalt?: string;
+  ausbildung_2_titel?: string;  ausbildung_2_inhalt?: string;
+  ausbildung_3_titel?: string;  ausbildung_3_inhalt?: string;
   portfolio_text?: string;
-  portfolio_1_titel?: string;
-  portfolio_1_text?: string;
-  portfolio_1_bild?: WPImage;
-  portfolio_1_link?: string;
-  portfolio_2_titel?: string;
-  portfolio_2_text?: string;
-  portfolio_2_bild?: WPImage;
-  portfolio_2_link?: string;
-  portfolio_3_titel?: string;
-  portfolio_3_text?: string;
-  portfolio_3_bild?: WPImage;
-  portfolio_3_link?: string;
-  portfolio_4_titel?: string;
-  portfolio_4_text?: string;
-  portfolio_4_bild?: WPImage;
-  portfolio_4_link?: string;
-  portfolio_5_titel?: string;
-  portfolio_5_text?: string;
-  portfolio_5_bild?: WPImage;
-  portfolio_5_link?: string;
-  portfolio_6_titel?: string;
-  portfolio_6_text?: string;
-  portfolio_6_bild?: WPImage;
-  portfolio_6_link?: string;
+  portfolio_1_titel?: string;  portfolio_1_text?: string;  portfolio_1_bild?: WPImage;  portfolio_1_link?: string;
+  portfolio_2_titel?: string;  portfolio_2_text?: string;  portfolio_2_bild?: WPImage;  portfolio_2_link?: string;
+  portfolio_3_titel?: string;  portfolio_3_text?: string;  portfolio_3_bild?: WPImage;  portfolio_3_link?: string;
+  portfolio_4_titel?: string;  portfolio_4_text?: string;  portfolio_4_bild?: WPImage;  portfolio_4_link?: string;
+  portfolio_5_titel?: string;  portfolio_5_text?: string;  portfolio_5_bild?: WPImage;  portfolio_5_link?: string;
+  portfolio_6_titel?: string;  portfolio_6_text?: string;  portfolio_6_bild?: WPImage;  portfolio_6_link?: string;
+  kontakt_text?: string;
 }
 
 export interface WPImage {
@@ -219,41 +147,16 @@ export interface WPImage {
   id: number;
   title: string;
   filename: string;
-  filesize: number;
   url: string;
-  link: string;
   alt: string;
-  author: string;
-  description: string;
-  caption: string;
-  name: string;
-  status: string;
-  uploaded_to: number;
-  date: string;
-  modified: string;
-  menu_order: number;
   mime_type: string;
-  type: string;
-  subtype: string;
-  icon: string;
   width: number;
   height: number;
   sizes: {
     thumbnail: string;
-    'thumbnail-width': number;
-    'thumbnail-height': number;
     medium: string;
-    'medium-width': number;
-    'medium-height': number;
     large: string;
-    'large-width': number;
-    'large-height': number;
-    '1536x1536': string;
-    '1536x1536-width': number;
-    '1536x1536-height': number;
-    '2048x2048': string;
-    '2048x2048-width': number;
-    '2048x2048-height': number;
+    [key: string]: string | number;
   };
 }
 

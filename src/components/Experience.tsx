@@ -1,89 +1,58 @@
 import { ACFFields } from '@/types/wordpress';
 import { decodeHtml } from '@/lib/utils';
 
-interface ExperienceProps {
-  acf: ACFFields;
-}
-
-interface Experience {
-  period: string;
-  title: string;
-  description: string;
-  company?: string;
-}
+interface ExperienceProps { acf: ACFFields }
 
 export function ExperienceSection({ acf }: ExperienceProps) {
-  const experiences: Experience[] = [
-    {
-      period: acf.berufserfahrung_1_zeitraum || '',
-      title: acf.berufserfahrung_1_titel || '',
-      description: acf.berufserfahrung_1_beschreibung || '',
-    },
-    {
-      period: acf.berufserfahrung_2_zeitraum || '',
-      title: acf.berufserfahrung_2_titel || '',
-      description: acf.berufserfahrung_2_beschreibung || '',
-    },
-    {
-      period: acf.berufserfahrung_3_zeitraum || '',
-      title: acf.berufserfahrung_3_titel || '',
-      description: acf.berufserfahrung_3_beschreibung || '',
-    },
-    {
-      period: acf.berufserfahrung_4_zeitraum || '',
-      title: acf.berufserfahrung_4_titel || '',
-      description: acf.berufserfahrung_4_beschreibung || '',
-    },
-    {
-      period: acf.berufserfahrung_5_zeitraum || '',
-      title: acf.berufserfahrung_5_titel || '',
-      description: acf.berufserfahrung_5_beschreibung || '',
-    },
-  ].filter(exp => exp.title);
+  const jobs = [
+    { period: acf.berufserfahrung_1_zeitraum, title: acf.berufserfahrung_1_titel, desc: acf.berufserfahrung_1_beschreibung },
+    { period: acf.berufserfahrung_2_zeitraum, title: acf.berufserfahrung_2_titel, desc: acf.berufserfahrung_2_beschreibung },
+    { period: acf.berufserfahrung_3_zeitraum, title: acf.berufserfahrung_3_titel, desc: acf.berufserfahrung_3_beschreibung },
+    { period: acf.berufserfahrung_4_zeitraum, title: acf.berufserfahrung_4_titel, desc: acf.berufserfahrung_4_beschreibung },
+    { period: acf.berufserfahrung_5_zeitraum, title: acf.berufserfahrung_5_titel, desc: acf.berufserfahrung_5_beschreibung },
+  ].filter(j => j.title);
 
-  if (experiences.length === 0) return null;
+  if (!jobs.length) return null;
 
   return (
-    <section className="py-16 bg-white print-break-inside" id="experience">
+    <section className="section-gray py-16 print-avoid" id="berufserfahrung">
       <div className="section-container">
-        <div className="mb-10">
-          <h2 className="section-title">Berufserfahrung</h2>
-          <div className="divider mt-4"></div>
-        </div>
+        <h2 className="section-title">Berufserfahrung</h2>
+        <div className="divider mt-4 mb-8" />
 
         {acf.berufserfahrung_text && (
-          <div className="text-dark-600 mb-10 max-w-2xl leading-relaxed" dangerouslySetInnerHTML={{ __html: decodeHtml(acf.berufserfahrung_text) }} />
+          <div
+            className="body-text mb-10 max-w-2xl prose prose-slate"
+            dangerouslySetInnerHTML={{ __html: decodeHtml(acf.berufserfahrung_text) }}
+          />
         )}
 
         <div className="relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 via-accent-500 to-primary-300"></div>
-          
-          <div className="space-y-10">
-            {experiences.map((exp, index) => (
-              <div 
-                key={index} 
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-              >
-                <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-primary-500 rounded-full border-4 border-white shadow-lg transform -translate-x-1/2 z-10"></div>
-                
-                <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
-                  <div className="card-elevated p-6 hover:shadow-lg transition-all duration-300 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
-                    <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full mb-3">
-                      {exp.period}
+          {/* Timeline line */}
+          <div className="absolute left-4 md:left-6 top-2 bottom-2 w-0.5"
+               style={{ background: 'linear-gradient(to bottom, #43C26E, #575CC2)' }} />
+
+          <div className="space-y-8">
+            {jobs.map((job, i) => (
+              <div key={i} className="relative pl-12 md:pl-16 print-avoid">
+                {/* Dot */}
+                <div className="absolute left-2 md:left-4 top-5 w-5 h-5 rounded-full border-2 border-white shadow-md"
+                     style={{ background: '#43C26E' }} />
+                <div className="card p-6">
+                  {job.period && (
+                    <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3 text-white"
+                          style={{ background: '#43C26E' }}>
+                      {job.period}
                     </span>
-                    <h3 className="text-lg font-bold text-dark-900 mb-1">
-                      {exp.title}
-                    </h3>
-                    <div 
-                      className="text-dark-600 prose prose-sm max-w-none mt-3"
-                      dangerouslySetInnerHTML={{ __html: decodeHtml(exp.description) }}
+                  )}
+                  <h3 className="font-heading font-bold text-slate-900 text-lg mb-3">{job.title}</h3>
+                  {job.desc && (
+                    <div
+                      className="prose prose-sm prose-slate max-w-none body-text"
+                      dangerouslySetInnerHTML={{ __html: decodeHtml(job.desc) }}
                     />
-                  </div>
+                  )}
                 </div>
-                
-                <div className="hidden md:block md:w-1/2"></div>
               </div>
             ))}
           </div>
