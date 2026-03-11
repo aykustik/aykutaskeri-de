@@ -126,8 +126,8 @@ export function AboutSection({ acf }: AboutProps) {
 
         {/* Das zeichnet / Mag nicht + Sprachen */}
         {(das_zeichnet_mich_aus || das_mag_ich_nicht || langCount > 0) && (
-          <div className="grid lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 grid md:grid-cols-2 gap-5">
+          <div className={`grid gap-6 ${langCount > 0 ? 'lg:grid-cols-3' : 'lg:grid-cols-2'}`}>
+            <div className={`grid md:grid-cols-2 gap-5 ${langCount > 0 ? 'lg:col-span-2' : 'lg:col-span-2'}`}>
 
               {das_zeichnet_mich_aus && (
                 <div className="card p-6 print-avoid">

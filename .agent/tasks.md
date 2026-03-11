@@ -18,6 +18,24 @@
 ---
 
 - Status: todo
+- Priority: medium
+- Notes: Like-Funktion für Skills (kleine Gamification), welche Skills besonders beliebt sind + Übergabe ans Kontaktformular
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: External Link Icon neben Text-Links, die externe Websites in neuem Tab öffnen. Externe Links sollen immer `target="_blank"` mit `rel="noopener noreferrer"` haben.
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: Kennenlernen-Button: Icon ändern zu Scroll-down Icon (wie bei "Zu den Skills"), da nicht zu neuer Seite navigiert wird, sondern nach unten gescrollt.
+
+---
+
+- Status: todo
 - Priority: low
 - Notes: `ausbildung_text` und `weiterbildung_text` sind in WordPress identisch — Aykut muss das in WP korrigieren (verschiedene Intro-Texte für die beiden Sections)
 
