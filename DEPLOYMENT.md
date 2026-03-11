@@ -11,7 +11,7 @@
 ### 1. Code zu GitHub pushen
 
 ```bash
-cd wordpress-headless
+cd aykutaskeri.de
 git add .
 git commit -m "Initial commit - Headless WordPress CV Frontend"
 git remote add origin https://github.com/dein-user/dein-repo.git

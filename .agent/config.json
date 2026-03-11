@@ -1,7 +1,7 @@
 {
   "githubTokenEnv": "GH_TOKEN",
   "defaultBranchPrefix": "ai-task",
-  "projectID": "wordpress-headless",
+  "projectID": "aykutaskeri.de",
   "workspaceStartupScript": "npm install",
   "autoUpdateTasks": true
 }
