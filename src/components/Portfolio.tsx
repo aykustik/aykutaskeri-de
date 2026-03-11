@@ -34,7 +34,7 @@ export function PortfolioSection({ acf }: PortfolioProps) {
               href={p.link || '#'}
               target={p.link ? '_blank' : '_self'}
               rel={p.link ? 'noopener noreferrer' : undefined}
-              className="card block overflow-hidden group cursor-pointer"
+              className="card-interactive block overflow-hidden group cursor-pointer"
             >
               {p.image && (
                 <div className="h-40 overflow-hidden bg-slate-100 flex items-center justify-center p-6">
