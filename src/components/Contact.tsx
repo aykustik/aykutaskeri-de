@@ -128,11 +128,16 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
                     value="yes"
                     checked={response === 'yes'}
                     onChange={() => setResponse('yes')}
-                    className="w-4 h-4 text-brand-purple focus:ring-brand-purple border-slate-300"
+                    className="peer sr-only"
                     required
                   />
-                  <span className="text-slate-700 group-hover:text-brand-purple transition-colors">
-                    Ja, auf jeden Fall!
+                  <span className="flex items-center gap-2 px-4 py-2 rounded-full border-2 transition-all duration-200 peer-checked:border-brand-purple peer-checked:bg-brand-purple-light">
+                    <svg className="w-4 h-4 text-brand-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-sm font-medium text-slate-700 peer-checked:text-brand-purple">
+                      Ja, auf jeden Fall!
+                    </span>
                   </span>
                 </label>
                 <label className="flex items-center gap-2 cursor-pointer group">
@@ -142,11 +147,16 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
                     value="no"
                     checked={response === 'no'}
                     onChange={() => setResponse('no')}
-                    className="w-4 h-4 text-brand-purple focus:ring-brand-purple border-slate-300"
+                    className="peer sr-only"
                     required
                   />
-                  <span className="text-slate-700 group-hover:text-brand-purple transition-colors">
-                    Nein, lieber nicht.
+                  <span className="flex items-center gap-2 px-4 py-2 rounded-full border-2 transition-all duration-200 peer-checked:border-brand-brick peer-checked:bg-brand-brick-light">
+                    <svg className="w-4 h-4 text-brand-brick" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span className="text-sm font-medium text-slate-700 peer-checked:text-brand-brick">
+                      Nein, lieber nicht.
+                    </span>
                   </span>
                 </label>
               </div>
