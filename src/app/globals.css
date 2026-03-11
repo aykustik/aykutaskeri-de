@@ -19,19 +19,20 @@
   --brand-emerald-light: #d1fae5;
 
   /* ── Semantic-only accents ───────────────────── */
-  --brand-orange:        #F97316;   /* CTA button only */
-  --brand-brick:         #e5533d;   /* "Mag ich nicht" icon only */
+  --brand-orange:        #F97316;
+  --brand-brick:         #e5533d;
   --brand-brick-light:   #fef3f2;
 
-  /* ── Language circles (intentional, not UI chrome) */
+  /* ── Language circles ────────────────────────── */
   --lang-green:   #43C26E;
   --lang-purple:  #575CC2;
   --lang-gold:    #C2A73A;
+
+  /* ── Stripe animation speed ──────────────────── */
+  --stripe-speed: 1.4s;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background-color: #f8fafc;
@@ -40,9 +41,7 @@ body {
   font-family: var(--font-roboto);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-montserrat);
-}
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-montserrat); }
 
 /* ── Layout ─────────────────────────────────────── */
 .section-container {
@@ -58,11 +57,12 @@ h1, h2, h3, h4, h5, h6 {
   background: #ffffff;
   border-radius: 1rem;
   border: 1px solid #e2e8f0;
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
 }
 .card:hover {
-  box-shadow: 0 10px 28px -6px rgba(87, 92, 194, 0.13);
-  transform: translateY(-2px) scale(1.005);
+  box-shadow: 0 12px 32px -8px rgba(87, 92, 194, 0.15);
+  transform: translateY(-3px) scale(1.005);
+  border-color: #c7d2fe;
 }
 
 /* ── Typography ─────────────────────────────────── */
@@ -78,10 +78,7 @@ h1, h2, h3, h4, h5, h6 {
   .section-title { font-size: 2.25rem; }
 }
 
-.body-text {
-  color: #475569;
-  line-height: 1.75;
-}
+.body-text { color: #475569; line-height: 1.75; }
 
 /* ── Divider ────────────────────────────────────── */
 .divider {
@@ -102,65 +99,73 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   font-size: 0.875rem;
   border-radius: 0.5rem;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
   cursor: pointer;
   border: none;
   text-decoration: none;
 }
+.btn:active { transform: scale(0.97); }
 
-/* Primary: purple — main CTAs */
-.btn-primary {
-  background-color: var(--brand-purple);
-  color: #ffffff;
-}
+.btn-primary { background-color: var(--brand-purple); color: #ffffff; }
 .btn-primary:hover {
   background-color: var(--brand-purple-dark);
   box-shadow: 0 4px 16px rgba(87, 92, 194, 0.4);
 }
 
-/* Outline: purple border/text */
 .btn-outline {
   background: transparent;
   color: var(--brand-purple);
   border: 2px solid var(--brand-purple);
 }
-.btn-outline:hover {
-  background-color: var(--brand-purple);
-  color: #ffffff;
-}
+.btn-outline:hover { background-color: var(--brand-purple); color: #ffffff; }
 
-/* Orange: used exclusively on the CTA section */
-.btn-orange {
-  background-color: var(--brand-orange);
-  color: #ffffff;
-}
+.btn-orange { background-color: var(--brand-orange); color: #ffffff; }
 .btn-orange:hover {
   background-color: #ea6c00;
   box-shadow: 0 4px 16px rgba(249, 115, 22, 0.45);
 }
 
-/* White: for dark section backgrounds */
-.btn-white {
-  background: #ffffff;
-  color: #0f172a;
-}
+.btn-white { background: #ffffff; color: #0f172a; }
 .btn-white:hover {
   background: #f1f5f9;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
-/* ── Progress bars ──────────────────────────────── */
+/* ── Progress bars — striped + animated ─────────── */
+@keyframes stripe-slide {
+  0%   { background-position: 0 0; }
+  100% { background-position: 28px 0; }
+}
+
+@keyframes bar-grow {
+  from { width: 0; }
+}
+
 .progress-track {
   width: 100%;
-  height: 7px;
+  height: 8px;
   background: #e2e8f0;
   border-radius: 9999px;
   overflow: hidden;
 }
+
 .progress-fill {
   height: 100%;
   border-radius: 9999px;
-  background: linear-gradient(to right, var(--brand-purple), var(--brand-purple-grad));
+  /* Gradient base with diagonal stripes on top */
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 5px,
+      rgba(255,255,255,0.18) 5px,
+      rgba(255,255,255,0.18) 10px
+    ),
+    linear-gradient(to right, var(--brand-purple), var(--brand-purple-grad));
+  background-size: 28px 100%, 100% 100%;
+  animation:
+    stripe-slide var(--stripe-speed) linear infinite,
+    bar-grow 0.8s ease-out both;
 }
 
 /* ── Badges ─────────────────────────────────────── */
@@ -171,6 +176,11 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 9999px;
   font-size: 0.8125rem;
   font-weight: 500;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
 }
 .badge-emerald {
   background-color: var(--brand-emerald-light);
@@ -183,7 +193,61 @@ h1, h2, h3, h4, h5, h6 {
 .section-gray  { background-color: #f8fafc; }
 .section-dark  { background-color: #0f172a; }
 
-/* ── Animation helpers ──────────────────────────── */
+/* ── Ambient animations ─────────────────────────── */
+
+/* Subtle float for language circles */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+.language-circle-float {
+  animation: float 3.5s ease-in-out infinite;
+}
+.language-circle-float:nth-child(2) { animation-delay: 0.6s; }
+.language-circle-float:nth-child(3) { animation-delay: 1.2s; }
+
+/* Soft pulse for the CTA button */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 4px 16px rgba(249,115,22,0.35); }
+  50%       { box-shadow: 0 4px 24px rgba(249,115,22,0.6); }
+}
+.btn-orange {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+.btn-orange:hover {
+  animation: none;
+  background-color: #ea6c00;
+  box-shadow: 0 4px 20px rgba(249,115,22,0.55);
+}
+
+/* Timeline dot pulse */
+@keyframes dot-ping {
+  0%   { box-shadow: 0 0 0 0 rgba(87,92,194,0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(87,92,194,0); }
+  100% { box-shadow: 0 0 0 0 rgba(87,92,194,0); }
+}
+.timeline-dot-first {
+  animation: dot-ping 2s ease-out infinite;
+}
+
+/* Divider shimmer */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.divider {
+  background: linear-gradient(
+    90deg,
+    var(--brand-purple) 0%,
+    var(--brand-purple-grad) 40%,
+    #c7d2fe 60%,
+    var(--brand-purple) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Animation helpers */
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
@@ -191,34 +255,37 @@ h1, h2, h3, h4, h5, h6 {
 .delay-500 { animation-delay: 500ms; }
 
 /* ── Utility ────────────────────────────────────── */
-.screen-only  { }                          /* visible on screen, hidden in print */
-.print-only   { display: none; }          /* hidden on screen, shown in print */
+.screen-only     { }
+.print-only      { display: none; }
 .print-only-flex { display: none; }
 
 /* ── Print ──────────────────────────────────────── */
 @media print {
   @page {
     size: A4 portrait;
-    margin: 2cm 2.5cm;
+    margin: 1.8cm 2.2cm;
   }
 
-  /* ── Show/hide ───────────────────────────────── */
-  .no-print          { display: none !important; }
-  .screen-only       { display: none !important; }
-  .print-only        { display: block !important; }
-  .print-only-flex   { display: flex !important; }
+  /* ── Show / hide ─────────────────────────────── */
+  .no-print,
+  .screen-only     { display: none !important; }
+  .print-only      { display: block !important; }
+  .print-only-flex { display: flex !important; }
 
-  /* ── Hide decorative / interactive elements ───── */
-  nav,
-  form,
-  .btn,
-  #intro,
-  #cta-section,
-  #kontakt,
+  /* ── Remove all animations ────────────────────── */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* ── Hide non-content elements ────────────────── */
+  nav, form, .btn,
+  #intro, #cta-section, #kontakt,
   .progress-track,
   .language-circle-svg,
   .timeline-line,
-  .timeline-dot
+  .timeline-dot,
+  .timeline-dot-first
   { display: none !important; }
 
   /* ── Base ────────────────────────────────────── */
@@ -229,30 +296,49 @@ h1, h2, h3, h4, h5, h6 {
 
   body {
     background: #fff !important;
-    color: #000 !important;
-    font-size: 10pt;
-    line-height: 1.5;
+    color: #111 !important;
+    font-size: 9.5pt;
+    line-height: 1.45;
     font-family: 'Roboto', Arial, sans-serif;
   }
 
   /* ── Typography ──────────────────────────────── */
-  h1 { font-size: 20pt; font-weight: 700; margin-bottom: 4pt; color: #000 !important; }
-  h2 {
-    font-size: 12pt;
+  h1 {
+    font-size: 18pt;
     font-weight: 700;
-    border-bottom: 1pt solid #000;
-    padding-bottom: 3pt;
-    margin-top: 16pt;
-    margin-bottom: 6pt;
+    margin: 0 0 2pt;
+    color: #000 !important;
+    letter-spacing: -0.01em;
+  }
+  h2 {
+    font-size: 9pt;
+    font-weight: 700;
+    border-bottom: 0.75pt solid #555;
+    padding-bottom: 2pt;
+    margin: 14pt 0 5pt;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.1em;
+    color: #333 !important;
+  }
+  h3 {
+    font-size: 10pt;
+    font-weight: 600;
+    margin: 0 0 1pt;
     color: #000 !important;
   }
-  h3 { font-size: 10.5pt; font-weight: 600; margin-bottom: 2pt; color: #000 !important; }
-  h4 { font-size: 10pt; font-weight: 600; color: #000 !important; }
-  p, li { color: #000 !important; margin-bottom: 3pt; }
+  h4 {
+    font-size: 9pt;
+    font-weight: 600;
+    color: #000 !important;
+    margin: 0 0 1pt;
+  }
+  p, li {
+    color: #222 !important;
+    margin: 0 0 2pt;
+    font-size: 9pt;
+  }
 
-  /* ── Strip card decoration ───────────────────── */
+  /* ── Strip all decoration ─────────────────────── */
   .card {
     border: none !important;
     box-shadow: none !important;
@@ -260,10 +346,11 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 !important;
     background: transparent !important;
     transform: none !important;
-    margin-bottom: 6pt;
+    margin-bottom: 4pt;
   }
 
-  /* ── Dark / colored sections → white ─────────── */
+  .divider { display: none !important; }
+
   .section-dark,
   .section-gray,
   .section-white {
@@ -271,46 +358,59 @@ h1, h2, h3, h4, h5, h6 {
     color: #000 !important;
   }
 
-  /* ── Section padding ─────────────────────────── */
-  section { padding: 4pt 0 !important; }
+  section { padding: 0 !important; }
 
   /* ── Header ──────────────────────────────────── */
   header {
     background: #fff !important;
     color: #000 !important;
-    padding: 0 0 10pt 0 !important;
-    border-bottom: 1.5pt solid #000;
-    margin-bottom: 2pt;
+    padding: 0 0 8pt !important;
+    border-bottom: 1pt solid #000;
+    margin-bottom: 0;
   }
   header h1 { color: #000 !important; }
-  header p, header span, header a { color: #555 !important; font-size: 9pt; }
-
-  /* ── Divider ─────────────────────────────────── */
-  .divider {
-    background: #ccc !important;
-    height: 1pt !important;
-    width: 2rem !important;
+  header p, header span, header a {
+    color: #444 !important;
+    font-size: 8.5pt;
   }
 
   /* ── Links ───────────────────────────────────── */
   a { color: #000 !important; text-decoration: none !important; }
 
-  /* ── Timeline items ──────────────────────────── */
-  .timeline-item { padding-left: 0 !important; margin-bottom: 10pt; }
+  /* ── Timeline ────────────────────────────────── */
+  .timeline-item { padding-left: 0 !important; margin-bottom: 8pt; }
   .period-badge {
     background: transparent !important;
-    color: #444 !important;
+    color: #555 !important;
     padding: 0 !important;
-    font-size: 8.5pt;
+    font-size: 8pt;
     font-weight: 600;
+    display: block;
+    margin-bottom: 1pt;
   }
 
-  /* ── Grid → block flow ───────────────────────── */
+  /* ── Grid → block ────────────────────────────── */
   .grid { display: block !important; }
-  .grid > * { margin-bottom: 5pt; }
+  .grid > * { margin-bottom: 4pt; }
 
   /* ── Page breaks ─────────────────────────────── */
-  #berufserfahrung { break-before: page; }
-  .print-avoid     { break-inside: avoid; }
+  #berufserfahrung  { break-before: page; }
+  .print-avoid      { break-inside: avoid; }
   .print-break-before { break-before: page; }
+
+  /* ── Badge: plain in print ───────────────────── */
+  .badge {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: 9pt;
+    color: #000 !important;
+  }
+
+  /* ── Icon containers: hide ────────────────────── */
+  [style*="brand-purple-light"],
+  [style*="brand-emerald-light"],
+  [style*="brand-brick-light"] {
+    display: none !important;
+  }
 }

@@ -3,13 +3,10 @@ import { decodeHtml } from '@/lib/utils';
 
 interface EducationProps { acf: ACFFields }
 
-export function EducationSection({ acf }: EducationProps) {
-  const ausbildung = [
-    { title: acf.ausbildung_1_titel, content: acf.ausbildung_1_inhalt },
-    { title: acf.ausbildung_2_titel, content: acf.ausbildung_2_inhalt },
-    { title: acf.ausbildung_3_titel, content: acf.ausbildung_3_inhalt },
-  ].filter(e => e.title);
-
+/* ─────────────────────────────────────────────────
+   Weiterbildung — certificate grid (stays as grid)
+───────────────────────────────────────────────── */
+export function WeiterbildungSection({ acf }: EducationProps) {
   const weiterbildung = [
     { title: acf.weiterbildung_1_titel,  content: acf.weiterbildung_1_inhalt  },
     { title: acf.weiterbildung_2_titel,  content: acf.weiterbildung_2_inhalt  },
@@ -25,80 +22,111 @@ export function EducationSection({ acf }: EducationProps) {
     { title: acf.weiterbildung_12_titel, content: acf.weiterbildung_12_inhalt },
   ].filter(e => e.title);
 
-  if (!ausbildung.length && !weiterbildung.length) return null;
+  if (!weiterbildung.length) return null;
 
   return (
-    <section className="section-white py-16" id="bildung">
-      <div className="section-container space-y-12">
+    <section className="section-white py-16" id="weiterbildung">
+      <div className="section-container">
+        <h2 className="section-title">Weiterbildung</h2>
+        <div className="divider mt-4 mb-8" />
+        {acf.weiterbildung_text && (
+          <div className="body-text mb-8 max-w-2xl prose prose-slate"
+               dangerouslySetInnerHTML={{ __html: decodeHtml(acf.weiterbildung_text) }} />
+        )}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {weiterbildung.map((cert, i) => (
+            <div key={i} className="card p-5 print-avoid">
+              <div className="flex gap-3">
+                <div className="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 screen-only"
+                     style={{ background: 'var(--brand-emerald-light)' }}>
+                  <svg className="w-4 h-4" fill="none" stroke="var(--brand-emerald)" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-sm leading-snug"
+                      dangerouslySetInnerHTML={{ __html: decodeHtml(cert.title!) }} />
+                  {cert.content && (
+                    <div className="prose prose-sm prose-slate max-w-none mt-1.5 text-slate-500"
+                         dangerouslySetInnerHTML={{ __html: decodeHtml(cert.content) }} />
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
-        {ausbildung.length > 0 && (
-          <div className="print-avoid">
-            <h2 className="section-title">Ausbildung</h2>
-            <div className="divider mt-4 mb-8" />
-            {acf.ausbildung_text && (
-              <div className="body-text mb-8 max-w-2xl prose prose-slate"
-                   dangerouslySetInnerHTML={{ __html: decodeHtml(acf.ausbildung_text) }} />
-            )}
-            <div className="grid md:grid-cols-2 gap-5">
-              {ausbildung.map((edu, i) => (
-                <div key={i} className="card p-6">
-                  <div className="flex gap-4">
-                    {/* Purple: formal education */}
-                    <div className="w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center screen-only"
+/* ─────────────────────────────────────────────────
+   Ausbildung — single-column, chronological
+   (same visual language as Berufserfahrung)
+───────────────────────────────────────────────── */
+export function AusbildungSection({ acf }: EducationProps) {
+  const ausbildung = [
+    { title: acf.ausbildung_1_titel, content: acf.ausbildung_1_inhalt },
+    { title: acf.ausbildung_2_titel, content: acf.ausbildung_2_inhalt },
+    { title: acf.ausbildung_3_titel, content: acf.ausbildung_3_inhalt },
+  ].filter(e => e.title);
+
+  if (!ausbildung.length) return null;
+
+  return (
+    <section className="section-gray py-16" id="ausbildung">
+      <div className="section-container">
+        <h2 className="section-title">Ausbildung</h2>
+        <div className="divider mt-4 mb-8" />
+        {acf.ausbildung_text && (
+          <div className="body-text mb-8 max-w-2xl prose prose-slate"
+               dangerouslySetInnerHTML={{ __html: decodeHtml(acf.ausbildung_text) }} />
+        )}
+
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="timeline-line absolute left-4 md:left-6 top-2 bottom-2 w-0.5 screen-only"
+               style={{ background: 'linear-gradient(to bottom, var(--brand-purple), var(--brand-purple-grad))' }} />
+
+          <div className="space-y-6">
+            {ausbildung.map((edu, i) => (
+              <div key={i} className="timeline-item relative pl-12 md:pl-16 print-avoid">
+                {/* dot */}
+                <div className={`absolute left-2 md:left-4 top-5 w-5 h-5 rounded-full border-2 border-white shadow-md screen-only${i === 0 ? ' timeline-dot-first' : ' timeline-dot'}`}
+                     style={{ background: 'var(--brand-purple)' }} />
+
+                <div className="card p-6">
+                  {/* Purple icon */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center screen-only"
                          style={{ background: 'var(--brand-purple-light)' }}>
-                      <svg className="w-5 h-5" fill="none" stroke="var(--brand-purple)" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4" fill="none" stroke="var(--brand-purple)" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                       </svg>
                     </div>
-                    <div>
-                      <h3 className="font-heading font-bold text-slate-900 text-sm mb-2"
-                          dangerouslySetInnerHTML={{ __html: decodeHtml(edu.title!) }} />
-                      {edu.content && (
-                        <div className="prose prose-sm prose-slate max-w-none body-text"
-                             dangerouslySetInnerHTML={{ __html: decodeHtml(edu.content) }} />
-                      )}
-                    </div>
+                    <h3 className="font-heading font-bold text-slate-900 text-sm leading-snug flex-1"
+                        dangerouslySetInnerHTML={{ __html: decodeHtml(edu.title!) }} />
                   </div>
+                  {edu.content && (
+                    <div className="prose prose-sm prose-slate max-w-none body-text"
+                         dangerouslySetInnerHTML={{ __html: decodeHtml(edu.content) }} />
+                  )}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        )}
-
-        {weiterbildung.length > 0 && (
-          <div className="print-break-before print-avoid">
-            <h2 className="section-title">Weiterbildung</h2>
-            <div className="divider mt-4 mb-8" />
-            {acf.weiterbildung_text && (
-              <div className="body-text mb-8 max-w-2xl prose prose-slate"
-                   dangerouslySetInnerHTML={{ __html: decodeHtml(acf.weiterbildung_text) }} />
-            )}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {weiterbildung.map((cert, i) => (
-                <div key={i} className="card p-5 print-avoid">
-                  <div className="flex gap-3">
-                    {/* Emerald: achievement / certificate */}
-                    <div className="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 screen-only"
-                         style={{ background: 'var(--brand-emerald-light)' }}>
-                      <svg className="w-4 h-4" fill="none" stroke="var(--brand-emerald)" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-slate-800 text-sm leading-snug"
-                          dangerouslySetInnerHTML={{ __html: decodeHtml(cert.title!) }} />
-                      {cert.content && (
-                        <div className="prose prose-sm prose-slate max-w-none mt-1.5 text-slate-500"
-                             dangerouslySetInnerHTML={{ __html: decodeHtml(cert.content) }} />
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        </div>
       </div>
     </section>
+  );
+}
+
+/* Keep old export for any remaining import safety */
+export function EducationSection({ acf }: EducationProps) {
+  return (
+    <>
+      <WeiterbildungSection acf={acf} />
+      <AusbildungSection acf={acf} />
+    </>
   );
 }

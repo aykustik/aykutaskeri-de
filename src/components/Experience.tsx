@@ -35,8 +35,8 @@ export function ExperienceSection({ acf }: ExperienceProps) {
           <div className="space-y-8">
             {jobs.map((job, i) => (
               <div key={i} className="timeline-item relative pl-12 md:pl-16 print-avoid">
-                {/* Timeline dot — screen only */}
-                <div className="timeline-dot absolute left-2 md:left-4 top-5 w-5 h-5 rounded-full border-2 border-white shadow-md screen-only"
+                {/* Timeline dot — first dot pulses, rest are static */}
+                <div className={`absolute left-2 md:left-4 top-5 w-5 h-5 rounded-full border-2 border-white shadow-md screen-only ${i === 0 ? 'timeline-dot-first' : 'timeline-dot'}`}
                      style={{ background: 'var(--brand-purple)' }} />
 
                 <div className="card p-6">

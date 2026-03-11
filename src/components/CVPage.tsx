@@ -5,7 +5,7 @@ import { AboutSection } from './About';
 import { CTASection } from './CTA';
 import { SkillsSection } from './Skills';
 import { ExperienceSection } from './Experience';
-import { EducationSection } from './Education';
+import { WeiterbildungSection, AusbildungSection } from './Education';
 import { PortfolioSection } from './Portfolio';
 import { ContactSection } from './Contact';
 
@@ -20,8 +20,12 @@ export function CVPageComponent({ cv }: CVPageProps) {
       <AboutSection acf={acf} />
       <SkillsSection acf={acf} />
       <CTASection acf={acf} />
+
+      {/* Career first, then continuing education, then formal education last */}
       <ExperienceSection acf={acf} />
-      <EducationSection acf={acf} />
+      <WeiterbildungSection acf={acf} />
+      <AusbildungSection acf={acf} />
+
       <PortfolioSection acf={acf} />
       <ContactSection acf={acf} />
 

@@ -177,15 +177,16 @@ export function AboutSection({ acf }: AboutProps) {
                   Sprachen
                 </h3>
 
-                {/* Screen: colorful circles */}
+                {/* Screen: colorful circles with ambient float */}
                 <div className="flex flex-wrap justify-center gap-6 screen-only">
-                  {languages.map(({ name, pct }) => (
-                    <LanguageCircle
-                      key={name}
-                      name={name!}
-                      pct={pct}
-                      color={langColor(name, '#575CC2')}
-                    />
+                  {languages.map(({ name, pct }, idx) => (
+                    <div key={name} className="language-circle-float" style={{ animationDelay: `${idx * 0.6}s` }}>
+                      <LanguageCircle
+                        name={name!}
+                        pct={pct}
+                        color={langColor(name, '#575CC2')}
+                      />
+                    </div>
                   ))}
                 </div>
 
