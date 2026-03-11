@@ -67,11 +67,11 @@ export function HeroSection({ acf }: HeroProps) {
             )}
           </div>
 
-          {/* Right: CTAs */}
-          <div className="flex flex-col items-start gap-3 md:items-end animate-fade-in-up delay-200 flex-shrink-0">
+          {/* Right: CTAs — always equal width (both stretch to widest) */}
+          <div className="flex flex-col gap-3 animate-fade-in-up delay-200 flex-shrink-0">
             <button
               onClick={() => scrollTo('skills')}
-              className="btn btn-primary"
+              className="btn btn-primary w-full"
             >
               Zu den Skills
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,7 +80,7 @@ export function HeroSection({ acf }: HeroProps) {
             </button>
             <button
               onClick={() => scrollTo('kontakt')}
-              className="btn btn-outline"
+              className="btn btn-outline w-full"
             >
               Kennenlernen
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
