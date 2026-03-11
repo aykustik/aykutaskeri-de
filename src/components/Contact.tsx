@@ -6,7 +6,10 @@ import { decodeHtml } from '@/lib/utils';
 interface ContactProps { acf: ACFFields }
 
 export function ContactSection({ acf }: ContactProps) {
-  const { kontakt_text, e_mail, telefon, adresse, plz, ort } = acf;
+  const { 
+    kontakt_text, e_mail, telefon, adresse, plz, ort,
+    stellenbezeichnung, anstellungsart_gewunscht, beworbene_anstellungsart, firma, ansprechpartner
+  } = acf;
   const [response, setResponse] = useState<'yes' | 'no' | ''>('');
   const [message, setMessage] = useState('');
 
@@ -14,13 +17,43 @@ export function ContactSection({ acf }: ContactProps) {
     e.preventDefault();
     if (!response) return;
     
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    const timeStr = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
+
     const subject = response === 'yes' 
       ? 'Ja, ich möchte Aykut kennenlernen!' 
       : 'Nein, Interesse leider nicht';
+
+    const cvInfo = [
+      stellenbezeichnung ? `Stellenbezeichnung: ${stellenbezeichnung}` : null,
+      anstellungsart_gewunscht ? `Anstellungsart (gewünscht): ${anstellungsart_gewunscht}` : null,
+      beworbene_anstellungsart ? `Anstellungsart (beworben): ${beworbene_anstellungsart}` : null,
+      firma ? `Firma: ${firma}` : null,
+      ansprechpartner ? `Ansprechpartner: ${ansprechpartner}` : null,
+    ].filter(Boolean).join('\n');
+
+    const footer = `\n\n---\nDatum: ${dateStr}\nUhrzeit: ${timeStr}\nURL: ${pageUrl}`;
+
     const body = response === 'yes'
-      ? `Hallo Aykut,\n\nich bin interessiert und würde mich gerne mit dir unterhalten.\n\nMeine Nachricht:\n${message}`
-      : `Hallo Aykut,\n\nleider ist es dieses Mal nicht passend. Aber ich danke für deine Zeit!\n\nMeine Nachricht:\n${message}`;
-    
+      ? `Hallo Aykut,
+
+ich bin interessiert und würde mich gerne mit dir unterhalten.
+
+Meine Nachricht:
+${message}
+
+${cvInfo ? cvInfo + '\n' : ''}${footer}`
+      : `Hallo Aykut,
+
+leider ist es dieses Mal nicht passend. Aber ich danke für deine Zeit!
+
+Meine Nachricht:
+${message}
+
+${cvInfo ? cvInfo + '\n' : ''}${footer}`;
+
     window.location.href = `mailto:${e_mail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
