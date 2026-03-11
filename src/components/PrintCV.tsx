@@ -141,13 +141,13 @@ export function PrintCV({ acf }: PrintCVProps) {
             }}>
               {bereich}
             </p>
-            <p style={{ 
-              fontSize: '10.5pt', 
-              margin: '6pt 0 0 0', 
-              color: '#555' 
-            }}>
-              {e_mail} • {telefon} • LinkedIn
-            </p>
+          <p style={{ 
+            fontSize: '10.5pt', 
+            margin: '6pt 0 0 0', 
+            color: '#555' 
+          }}>
+            {e_mail} • {telefon}
+          </p>
           </div>
         </div>
 
@@ -170,29 +170,29 @@ export function PrintCV({ acf }: PrintCVProps) {
               <div style={{ marginBottom: '16pt' }}>
                 <h2 style={sectionTitleStyle}>Skills</h2>
                 
-                {skillsGroup1.length > 0 && (
-                  <ul style={{ margin: '0 0 8pt 0', padding: '0 0 0 16pt', ...textStyle }}>
-                    {skillsGroup1.map((skill, i) => (
-                      <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
-                    ))}
-                  </ul>
-                )}
+              {skillsGroup1.length > 0 && (
+                <ul style={{ margin: '0 0 8pt 0', padding: 0, listStyle: 'none', ...textStyle }}>
+                  {skillsGroup1.map((skill, i) => (
+                    <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
+                  ))}
+                </ul>
+              )}
 
-                {skillsGroup2.length > 0 && (
-                  <ul style={{ margin: '0 0 8pt 0', padding: '0 0 0 16pt', ...textStyle }}>
-                    {skillsGroup2.map((skill, i) => (
-                      <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
-                    ))}
-                  </ul>
-                )}
+              {skillsGroup2.length > 0 && (
+                <ul style={{ margin: '0 0 8pt 0', padding: 0, listStyle: 'none', ...textStyle }}>
+                  {skillsGroup2.map((skill, i) => (
+                    <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
+                  ))}
+                </ul>
+              )}
 
-                {skillsGroup3.length > 0 && (
-                  <ul style={{ margin: 0, padding: '0 0 0 16pt', ...textStyle }}>
-                    {skillsGroup3.map((skill, i) => (
-                      <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
-                    ))}
-                  </ul>
-                )}
+              {skillsGroup3.length > 0 && (
+                <ul style={{ margin: 0, padding: 0, listStyle: 'none', ...textStyle }}>
+                  {skillsGroup3.map((skill, i) => (
+                    <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
+                  ))}
+                </ul>
+              )}
               </div>
             )}
 
@@ -200,7 +200,7 @@ export function PrintCV({ acf }: PrintCVProps) {
             {softSkills.length > 0 && (
               <div style={{ marginBottom: '16pt' }}>
                 <h2 style={sectionTitleStyle}>Soft Skills</h2>
-                <ul style={{ margin: 0, padding: '0 0 0 16pt', ...textStyle }}>
+                <ul style={{ margin: 0, padding: 0, listStyle: 'none', ...textStyle }}>
                   {softSkills.map((skill, i) => (
                     <li key={i} style={{ marginBottom: '2pt' }}>{skill}</li>
                   ))}
@@ -212,7 +212,7 @@ export function PrintCV({ acf }: PrintCVProps) {
             {sprachen.length > 0 && (
               <div>
                 <h2 style={sectionTitleStyle}>Sprachen</h2>
-                <ul style={{ margin: 0, padding: '0 0 0 16pt', ...textStyle }}>
+                <ul style={{ margin: 0, padding: 0, listStyle: 'none', ...textStyle }}>
                   {sprachen.map((sprache, i) => (
                     <li key={i} style={{ marginBottom: '2pt' }}>{sprache}</li>
                   ))}
@@ -277,21 +277,21 @@ export function PrintCV({ acf }: PrintCVProps) {
               {/* Kontaktdaten mit Icons */}
               <div style={{ ...textStyle }}>
                 {telefon && (
-                  <div style={{ marginBottom: '6pt', display: 'flex', alignItems: 'center', gap: '6pt' }}>
+                  <div style={{ marginBottom: '6pt', display: 'flex', alignItems: 'center', gap: '8pt' }}>
                     <span style={{ fontSize: '12pt' }}>📞</span>
                     <span>{telefon}</span>
                   </div>
                 )}
                 
                 {e_mail && (
-                  <div style={{ marginBottom: '6pt', display: 'flex', alignItems: 'center', gap: '6pt' }}>
+                  <div style={{ marginBottom: '6pt', display: 'flex', alignItems: 'center', gap: '8pt' }}>
                     <span style={{ fontSize: '12pt' }}>✉️</span>
                     <span>{e_mail}</span>
                   </div>
                 )}
                 
                 {(adresse || plz || ort) && (
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '6pt' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8pt' }}>
                     <span style={{ fontSize: '12pt' }}>📍</span>
                     <span>
                       {adresse && <div>{adresse}</div>}
