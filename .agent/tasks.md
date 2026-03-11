@@ -42,18 +42,18 @@
 
 ---
 
-- Status: todo
+- Status: completed
 - Priority: high
 - Notes: **RankMath SEO Integration für Headless CMS**
-  - Issue: #16
-  - Ziel: SEO-Metadaten (Title, Description, OG, Schema.org) aus RankMath verwenden
+  - Issue: #16 (geschlossen)
+  - PR: #17 (gemerged)
+  - Erledigt: SEO-Metadaten werden jetzt aus RankMath via REST API geladen
   - Dokumentation: `RANKMATH-SEO.md` erstellt
-  - Implementation: In Progress (Branch: `feat/16-rankmath-seo-integration`)
   - Änderungen:
     - Types: `RankMathMeta` und `RankMathAPIResponse` Interfaces
     - API-Client: `getRankMathMeta()` und `parseRankMathHead()` Methoden
     - Metadata-Generation: `cv/[slug]/page.tsx` angepasst
-  - Test-CV: 9kau1e4q (Post ID 1212)
+  - Unterstützt: Title, Description, OG, Twitter Cards, Canonical, Robots
 
 ---
 
@@ -78,6 +78,13 @@
 
 ## Erledigte Punkte (diese Session)
 
+- ✅ **RankMath SEO Integration vollständig implementiert und gemerged (Issue #16, PR #17)**:
+  - Dokumentation `RANKMATH-SEO.md` mit Setup-Anleitung und API-Dokumentation
+  - Types: `RankMathMeta` und `RankMathAPIResponse` Interfaces
+  - API-Client: `getRankMathMeta()` und `parseRankMathHead()` Methoden
+  - Metadata-Generation in `cv/[slug]/page.tsx` angepasst
+  - Unterstützung für Title, Description, Canonical, Robots, Open Graph, Twitter Cards
+  - OG Image Hinweis dokumentiert (kein Fallback für Custom Post Types)
 - ✅ **Print-CV vollständig implementiert und in main gemerged**:
   - 2-Spalten Layout (35/65) mit Inter Font
   - Header mit Profilbild, Name, Titel, Kontakt
