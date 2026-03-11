@@ -120,8 +120,9 @@ export function AusbildungSection({ acf }: EducationProps) {
 
   const [openSet, setOpenSet] = useState<Set<number>>(new Set());
   const sectionRef = useRef<HTMLElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
   const [maxActiveIndex, setMaxActiveIndex] = useState(-1);
-  const [isSectionVisible, setIsSectionVisible] = useState(false);
+  const [lineHeight, setLineHeight] = useState(0);
 
   const toggle = (i: number) =>
     setOpenSet(prev => {
@@ -132,7 +133,8 @@ export function AusbildungSection({ acf }: EducationProps) {
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    const line = lineRef.current;
+    if (!section || !line) return;
 
     const cardRefs: HTMLElement[] = [];
     const cards = section.querySelectorAll('.timeline-card');
@@ -140,20 +142,28 @@ export function AusbildungSection({ acf }: EducationProps) {
 
     if (cardRefs.length === 0) return;
 
-    const observers: IntersectionObserver[] = [];
+    const updateLineHeight = () => {
+      const activeIndex = maxActiveIndex;
+      if (activeIndex < 0) {
+        setLineHeight(0);
+        return;
+      }
+      
+      const activeCard = cardRefs[activeIndex];
+      if (!activeCard) {
+        setLineHeight(0);
+        return;
+      }
 
-    const sectionObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsSectionVisible(true);
-          setMaxActiveIndex(0);
-          sectionObserver.disconnect();
-        }
-      },
-      { threshold: 0 }
-    );
-    sectionObserver.observe(section);
-    observers.push(sectionObserver);
+      const sectionRect = section.getBoundingClientRect();
+      const cardRect = activeCard.getBoundingClientRect();
+      const relativeTop = cardRect.top - sectionRect.top + cardRect.height / 2;
+      setLineHeight(Math.max(0, relativeTop - 8));
+    };
+
+    updateLineHeight();
+
+    const observers: IntersectionObserver[] = [];
 
     cardRefs.forEach((card, index) => {
       const observer = new IntersectionObserver(
@@ -168,10 +178,15 @@ export function AusbildungSection({ acf }: EducationProps) {
       observers.push(observer);
     });
 
-    return () => observers.forEach((obs) => obs.disconnect());
-  }, []);
+    window.addEventListener('scroll', updateLineHeight, { passive: true });
+    window.addEventListener('resize', updateLineHeight);
 
-  const lineHeight = isSectionVisible ? `${Math.min((maxActiveIndex + 1) * 100, ausbildung.length * 100)}px` : '0px';
+    return () => {
+      observers.forEach((obs) => obs.disconnect());
+      window.removeEventListener('scroll', updateLineHeight);
+      window.removeEventListener('resize', updateLineHeight);
+    };
+  }, [maxActiveIndex]);
 
   if (!ausbildung.length) return null;
 
@@ -194,11 +209,12 @@ export function AusbildungSection({ acf }: EducationProps) {
 
         <div className="relative">
           <div
+            ref={lineRef}
             className="timeline-line absolute left-4 md:left-6 top-2 w-0.5 screen-only"
             style={{
               background: 'linear-gradient(to bottom, var(--brand-purple), var(--brand-purple-grad))',
-              height: lineHeight,
-              transition: 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+              height: `${lineHeight}px`,
+              transition: 'height 0.3s ease-out',
             }}
           />
 
@@ -206,17 +222,19 @@ export function AusbildungSection({ acf }: EducationProps) {
             {ausbildung.map((edu, i) => {
               const isOpen = openSet.has(i);
               const hasContent = !!edu.content;
-              const isActive = isSectionVisible && i <= maxActiveIndex;
+              const isActive = i <= maxActiveIndex;
 
               return (
                 <div key={i} className="timeline-item relative pl-12 md:pl-16 print-avoid">
                   <div
-                    className={`timeline-dot absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-white shadow-md screen-only transition-all duration-500 ${
+                    className={`timeline-dot absolute left-2 md:left-4 w-5 h-5 rounded-full border-2 border-white shadow-md screen-only transition-all duration-500 ${
                       isActive ? 'timeline-dot-active' : 'timeline-dot-inactive'
                     }`}
                     style={{
-                      background: isActive ? 'var(--brand-purple)' : 'var(--slate-300)',
-                      transform: isActive ? 'scale(1.1) translateY(-50%)' : 'scale(1) translateY(-50%)',
+                      background: isActive ? 'var(--brand-purple)' : '#cbd5e1',
+                      top: '50%',
+                      transform: isActive ? 'scale(1.1)' : 'scale(1)',
+                      marginTop: '-10px',
                     }}
                   />
 
