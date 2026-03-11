@@ -61,8 +61,15 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
     <section className="section-gray py-16 no-print" id="kennenlernen">
       <div className="section-container">
         <div className="mb-10">
-          <h2 className="section-title">Kurz und schmerzlos</h2>
-          <div className="divider mt-4" />
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'var(--brand-purple-light)' }}>
+              <svg className="w-5 h-5" fill="none" stroke="var(--brand-purple)" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <h2 className="section-title mb-0">Kurz und schmerzlos</h2>
+          </div>
+          <div className="divider mt-2" />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">

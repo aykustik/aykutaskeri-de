@@ -6,6 +6,32 @@
 ## Offene Tasks (Backlog)
 
 - Status: todo
+- Priority: low
+- Notes: **Header: Bindestrich vor „Enthusiast" hinzufügen**
+  - Aktuell: "X Enthusiast"
+  - Soll: "X-Enthusiast" (mit Bindestrich direkt am Wort)
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **Portfolio: „Ansehen"-Span unten bündig ausrichten**
+  - Der grüne "Ansehen"-Span soll unabhängig von der Textlänge immer unten in der Card platziert sein
+  - Alle "Ansehen"-Spans sollen in einer Reihe bündig sein (gleiche vertikale Position)
+  - CSS: `mt-auto` auf dem Span oder Card-Container mit Flexbox/Grid
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **Kontaktformular: E-Mail über Website versenden** (nicht mailto-Link)
+  - Formular soll Daten an WordPress senden
+  - WordPress versendet E-Mail über SMTP
+  - Nach Versand: Formular leeren + Success-Meldung anzeigen
+
+---
+
+- Status: todo
 - Priority: medium
 - Notes: **Timeline-Animation beim Scrollen**
   - Die vertikale Linie soll sich mit dem Scrollen mitbewegen (scroll-synced)

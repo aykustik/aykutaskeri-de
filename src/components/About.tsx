@@ -98,8 +98,15 @@ export function AboutSection({ acf }: AboutProps) {
         {/* Über mich Text */}
         {uber_mich_text && (
           <div>
-            <h2 className="section-title">Über mich</h2>
-            <div className="divider mt-4 mb-6" />
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'var(--brand-purple-light)' }}>
+                <svg className="w-5 h-5" fill="none" stroke="var(--brand-purple)" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <h2 className="section-title mb-0">Über mich</h2>
+            </div>
+            <div className="divider mt-2 mb-6" />
             <div
               className="body-text prose prose-slate max-w-3xl"
               dangerouslySetInnerHTML={{ __html: decodeHtml(uber_mich_text) }}
