@@ -237,7 +237,9 @@ export function ContactSection({ acf }: ContactProps) {
                 Deine E-Mail-Adresse
               </label>
               <input
-                type="email"
+                type="text"
+                inputMode="email"
+                autoComplete="email"
                 value={absenderEmail}
                 onChange={e => handleEmailChange(e.target.value)}
                 onBlur={handleEmailBlur}
