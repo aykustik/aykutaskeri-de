@@ -12,10 +12,16 @@ export function ContactSection({ acf }: ContactProps) {
   } = acf;
   const [response, setResponse] = useState<'yes' | 'no' | ''>('');
   const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!response) return;
+    
+    setIsLoading(true);
+    setError('');
     
     const now = new Date();
     const dateStr = now.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
@@ -54,7 +60,28 @@ ${message}
 
 ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
 
-    window.location.href = `mailto:${e_mail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    try {
+      const res = await fetch('https://aykutaskeri.de/wp-json/custom/v1/send-contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subject, message: body, response, url: pageUrl }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setIsSuccess(true);
+        setResponse('');
+        setMessage('');
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else {
+        setError(data.message || 'Fehler beim Senden');
+      }
+    } catch (err) {
+      setError('Verbindungsfehler. Bitte später erneut versuchen.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -186,17 +213,43 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
             <button
               type="submit"
               className="btn btn-primary w-full justify-center"
-              disabled={!response}
+              disabled={!response || isLoading}
             >
-              Nachricht senden
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-              </svg>
+              {isLoading ? (
+                <>
+                  <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  Wird gesendet...
+                </>
+              ) : (
+                <>
+                  Nachricht senden
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                  </svg>
+                </>
+              )}
             </button>
 
-            <p className="text-xs text-slate-400 text-center">
-              Nutze das Textfeld für ein kurzes Feedback oder Informationen zu den nächsten Schritten wie z. B. Terminvorschläge.
-            </p>
+            {isSuccess && (
+              <p className="text-sm text-green-600 text-center bg-green-50 py-2 px-4 rounded-lg">
+                ✓ Nachricht wurde erfolgreich gesendet!
+              </p>
+            )}
+
+            {error && (
+              <p className="text-sm text-red-600 text-center bg-red-50 py-2 px-4 rounded-lg">
+                {error}
+              </p>
+            )}
+
+            {!isSuccess && !error && (
+              <p className="text-xs text-slate-400 text-center">
+                Nutze das Textfeld für ein kurzes Feedback oder Informationen zu den nächsten Schritten wie z. B. Terminvorschläge.
+              </p>
+            )}
           </form>
         </div>
       </div>
