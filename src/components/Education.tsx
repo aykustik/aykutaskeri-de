@@ -1,11 +1,10 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ACFFields } from '@/types/wordpress';
 import { decodeHtml } from '@/lib/utils';
 
 interface EducationProps { acf: ACFFields }
 
-/* ── Shared chevron icon ────────────────────────── */
 function Chevron({ open }: { open: boolean }) {
   return (
     <svg
@@ -18,7 +17,6 @@ function Chevron({ open }: { open: boolean }) {
   );
 }
 
-/* ── Weiterbildung — accordion grid ────────────── */
 export function WeiterbildungSection({ acf }: EducationProps) {
   const weiterbildung = [
     { title: acf.weiterbildung_1_titel,  content: acf.weiterbildung_1_inhalt  },
@@ -35,7 +33,6 @@ export function WeiterbildungSection({ acf }: EducationProps) {
     { title: acf.weiterbildung_12_titel, content: acf.weiterbildung_12_inhalt },
   ].filter(e => e.title);
 
-  // Track which items are open; all start closed
   const [openSet, setOpenSet] = useState<Set<number>>(new Set());
 
   if (!weiterbildung.length) return null;
@@ -76,7 +73,6 @@ export function WeiterbildungSection({ acf }: EducationProps) {
                 role={hasContent ? 'button' : undefined}
                 aria-expanded={hasContent ? isOpen : undefined}
               >
-                {/* Header row — always visible */}
                 <div className="flex gap-3 items-center p-5">
                   <div className="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center screen-only"
                        style={{ background: 'var(--brand-emerald-light)' }}>
@@ -91,7 +87,6 @@ export function WeiterbildungSection({ acf }: EducationProps) {
                   {hasContent && <Chevron open={isOpen} />}
                 </div>
 
-                {/* Collapsible content */}
                 {hasContent && (
                   <div
                     className="overflow-hidden transition-all duration-300"
@@ -116,7 +111,6 @@ export function WeiterbildungSection({ acf }: EducationProps) {
   );
 }
 
-/* ── Ausbildung — accordion timeline ───────────── */
 export function AusbildungSection({ acf }: EducationProps) {
   const ausbildung = [
     { title: acf.ausbildung_1_titel, content: acf.ausbildung_1_inhalt },
@@ -125,8 +119,39 @@ export function AusbildungSection({ acf }: EducationProps) {
   ].filter(e => e.title);
 
   const [openSet, setOpenSet] = useState<Set<number>>(new Set());
+  const [activeIndices, setActiveIndices] = useState<Set<number>>(new Set());
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  if (!ausbildung.length) return null;
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const cards = container.querySelectorAll('.timeline-card');
+    if (cards.length === 0) return;
+
+    const observers: IntersectionObserver[] = [];
+
+    cards.forEach((card, index) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveIndices((prev) => {
+              const next = new Set(prev);
+              next.add(index);
+              return next;
+            });
+          }
+        },
+        { threshold: 0.3 }
+      );
+      observer.observe(card);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((obs) => obs.disconnect());
+  }, []);
+
+  const maxActiveIndex = activeIndices.size > 0 ? Math.max(...Array.from(activeIndices)) : -1;
 
   const toggle = (i: number) =>
     setOpenSet(prev => {
@@ -134,6 +159,8 @@ export function AusbildungSection({ acf }: EducationProps) {
       next.has(i) ? next.delete(i) : next.add(i);
       return next;
     });
+
+  if (!ausbildung.length) return null;
 
   return (
     <section className="section-gray py-16" id="ausbildung">
@@ -152,30 +179,35 @@ export function AusbildungSection({ acf }: EducationProps) {
                dangerouslySetInnerHTML={{ __html: decodeHtml(acf.ausbildung_text) }} />
         )}
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="timeline-line absolute left-4 md:left-6 top-2 bottom-2 w-0.5 screen-only"
-               style={{ background: 'linear-gradient(to bottom, var(--brand-purple), var(--brand-purple-grad))' }} />
+        <div ref={containerRef} className="relative">
+          <TimelineLine containerRef={containerRef} maxIndex={maxActiveIndex} accordionTrigger={openSet} />
 
           <div className="space-y-4">
             {ausbildung.map((edu, i) => {
               const isOpen = openSet.has(i);
               const hasContent = !!edu.content;
+              const isActive = activeIndices.has(i);
+
               return (
                 <div key={i} className="timeline-item relative pl-12 md:pl-16 print-avoid">
-                  {/* dot */}
                   <div
-                    className={`absolute left-2 md:left-4 top-5 w-5 h-5 rounded-full border-2 border-white shadow-md screen-only${i === 0 ? ' timeline-dot-first' : ' timeline-dot'}`}
-                    style={{ background: 'var(--brand-purple)' }}
+                    className={`absolute left-2 md:left-4 w-5 h-5 rounded-full border-2 border-white shadow-md screen-only transition-all duration-500 ${
+                      isActive ? 'timeline-dot-active' : 'timeline-dot-inactive'
+                    }`}
+                    style={{
+                      background: isActive ? 'var(--brand-purple)' : '#cbd5e1',
+                      top: '28px',
+                    }}
                   />
 
                   <div
-                    className={`card overflow-hidden${hasContent ? ' card-interactive cursor-pointer' : ''}`}
+                    className={`timeline-card card overflow-hidden${hasContent ? ' card-interactive cursor-pointer' : ''} transition-all duration-700 ${
+                      isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                    }`}
                     onClick={hasContent ? () => toggle(i) : undefined}
                     role={hasContent ? 'button' : undefined}
                     aria-expanded={hasContent ? isOpen : undefined}
                   >
-                    {/* Header row */}
                     <div className="flex items-center gap-3 p-6">
                       <div className="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center screen-only"
                            style={{ background: 'var(--brand-purple-light)' }}>
@@ -190,7 +222,6 @@ export function AusbildungSection({ acf }: EducationProps) {
                       {hasContent && <Chevron open={isOpen} />}
                     </div>
 
-                    {/* Collapsible content */}
                     {hasContent && (
                       <div
                         className="overflow-hidden transition-all duration-300"
@@ -217,7 +248,60 @@ export function AusbildungSection({ acf }: EducationProps) {
   );
 }
 
-/* Keep old export for any remaining import safety */
+function TimelineLine({ containerRef, maxIndex, accordionTrigger }: { containerRef: React.RefObject<HTMLDivElement>; maxIndex: number; accordionTrigger?: Set<number> }) {
+  const lineRef = useRef<HTMLDivElement>(null);
+  const [fillHeight, setFillHeight] = useState(0);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const line = lineRef.current;
+    if (!container || !line) return;
+
+    const cards = container.querySelectorAll('.timeline-card');
+    if (cards.length === 0) return;
+
+    const updateHeight = () => {
+      if (maxIndex < 0) {
+        setFillHeight(0);
+        return;
+      }
+
+      const activeCard = cards[maxIndex] as HTMLElement;
+      if (!activeCard) {
+        setFillHeight(0);
+        return;
+      }
+
+      const containerRect = container.getBoundingClientRect();
+      const cardRect = activeCard.getBoundingClientRect();
+      const relativeTop = cardRect.top - containerRect.top + cardRect.height;
+      setFillHeight(Math.max(0, relativeTop - 8));
+    };
+
+    updateHeight();
+    window.addEventListener('scroll', updateHeight, { passive: true });
+    window.addEventListener('resize', updateHeight);
+    requestAnimationFrame(updateHeight);
+
+    return () => {
+      window.removeEventListener('scroll', updateHeight);
+      window.removeEventListener('resize', updateHeight);
+    };
+  }, [containerRef, maxIndex, accordionTrigger]);
+
+  return (
+    <div ref={lineRef} className="timeline-line absolute left-4 md:left-6 top-2 bottom-2 w-0.5 screen-only">
+      <div
+        style={{
+          background: 'linear-gradient(to bottom, var(--brand-purple), var(--brand-purple-grad))',
+          height: `${fillHeight}px`,
+          transition: 'height 0.3s ease-out',
+        }}
+      />
+    </div>
+  );
+}
+
 export function EducationSection({ acf }: EducationProps) {
   return (
     <>
