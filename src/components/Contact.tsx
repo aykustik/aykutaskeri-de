@@ -21,26 +21,31 @@ export function ContactSection({ acf }: ContactProps) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
 
-  const validateEmail = (value: string): string => {
-    if (!value) return 'Bitte gib deine E-Mail-Adresse ein.';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Bitte gib eine gültige E-Mail-Adresse ein.';
-    return '';
-  };
+  const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
   const handleEmailBlur = () => {
     setEmailTouched(true);
-    setEmailError(validateEmail(absenderEmail));
+    if (!absenderEmail) setEmailError('Bitte gib Deine E-Mail-Adresse ein.');
+    else if (!isValidEmail(absenderEmail)) setEmailError('Bitte gib eine gültige E-Mail-Adresse ein.');
+    else setEmailError('');
   };
 
   const handleEmailChange = (value: string) => {
     setAbsenderEmail(value);
-    if (emailTouched) setEmailError(validateEmail(value));
+    // Fehler nur entfernen wenn Wert jetzt gültig — nie neuen Fehler beim Tippen zeigen
+    if (emailTouched && emailError && isValidEmail(value)) setEmailError('');
+  };
+
+  const validateEmailOnSubmit = (value: string): string => {
+    if (!value) return 'Bitte gib Deine E-Mail-Adresse ein.';
+    if (!isValidEmail(value)) return 'Bitte gib eine gültige E-Mail-Adresse ein.';
+    return '';
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const currentEmailError = validateEmail(absenderEmail);
+    const currentEmailError = validateEmailOnSubmit(absenderEmail);
     setEmailTouched(true);
     setEmailError(currentEmailError);
 
@@ -215,7 +220,7 @@ export function ContactSection({ acf }: ContactProps) {
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                Nachricht
+                Nachricht <span className="text-slate-400 font-normal">(optional)</span>
               </label>
               <textarea
                 rows={4}
@@ -229,7 +234,7 @@ export function ContactSection({ acf }: ContactProps) {
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                Deine E-Mail-Adresse <span className="text-red-500">*</span>
+                Deine E-Mail-Adresse
               </label>
               <input
                 type="email"
