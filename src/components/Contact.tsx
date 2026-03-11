@@ -12,59 +12,41 @@ export function ContactSection({ acf }: ContactProps) {
   } = acf;
   const [response, setResponse] = useState<'yes' | 'no' | ''>('');
   const [message, setMessage] = useState('');
+  const [absenderEmail, setAbsenderEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!response) return;
-    
+    if (!response || !absenderEmail) return;
+
     setIsLoading(true);
     setError('');
-    
+
     const now = new Date();
     const dateStr = now.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
     const timeStr = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-    const subject = response === 'yes' 
-      ? 'Ja, ich möchte Aykut kennenlernen!' 
-      : 'Nein, Interesse leider nicht';
-
-    const cvInfo = [
-      stellenbezeichnung ? `Stellenbezeichnung: ${stellenbezeichnung}` : null,
-      anstellungsart_gewunscht ? `Anstellungsart (gewünscht): ${anstellungsart_gewunscht}` : null,
-      beworbene_anstellungsart ? `Anstellungsart (beworben): ${beworbene_anstellungsart}` : null,
-      firma ? `Firma: ${firma}` : null,
-      ansprechpartner ? `Ansprechpartner: ${ansprechpartner}` : null,
-    ].filter(Boolean).join('\n');
-
-    const footer = `\n\n---\nDatum: ${dateStr}\nUhrzeit: ${timeStr}\nURL: ${pageUrl}`;
-
-    const body = response === 'yes'
-      ? `Hallo Aykut,
-
-ich bin interessiert und würde mich gerne mit dir unterhalten.
-
-Meine Nachricht:
-${message}
-
-${cvInfo ? cvInfo + '\n' : ''}${footer}`
-      : `Hallo Aykut,
-
-leider ist es dieses Mal nicht passend. Aber ich danke für deine Zeit!
-
-Meine Nachricht:
-${message}
-
-${cvInfo ? cvInfo + '\n' : ''}${footer}`;
-
     try {
       const res = await fetch('https://aykutaskeri.de/wp-json/custom/v1/send-contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subject, message: body, response, url: pageUrl }),
+        body: JSON.stringify({
+          absender_email: absenderEmail,
+          cv_email: e_mail,
+          cv_firma: firma || '-',
+          cv_ansprechpartner: ansprechpartner || '-',
+          stellenbezeichnung: stellenbezeichnung || '',
+          anstellungsart_gewunscht: anstellungsart_gewunscht || '',
+          beworbene_anstellungsart: beworbene_anstellungsart || '',
+          response,
+          nachricht: message,
+          url: pageUrl,
+          datum: dateStr,
+          uhrzeit: timeStr,
+        }),
       });
 
       const data = await res.json();
@@ -73,11 +55,12 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
         setIsSuccess(true);
         setResponse('');
         setMessage('');
+        setAbsenderEmail('');
         setTimeout(() => setIsSuccess(false), 5000);
       } else {
         setError(data.message || 'Fehler beim Senden');
       }
-    } catch (err) {
+    } catch {
       setError('Verbindungsfehler. Bitte später erneut versuchen.');
     } finally {
       setIsLoading(false);
@@ -210,10 +193,25 @@ ${cvInfo ? cvInfo + '\n' : ''}${footer}`;
               />
             </div>
 
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                Deine E-Mail-Adresse <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                value={absenderEmail}
+                onChange={e => setAbsenderEmail(e.target.value)}
+                placeholder="damit ich dir antworten kann"
+                required
+                className="w-full px-4 py-3 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:border-transparent transition"
+                style={{ '--tw-ring-color': 'var(--brand-purple)' } as React.CSSProperties}
+              />
+            </div>
+
             <button
               type="submit"
               className="btn btn-primary w-full justify-center"
-              disabled={!response || isLoading}
+              disabled={!response || !absenderEmail || isLoading}
             >
               {isLoading ? (
                 <>
