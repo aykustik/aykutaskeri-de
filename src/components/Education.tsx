@@ -142,7 +142,7 @@ export function AusbildungSection({ acf }: EducationProps) {
             });
           }
         },
-        { threshold: 0.15 }
+        { threshold: 0.3 }
       );
       observer.observe(card);
       observers.push(observer);
@@ -180,7 +180,7 @@ export function AusbildungSection({ acf }: EducationProps) {
         )}
 
         <div ref={containerRef} className="relative">
-          <TimelineLine containerRef={containerRef} maxIndex={maxActiveIndex} />
+          <TimelineLine containerRef={containerRef} maxIndex={maxActiveIndex} accordionTrigger={openSet} />
 
           <div className="space-y-4">
             {ausbildung.map((edu, i) => {
@@ -248,7 +248,7 @@ export function AusbildungSection({ acf }: EducationProps) {
   );
 }
 
-function TimelineLine({ containerRef, maxIndex }: { containerRef: React.RefObject<HTMLDivElement>; maxIndex: number }) {
+function TimelineLine({ containerRef, maxIndex, accordionTrigger }: { containerRef: React.RefObject<HTMLDivElement>; maxIndex: number; accordionTrigger?: Set<number> }) {
   const lineRef = useRef<HTMLDivElement>(null);
   const [fillHeight, setFillHeight] = useState(0);
 
@@ -274,19 +274,20 @@ function TimelineLine({ containerRef, maxIndex }: { containerRef: React.RefObjec
 
       const containerRect = container.getBoundingClientRect();
       const cardRect = activeCard.getBoundingClientRect();
-      const relativeTop = cardRect.top - containerRect.top + cardRect.height / 2;
+      const relativeTop = cardRect.top - containerRect.top + cardRect.height;
       setFillHeight(Math.max(0, relativeTop - 8));
     };
 
     updateHeight();
     window.addEventListener('scroll', updateHeight, { passive: true });
     window.addEventListener('resize', updateHeight);
+    requestAnimationFrame(updateHeight);
 
     return () => {
       window.removeEventListener('scroll', updateHeight);
       window.removeEventListener('resize', updateHeight);
     };
-  }, [containerRef, maxIndex]);
+  }, [containerRef, maxIndex, accordionTrigger]);
 
   return (
     <div ref={lineRef} className="timeline-line absolute left-4 md:left-6 top-2 bottom-2 w-0.5 screen-only">

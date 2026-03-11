@@ -43,7 +43,7 @@ export function ExperienceSection({ acf }: ExperienceProps) {
             });
           }
         },
-        { threshold: 0.15 }
+        { threshold: 0.3 }
       );
       observer.observe(card);
       observers.push(observer);
@@ -149,7 +149,7 @@ function TimelineLine({ containerRef, maxIndex }: { containerRef: React.RefObjec
 
       const containerRect = container.getBoundingClientRect();
       const cardRect = activeCard.getBoundingClientRect();
-      const relativeTop = cardRect.top - containerRect.top + cardRect.height / 2;
+      const relativeTop = cardRect.top - containerRect.top + cardRect.height;
       setFillHeight(Math.max(0, relativeTop - 8));
     };
 
