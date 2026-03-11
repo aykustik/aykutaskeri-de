@@ -36,8 +36,17 @@
 ---
 
 - Status: todo
+- Priority: medium
+- Notes: On-Demand ISR — WordPress-Änderungen sollen ohne neuen Deploy sichtbar werden
+  - Next.js API Route: /api/revalidate mit secret token
+  - WordPress: Webhook bei save_post/post Update
+  - Siehe: https://nextjs.org/docs/app/building-your-application/data-fetching/revalidation#on-demand-revalidation
+
+---
+
+- Status: todo
 - Priority: low
-- Notes: `ausbildung_text` und `weiterbildung_text` sind in WordPress identisch — Aykut muss das in WP korrigieren (verschiedene Intro-Texte für die beiden Sections)
+- Notes: `ausbildung_text` und `weiterbildung_text` sind in WordPress identisch — Aykut muss das in WP korrigieren
 
 <!-- TASKS-END -->
 
