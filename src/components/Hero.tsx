@@ -60,7 +60,7 @@ export function HeroSection({ acf }: HeroProps) {
             </h2>
 
             {bereich && (
-              <p className="mt-5 text-lg md:text-xl text-slate-500 font-medium max-w-md leading-relaxed">
+              <p className="mt-5 text-lg md:text-xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
                 Und ich liebe{' '}
                 <span className="font-semibold text-slate-700">{bereich}.</span>
               </p>
