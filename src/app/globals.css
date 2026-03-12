@@ -270,29 +270,11 @@ input[type="radio"]:focus {
 
 /* Orange CTA — only used on the CTA section button */
 .btn-orange {
-  position: relative;
   background-color: var(--brand-orange);
   color: #ffffff;
   border-color: var(--brand-orange);
   box-shadow: 0 1px 3px rgba(249, 115, 22, 0.2);
-  z-index: 1;
-}
-
-/* Pseudo-element for pulse-glow animation */
-.btn-orange::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: calc(var(--radius) + 4px);
   animation: pulse-glow 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  opacity: 1;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-  z-index: -1;
-}
-
-.btn-orange:hover::after {
-  opacity: 0.2;
 }
 
 .btn-orange:hover {
@@ -301,10 +283,10 @@ input[type="radio"]:focus {
   box-shadow: 0 6px 22px rgba(249, 115, 22, 0.5);
 }
 
-/* Soft pulse for the CTA button */
+/* Soft pulse for the CTA button using drop-shadow for perfect rounded corners */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 2px 14px rgba(249,115,22,0.3); }
-  50%       { box-shadow: 0 4px 28px rgba(249,115,22,0.6), 0 0 0 4px rgba(249,115,22,0.08); }
+  0%, 100% { filter: drop-shadow(0 2px 8px rgba(249,115,22,0.4)); }
+  50%       { filter: drop-shadow(0 4px 16px rgba(249,115,22,0.7)); }
 }
 
 /* Timeline dot pulse - removed: now uses IntersectionObserver instead */
