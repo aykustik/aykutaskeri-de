@@ -1,6 +1,6 @@
 import { WPCV, CVPage, ACFFields, RankMathMeta, RankMathAPIResponse } from '@/types/wordpress';
 
-const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'https://aykutaskeri.de/wp-json';
+const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'https://wp.aykutaskeri.de/wp-json';
 
 /** Normalize ACF field names: hyphens to underscores, fix known special cases */
 function normalizeACF(raw: Record<string, unknown>): ACFFields {

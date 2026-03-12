@@ -103,7 +103,7 @@ Beide Umgebungen verwenden die **gleichen** ENV-Variablen:
 
 | Name | Wert | Beschreibung |
 |------|------|--------------|
-| `NEXT_PUBLIC_WP_API_URL` | `https://aykutaskeri.de/wp-json` | WordPress REST API |
+| `NEXT_PUBLIC_WP_API_URL` | `https://wp.aykutaskeri.de/wp-json` | WordPress REST API |
 | `WP_AUTH_HEADER` | `Base64(username:password)` | Authentifizierung |
 
 **Anmerkung:** WordPress-Backend ist für beide Umgebungen identisch.
