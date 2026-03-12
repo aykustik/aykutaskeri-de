@@ -7,6 +7,10 @@
     {
       "source": "/wp-content/themes/:path*",
       "destination": "https://wp.aykutaskeri.de/wp-content/themes/:path*"
+    },
+    {
+      "source": "/wp-content/uploads/:path*",
+      "destination": "https://wp.aykutaskeri.de/wp-content/uploads/:path*"
     }
   ]
 }
