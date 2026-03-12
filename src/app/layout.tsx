@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Outfit } from 'next/font/google'
 import './globals.css'
+import { ExternalLinkHandler } from '@/components/ExternalLinkHandler'
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -28,7 +29,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de" className={outfit.variable}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        {children}
+        <ExternalLinkHandler />
+      </body>
     </html>
   )
 }
