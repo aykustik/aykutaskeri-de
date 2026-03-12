@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: 'aykutaskeri.de',
         pathname: '/wp-content/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'wp.aykutaskeri.de',
+        pathname: '/wp-content/**',
+      },
     ],
   },
 }
