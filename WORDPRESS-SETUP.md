@@ -49,46 +49,97 @@ Dokumentation des Headless CMS Setups mit Next.js Frontend.
 
 ## 📁 Lokale Struktur vs. Server
 
-| Lokales Repo | Deploy Ziel | Methode |
-|--------------|-------------|---------|
-| `src/` | Vercel | Automatisch bei Git Push |
-| `mu-plugins/` | All-Inkl MU-Plugins | Manuel SCP/SFTP |
-| `wp-theme/` | All-Inkl Themes | `./scripts/deploy-wp-theme.sh` |
-| `acf-exports/` | All-Inkl ACF | `node scripts/acf-cli.js import` |
+| Lokales Repo | Deploy Ziel | Methode | Umgebung |
+|--------------|-------------|---------|----------|
+| `src/` | Vercel | Automatisch bei Git Push | staging → main |
+| `mu-plugins/` | All-Inkl MU-Plugins | Manuel SCP/SFTP | Beide (gleiches Backend) |
+| `wp-theme/` | All-Inkl Themes | `./scripts/deploy-wp-theme.sh` | Beide (gleiches Backend) |
+| `acf-exports/` | All-Inkl ACF | `node scripts/acf-cli.js import` | Beide (gleiches Backend) |
 
 ## 🚀 Deploy Workflows
 
-### Frontend (Vercel)
-```bash
-# Automatisch bei Push zu main
-git push origin main
-# → Vercel deployt automatisch
+### Git Branching Strategy
+
+```
+feature/xyz ──► staging ──► main
+     │            │          │
+     │            ▼          ▼
+     │     staging.      aykutaskeri.de
+     │     aykutaskeri.de
+     │
+     ▼
+  Entwicklung
 ```
 
-### WordPress Theme
+| Branch | Umgebung | URL | Auto-Deploy |
+|--------|----------|-----|-------------|
+| `main` | Production | aykutaskeri.de | ✅ Ja |
+| `staging` | Staging | staging.aykutaskeri.de | ✅ Ja |
+| `feature/*` | - | - | ❌ Nein |
+
+### Frontend (Vercel)
+
 ```bash
-# Manuell deployen
+# 1. Feature entwickeln
+git checkout -b feature/neue-funktion
+# ... Entwicklung ...
+git push origin feature/neue-funktion
+
+# 2. Auf Staging testen
+git checkout staging
+git merge feature/neue-funktion
+git push origin staging
+# → Automatisch: https://staging.aykutaskeri.de
+
+# 3. Nach Production deployen
+git checkout main
+git merge staging
+git push origin main
+# → Automatisch: https://aykutaskeri.de
+```
+
+**Wichtig:** WordPress-Backend ist für beide Umgebungen identisch!
+
+### WordPress Theme
+
+```bash
+# Theme deployen (gilt für beide Umgebungen)
 ./scripts/deploy-wp-theme.sh
 
-# Oder:
-ssh all-inkl
-# und dann manuell kopieren
+# Nach Deploy: Änderungen commiten
+git add wp-theme/
+git commit -m "wp: Theme aktualisiert"
+git push origin main
 ```
 
 ### MU-Plugins
+
 ```bash
-# Manuell kopieren
+# MU-Plugins deployen (gilt für beide Umgebungen)
 scp -i ~/.ssh/wp_cli_aykutaskeri mu-plugins/* ssh-w01b65d3@w01b65d3.kasserver.com:/www/htdocs/w01b65d3/aykutaskeri.de/wp-content/mu-plugins/
+
+# Nach Deploy: Änderungen commiten
+git add mu-plugins/
+git commit -m "wp: MU-Plugins aktualisiert"
+git push origin main
 ```
 
 ### ACF Fields
+
 ```bash
-# Export aus WordPress
+# Export aus WordPress (bei Änderungen)
 node scripts/acf-cli.js export-all
 
-# Import zu WordPress
+# Änderungen commiten
+git add acf-exports/
+git commit -m "wp: ACF Felder exportiert"
+git push origin main
+
+# Import zu WordPress (bei Restore/Deploy)
 node scripts/acf-cli.js import acf-exports/group_xxx.json
 ```
+
+**Hinweis:** ACF-Änderungen betreffen sofort beide Umgebungen (gleiches WordPress).
 
 ## 📋 Aktive Plugins
 

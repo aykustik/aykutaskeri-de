@@ -1,85 +1,176 @@
 # Deployment Anleitung
 
-## Voraussetzungen
+## Übersicht
 
-1. **GitHub Repository** - Push den Code zu GitHub
-2. **Vercel Account** - Registriere dich auf vercel.com
-3. **WordPress Konfiguration** - Siehe `WP-SETUP.md`
+Dieses Projekt verwendet einen **Git-Branch-basierten Deployment Workflow** mit zwei Umgebungen:
 
-## Schritt-für-Schritt
+| Umgebung | Branch | URL | Zweck |
+|----------|--------|-----|-------|
+| **Production** | `main` | aykutaskeri.de | Live-Website |
+| **Staging** | `staging` | staging.aykutaskeri.de | Tests & Preview |
 
-### 1. Code zu GitHub pushen
+## Git Workflow (Branching Strategy)
+
+```
+feature/xyz ──► staging ──► main
+     │            │          │
+     │            ▼          ▼
+     │      staging.      aykutaskeri.de
+     │      aykutaskeri.de
+     │
+     ▼
+  Entwicklung
+```
+
+### 1. Feature entwickeln
 
 ```bash
-cd aykutaskeri.de
+# Neuen Feature-Branch erstellen
+git checkout -b feature/neue-funktion
+
+# ... Entwicklung ...
+
 git add .
-git commit -m "Initial commit - Headless WordPress CV Frontend"
-git remote add origin https://github.com/dein-user/dein-repo.git
-git push -u origin main
+git commit -m "feat: Beschreibung der Änderung"
+git push origin feature/neue-funktion
 ```
 
-### 2. Vercel Deployment
+### 2. Auf Staging testen
 
-1. Gehe zu [vercel.com](https://vercel.com)
-2. Klicke "Add New..." → "Project"
-3. Wähle dein GitHub Repository
-4. Konfiguriere die Environment Variables:
+```bash
+# Zu staging wechseln
+git checkout staging
 
-| Name | Wert |
-|------|------|
-| `NEXT_PUBLIC_WP_API_URL` | `https://aykutaskeri.de/wp-json` |
-| `WP_AUTH_HEADER` | Base64 encode von `username:app_password` |
+# Feature-Branch mergen
+git merge feature/neue-funktion
 
-5. Klicke "Deploy"
+# Auf Staging pushen (auto-deploy)
+git push origin staging
 
-### 3. Domain konfigurieren (optional)
-
-1. In Vercel: Settings → Domains
-2. Füge deine Domain hinzu (z.B. `cv.aykutaskeri.de`)
-3. DNS-Einträge entsprechend setzen
-
-## .htaccess Proxy Setup
-
-Damit die CVs unter `aykutaskeri.de/cv/*` erreichbar sind:
-
-### Option A: Subdomain (empfohlen)
-
-1. Erstelle eine Subdomain `cv.aykutaskeri.de` bei All-Inkl
-2. Zeige auf das Vercel Deployment
-3. Oder nutze CNAME: `cname.vercel-dns.com`
-
-### Option B: Unterverzeichnis Proxy
-
-Füge folgende Regeln in die `.htaccess` deiner WordPress-Installation ein:
-
-```apache
-# CV Proxy zu Vercel
-RewriteEngine On
-RewriteBase /
-
-# Nur CV-Routen proxy-n
-RewriteRule ^cv/(.*)$ https://deine-vercel-app.vercel.app/cv/$1 [P,L]
+# → Automatisch deployed zu: https://staging.aykutaskeri.de
 ```
 
-**Hinweis:** Das Proxy-Setup erfordert mod_proxy auf dem Server.
+**Teste auf Staging:**
+- ✅ Layout & Design
+- ✅ Komponenten-Funktionalität
+- ✅ Mobile Responsiveness
+- ✅ Navigation & Routing
+- ✅ API-Integration (WordPress)
 
-## Monitoring
+### 3. Nach Production deployen
 
-- Vercel Dashboard zeigt Deployment-Status
-- Bei Fehlern: Deployment-Logs prüfen
-- WordPress prüfen: `/wp-json/wp/v2/cv` sollte funktionieren
+```bash
+# Zu main wechseln
+git checkout main
 
-## Troubleshooting
+# Staging-Änderungen mergen
+git merge staging
 
-### API funktioniert nicht
-1. CORS in WordPress konfiguriert?
-2. Application Password korrekt encoded?
-3. URL richtig in `.env.local`?
+# Auf Production pushen (auto-deploy)
+git push origin main
 
-### Bilder werden nicht geladen
-1. WordPress URL in den Einstellungen korrekt?
-2. Bilder öffentlich zugänglich?
+# → Automatisch deployed zu: https://aykutaskeri.de
+```
 
-### Build schlägt fehl
-1. Node.js Version prüfen (Next.js 13.5+ braucht Node 16+)
-2. `npm install` lokal testen
+## Wichtige Hinweise
+
+### Was auf Staging getestet werden kann:
+- ✅ Frontend-Änderungen (Next.js)
+- ✅ Layout & Design (Tailwind CSS)
+- ✅ Neue Komponenten
+- ✅ Responsive Design
+- ✅ SEO-Änderungen
+- ✅ Performance-Optimierungen
+
+### Was NICHT getestet werden kann (gleiches Backend):
+- ❌ ACF Feld-Änderungen (betrifft beide Umgebungen)
+- ❌ WordPress Plugin Updates
+- ❌ Neue CV-Daten (gleiche Datenbank)
+- ❌ API-Struktur-Änderungen
+
+**WordPress ist EINE Instanz** für beide Umgebungen. Das ist bei Headless CMS normal.
+
+## Voraussetzungen
+
+1. **GitHub Repository** - Code liegt auf GitHub
+2. **Vercel Account** - Projekt ist mit GitHub verbunden
+3. **WordPress** - Läuft bei All-Inkl
+4. **SSH-Zugriff** - Für WordPress-Updates (siehe WORDPRESS-SETUP.md)
+
+## Umgebungsvariablen
+
+Beide Umgebungen verwenden die **gleichen** ENV-Variablen:
+
+| Name | Wert | Beschreibung |
+|------|------|--------------|
+| `NEXT_PUBLIC_WP_API_URL` | `https://aykutaskeri.de/wp-json` | WordPress REST API |
+| `WP_AUTH_HEADER` | `Base64(username:password)` | Authentifizierung |
+
+**Anmerkung:** WordPress-Backend ist für beide Umgebungen identisch.
+
+## WordPress-Änderungen
+
+Für Änderungen am WordPress-Backend (ACF, Plugins, etc.):
+
+```bash
+# ACF Fields exportieren
+node scripts/acf-cli.js export-all
+
+# Theme deployen
+./scripts/deploy-wp-theme.sh
+
+# Änderungen commiten
+git add acf-exports/ wp-theme/
+git commit -m "wp: ACF-Felder und Theme aktualisiert"
+git push origin main
+```
+
+**Hinweis:** WordPress-Änderungen sollten sorgfältig getestet werden, da sie sofort live sind.
+
+## Monitoring & Troubleshooting
+
+### Deployments überwachen
+
+1. **Vercel Dashboard:** https://vercel.com/dashboard
+   - Deployment-Status
+   - Build-Logs
+   - Domain-Übersicht
+
+2. **Staging URL:** https://staging.aykutaskeri.de
+   - Vor dem Merge zu main immer testen!
+
+3. **Production URL:** https://aykutaskeri.de
+   - Live-Website
+
+### Häufige Probleme
+
+**Build schlägt fehl:**
+```bash
+# Lokal testen
+npm install
+npm run build
+```
+
+**API funktioniert nicht:**
+- WordPress erreichbar? `curl https://aykutaskeri.de/wp-json/wp/v2/cv`
+- CORS-Header korrekt?
+- Application Password gültig?
+
+**Staging zeigt alten Stand:**
+```bash
+# Prüfen welcher Branch deployed
+git log staging --oneline -1
+```
+
+## Zusammenfassung
+
+| Aktion | Befehl | Ergebnis |
+|--------|--------|----------|
+| Feature starten | `git checkout -b feature/xyz` | Neuer Branch |
+| Staging deploy | `git push origin staging` | staging.aykutaskeri.de |
+| Production deploy | `git push origin main` | aykutaskeri.de |
+| Theme deploy | `./scripts/deploy-wp-theme.sh` | WordPress-Theme update |
+
+---
+
+**Wichtig:** Immer erst auf **Staging** testen, dann nach **Production** mergen!

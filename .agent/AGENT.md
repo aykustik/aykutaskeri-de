@@ -26,23 +26,45 @@ Zentrale Anleitung für AI-Agenten. Immer zuerst diese Datei lesen.
 
 ---
 
-## Deploy-Workflow
+## Deploy-Workflow (Git-Branch-basiert)
+
+### Überblick
+| Branch | Umgebung | URL | Trigger |
+|--------|----------|-----|---------|
+| `main` | Production | https://aykutaskeri.de | Auto bei Push |
+| `staging` | Staging | https://staging.aykutaskeri.de | Auto bei Push |
+| `feature/*` | - | - | Manuell testen |
+
+### Workflow
 
 ```bash
-# Build lokal prüfen
-cd /Users/aykut/dev/aykutaskeri.de && npm run build
+# 1. Feature entwickeln
+git checkout -b feature/neue-funktion
+# ... Entwicklung ...
+git add . && git commit -m "feat: Beschreibung"
+git push origin feature/neue-funktion
 
-# Deployen (Hintergrund-Prozess, dauert ~2 min)
-npx vercel --prod --yes
+# 2. Auf Staging testen
+git checkout staging
+git merge feature/neue-funktion
+git push origin staging
+# → Automatisch: https://staging.aykutaskeri.de
 
-# Nach Deploy: Deployment-URL holen
-npx vercel ls --yes | head -5
-
-# Staging-Domain auf neues Deployment zeigen
-npx vercel alias set <deployment-url> staging.aykutaskeri.de --scope team_MTo6YjYbA3kRuoVSfs0LSvFw
+# 3. Nach Production deployen
+git checkout main
+git merge staging
+git push origin main
+# → Automatisch: https://aykutaskeri.de
 ```
 
-**Wichtig:** `staging.aykutaskeri.de` ist NICHT automatisch das neueste `--prod` Deployment — die Domain muss nach jedem Deploy manuell neu aliased werden (scope-Problem zwischen Team und Custom Domain).
+### Lokal bauen (Vor dem Commit)
+
+```bash
+cd /Users/aykut/dev/aykutaskeri.de
+npm run build
+```
+
+**Hinweis:** Kein manuelles `npx vercel` mehr nötig — Deployments laufen automatisch über Git-Push!
 
 ---
 
@@ -199,7 +221,7 @@ Das ACF-Feld `bereich` (z.B. "Online-Marketing") wird an mehreren Stellen mit fe
 
 ## Bekannte Stolperfallen
 
-1. **Vercel Alias muss nach jedem Deploy manuell gesetzt werden** (siehe Deploy-Workflow oben)
+1. **Git Workflow:** Immer `staging` vor `main` — nie direkt Feature → main
 2. **`--ease-apple` außerhalb eines Selektors** macht den gesamten nachfolgenden CSS-Block ungültig → immer CSS-Variablen nur in `:root {}` oder einem Selektor deklarieren
 3. **Server Components:** Event-Handler (`onClick` etc.) nur in `'use client'`-Komponenten. Crash-History: Portfolio.tsx hatte onMouseEnter in Server Component
 4. **next/image braucht `remotePatterns`** in `next.config.js` für `aykutaskeri.de`
