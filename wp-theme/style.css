@@ -1,0 +1,18 @@
+/*
+Theme Name: Aykut Askeri Headless
+Theme URI: https://github.com/aykustik/aykutaskeri-de
+Author: Aykut Askeri
+Author URI: https://aykutaskeri.de
+Description: Minimalistisches Theme für Headless CMS Setup mit Next.js Frontend. Enthält kein Frontend-Design, dient nur als Grundgerüst für WordPress.
+Version: 1.0.0
+License: GPL-3.0+
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Text Domain: aykutaskeri-headless
+*/
+
+/* 
+Dieses Theme ist absichtlich leer!
+Alle Darstellung erfolgt über das Next.js Frontend (aykutaskeri.de)
+Dieses Theme existiert nur, damit WordPress ein aktives Theme hat.
+Alle Funktionalität ist in MU-Plugins ausgelagert.
+*/
