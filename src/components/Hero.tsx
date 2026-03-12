@@ -35,7 +35,7 @@ export function HeroSection({ acf }: HeroProps) {
       />
 
       <div className="section-container relative">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
+        <div className="flex flex-col items-center text-center gap-10">
 
           {/* Left: headline */}
           <div className="animate-fade-in-up">
@@ -67,11 +67,11 @@ export function HeroSection({ acf }: HeroProps) {
             )}
           </div>
 
-          {/* Right: CTAs — always equal width (both stretch to widest) */}
-          <div className="flex flex-col gap-3 animate-fade-in-up delay-200 flex-shrink-0">
+          {/* CTAs — horizontal on desktop, vertical on mobile */}
+          <div className="flex flex-col sm:flex-row gap-3 animate-fade-in-up delay-200">
             <button
               onClick={() => scrollTo('skills')}
-              className="btn btn-primary w-full"
+              className="btn btn-primary w-full sm:w-auto"
             >
               Zu den Skills
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,7 +80,7 @@ export function HeroSection({ acf }: HeroProps) {
             </button>
             <button
               onClick={() => scrollTo('kennenlernen')}
-              className="btn btn-outline w-full"
+              className="btn btn-outline w-full sm:w-auto"
             >
               Kennenlernen
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
