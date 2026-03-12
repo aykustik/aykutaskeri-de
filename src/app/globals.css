@@ -280,7 +280,6 @@ input[type="radio"]:focus {
 .btn-orange:hover {
   background-color: #ea6c00;
   border-color: #ea6c00;
-  box-shadow: 0 6px 22px rgba(249, 115, 22, 0.5);
 }
 
 /* Soft pulse for the CTA button using drop-shadow for perfect rounded corners */
