@@ -132,7 +132,7 @@ export function ContactSection({ acf }: ContactProps) {
             <div className="space-y-4">
               {telefon && (
                 <a href={`tel:${telefon.replace(/\s/g, '')}`}
-                   className="flex items-center gap-3 text-slate-600 hover:text-slate-900 transition-colors group cursor-pointer">
+                   className="external-link flex items-center gap-3 text-slate-600 hover:text-slate-900 transition-colors group cursor-pointer">
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                        style={{ background: 'var(--brand-purple-light)' }}>
                     <svg className="w-5 h-5" fill="none" stroke="var(--brand-purple)" viewBox="0 0 24 24">
@@ -144,7 +144,7 @@ export function ContactSection({ acf }: ContactProps) {
               )}
               {e_mail && (
                 <a href={`mailto:${e_mail}`}
-                   className="flex items-center gap-3 text-slate-600 hover:text-slate-900 transition-colors group cursor-pointer">
+                   className="external-link flex items-center gap-3 text-slate-600 hover:text-slate-900 transition-colors group cursor-pointer">
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                        style={{ background: 'var(--brand-purple-light)' }}>
                     <svg className="w-5 h-5" fill="none" stroke="var(--brand-purple)" viewBox="0 0 24 24">
