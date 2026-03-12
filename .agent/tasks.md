@@ -90,14 +90,126 @@
 ---
 
 - Status: todo
+- Priority: high
+- Notes: **[UX-002] Top-3-Skills: Fokussierte Skill-Auswahl** — Issue #22
+  - Besucher können maximal 3 Skills als besonders relevant markieren
+  - Higher signal value für Gesprächseinstieg
+  - Blockiert: Session-Context Infrastructure
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **[UX-003] Bookmark-System: Gesprächspunkte merken** — Issue #23
+  - Skills, Experience, Education, Portfolio bookmarkbar
+  - Inhalte werden an Kontaktformular übergeben
+  - Blockiert: Session-Context Infrastructure
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **[UX-006] Formular-Kontext: Session-Daten integrieren** — Issue #26
+  - Kontaktformular erweitert POST-Body um Session-Kontext
+  - Backend API muss neue Felder akzeptieren
+  - Blockiert: Issue #22, #23
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **[UX-007] Kontext-Vorschau: Transparenz im Formular** — Issue #27
+  - Session-Kontext für Besucher sichtbar machen
+  - Einzelne Einträge vor Absenden entfernbar
+  - Blockiert: Issue #26
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **[UX-011] Datenfilter: Nur verdichtete Signale** — Issue #31
+  - Filterlogik für Formular-Daten
+  - Keine Event-Logs oder technische Debug-Info
+  - Blockiert: Issue #26
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **[UX-012] Datenschutz: Transparenzkonzept** — Issue #32
+  - Datenschutzkonzept für alle Features
+  - DSGVO-Konformität prüfen
+  - Blockiert: Issue #26, #27
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **[UX-001] Skill-Favoriten: Dezente Markierung** — Issue #21
+  - Alternative zu Top-3: Freie Mehrfachauswahl
+  - Kann mit Issue #2 zusammengelegt werden
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **[UX-005] Interessensbereiche: Mehrfachauswahl** — Issue #25
+  - SEO, UX/UI, CRO, Webdesign, Branding, B2B, Strategie
+  - Chips-Auswahl
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **[UX-008] Analytics: Aggregierte Insights** — Issue #28
+  - Meistmarkierte Skills, häufigste Interaktionen
+  - Privacy-first, keine Einzelnutzer-Überwachung
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **[UX-009] Section-Tracking: Meistbesuchte Bereiche** — Issue #29
+  - IntersectionObserver für Section-Views
+  - Keine invasive Tiefenmessung
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **[UX-013] Abschlussfrage: Qualitative Selbsteinschätzung** — Issue #33
+  - Optionale Frage vor Kontaktformular
+  - Was hat Sie besonders angesprochen?
+
+---
+
+- Status: todo
 - Priority: low
-- Notes: `ausbildung_text` und `weiterbildung_text` sind in WordPress identisch — Aykut muss das in WP korrigieren
+- Notes: **[UX-004] Rollenwahl: Perspektivische Personalisierung** — Issue #24
+  - Recruiter, CEO/Founder, Marketing Lead
+  - Optional, für spätere UI-Personalisierung
+
+---
+
+- Status: todo
+- Priority: low
+- Notes: **[UX-010] Session-Widget: Floating Übersicht** — Issue #30
+  - Persistente UI für gemerkte Inhalte
+  - Desktop: Floating, Mobile: Bottom-Bar
+  - Blockiert: Issue #22, #23
 
 <!-- TASKS-END -->
 
 <!-- NOTES-START -->
 
 ## Erledigte Punkte (diese Session)
+
+- ✅ **13 GitHub Issues für Online-CV Recruiter-UX Epic erstellt**:
+  - Issues #21-#33 erstellt aus `.agent/online-cv-recruiter-ux-epic.md`
+  - Phase 1 (High): #22, #23, #26, #27, #31, #32
+  - Phase 2 (Medium): #21, #25, #28, #29, #33
+  - Phase 3 (Low): #24, #30
+  - Alle Issues in `tasks.md` unter "Offene Tasks" dokumentiert
 
 - ✅ **Issue #18: Frontend-Bilder 403 Error behoben**:
   - wp.aykutaskeri.de zu next.config.js remotePatterns hinzugefügt
