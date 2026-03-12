@@ -17,13 +17,27 @@
 
 ---
 
-- Status: todo
+- Status: completed
 - Priority: medium
-- Notes: **Hero/Intro-Section: Buttons unter Text oder rechts?**
-  - Issue: #10
-  - Aktuell: Buttons rechts neben dem Text (Flexbox mit md:justify-between)
-  - Frage: Sollen die Buttons unter dem Textinhalt platziert werden?
-  - Nächste Schritte: Visuelle Evaluierung, Decision treffen, ggf. CSS anpassen
+- Notes: **Hero/Intro-Section: Buttons unter Text - GELÖST**
+  - Issue: #10 (geschlossen)
+  - Änderungen: Buttons jetzt unter dem Text, horizontal nebeneinander
+  - Button-Texte aktualisiert: "Skills ansehen" und "Kontakt aufnehmen"
+  - Icons: Beide mit Pfeil-nach-unten für Scroll-Aktionen
+  - CTA-Section: Button-Text und Icon angeglichen
+  - Kontaktformular: Paper Plane Icon (Telegram-Style)
+  - Status: Auf Production deployed
+
+---
+
+- Status: completed
+- Priority: medium
+- Notes: **CTA-Button Shadow-Animation - GELÖST**
+  - Issue: #19 (geschlossen)
+  - Problem: Animation wurde bei Hover unterbrochen
+  - Lösung: box-shadow durch filter: drop-shadow() ersetzt
+  - Ergebnis: Sanfte Animation ohne Unterbrechung (9/10 Punkte)
+  - Status: Auf Production deployed
 
 ---
 
@@ -65,14 +79,13 @@
 
 ---
 
-- Status: todo
+- Status: completed
 - Priority: medium
-- Notes: **Print-Ansicht: Enthusiast-Suffix fehlt im Header**
-  - Issue: #15
-  - Problem: Im Print-Header fehlt "-Enthusiast" hinter dem Bereich-Text
-  - Screen zeigt korrekt: "Online-Marketing-Enthusiast"
-  - Print zeigt nur: "Online-Marketing"
-  - Möglicherweise andere Komponente/Layout für Print verwendet
+- Notes: **Print-Ansicht: Enthusiast-Suffix - GELÖST**
+  - Issue: #15 (geschlossen)
+  - Problem: Im Print-Header fehlte "-Enthusiast" hinter dem Bereich-Text
+  - Lösung: PrintCV.tsx aktualisiert, Suffix hinzugefügt
+  - Status: Auf Production deployed
 
 ---
 
