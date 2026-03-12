@@ -73,7 +73,7 @@ export function HeroSection({ acf }: HeroProps) {
               onClick={() => scrollTo('skills')}
               className="btn btn-primary w-full sm:w-auto"
             >
-              Zu den Skills
+              Skills ansehen
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
@@ -82,7 +82,7 @@ export function HeroSection({ acf }: HeroProps) {
               onClick={() => scrollTo('kennenlernen')}
               className="btn btn-outline w-full sm:w-auto"
             >
-              Kennenlernen
+              Kontakt aufnehmen
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
