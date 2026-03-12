@@ -270,14 +270,32 @@ input[type="radio"]:focus {
 
 /* Orange CTA — only used on the CTA section button */
 .btn-orange {
+  position: relative;
   background-color: var(--brand-orange);
   color: #ffffff;
   border-color: var(--brand-orange);
   box-shadow: 0 1px 3px rgba(249, 115, 22, 0.2);
-  animation: pulse-glow 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  z-index: 1;
 }
+
+/* Pseudo-element for pulse-glow animation */
+.btn-orange::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: calc(var(--radius) + 4px);
+  animation: pulse-glow 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  opacity: 1;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.btn-orange:hover::after {
+  opacity: 0.2;
+}
+
 .btn-orange:hover {
-  animation: none;
   background-color: #ea6c00;
   border-color: #ea6c00;
   box-shadow: 0 6px 22px rgba(249, 115, 22, 0.5);
