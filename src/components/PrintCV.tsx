@@ -139,7 +139,7 @@ export function PrintCV({ acf }: PrintCVProps) {
               color: '#333',
               fontWeight: 500
             }}>
-              {bereich}
+              {bereich}-<span style={{ opacity: 0.7 }}>Enthusiast</span>
             </p>
           <p style={{ 
             fontSize: '10.5pt', 
