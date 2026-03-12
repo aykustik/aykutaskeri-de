@@ -8,6 +8,18 @@
 ---
 
 - Status: todo
+- Priority: high
+- Notes: **Frontend-Bilder 403 Error - Entscheidung mit Senior-Dev erforderlich**
+  - Issue: #18
+  - Problem: Next.js Image Component bekommt 403 von Vercel für `/wp-content/uploads/`
+  - Ursache: Vercel Image Optimization vs WordPress Assets
+  - Lösungsvorschläge dokumentiert in Issue #18
+  - Empfohlene Lösung: Option 1 (direkte WordPress-URLs)
+  - Nächster Schritt: Meeting mit Senior-Entwickler zur Entscheidung
+
+---
+
+- Status: todo
 - Priority: medium
 - Notes: **Hero/Intro-Section: Buttons unter Text oder rechts?**
   - Issue: #10
