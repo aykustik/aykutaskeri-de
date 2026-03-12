@@ -7,15 +7,13 @@
 
 ---
 
-- Status: todo
+- Status: completed
 - Priority: high
-- Notes: **Frontend-Bilder 403 Error - Entscheidung mit Senior-Dev erforderlich**
-  - Issue: #18
-  - Problem: Next.js Image Component bekommt 403 von Vercel für `/wp-content/uploads/`
-  - Ursache: Vercel Image Optimization vs WordPress Assets
-  - Lösungsvorschläge dokumentiert in Issue #18
-  - Empfohlene Lösung: Option 1 (direkte WordPress-URLs)
-  - Nächster Schritt: Meeting mit Senior-Entwickler zur Entscheidung
+- Notes: **Frontend-Bilder 403 Error - GELÖST**
+  - Issue: #18 (geschlossen)
+  - Problem: Next.js Image Component bekam 403 für Bilder von wp.aykutaskeri.de
+  - Lösung: wp.aykutaskeri.de zu next.config.js remotePatterns hinzugefügt
+  - Status: Auf Production deployed und getestet
 
 ---
 
@@ -87,6 +85,11 @@
 <!-- NOTES-START -->
 
 ## Erledigte Punkte (diese Session)
+
+- ✅ **Issue #18: Frontend-Bilder 403 Error behoben**:
+  - wp.aykutaskeri.de zu next.config.js remotePatterns hinzugefügt
+  - Bilder von WordPress-Subdomain werden jetzt korrekt geladen
+  - Auf Production deployed und verifiziert
 
 - ✅ **RankMath SEO Integration vollständig implementiert und gemerged (Issue #16, PR #17)**:
   - Dokumentation `RANKMATH-SEO.md` mit Setup-Anleitung und API-Dokumentation
