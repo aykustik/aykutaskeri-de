@@ -90,6 +90,29 @@
 ---
 
 - Status: todo
+- Priority: medium
+- Notes: **#1: Like-Funktion für Skills (Gamification)**
+  - Ursprüngliches Issue für Skill-Interaktionen
+  - Eventuell redundant durch UX-001/UX-002
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **#4: On-Demand ISR einrichten**
+  - WordPress-Änderungen ohne Deploy sichtbar machen
+  - Draft/Preview-Problem lösen
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **#20: Frontend Admin/Editor Navigation**
+  - Navigation für eingeloggte WordPress User im Frontend
+
+---
+
+- Status: todo
 - Priority: high
 - Notes: **[UX-002] Top-3-Skills: Fokussierte Skill-Auswahl** — Issue #22
   - Besucher können maximal 3 Skills als besonders relevant markieren
