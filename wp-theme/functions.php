@@ -162,6 +162,28 @@ add_filter('login_headertext', function() {
 });
 
 /**
+ * Frontend URL für eingeloggte User korrigieren
+ * Der "Seite anzeigen" Link in der WP-Admin Topbar soll auf die Hauptdomain zeigen
+ * 
+ * @since 1.0.0
+ */
+add_filter('home_url', function($url, $path, $scheme) {
+    // Nur für eingeloggte User im Admin-Bereich
+    if (is_user_logged_in() && is_admin()) {
+        return 'https://aykutaskeri.de' . $path;
+    }
+    return $url;
+}, 10, 3);
+
+add_filter('post_link', function($permalink, $post) {
+    // Für eingeloggte User: URL zur Hauptdomain korrigieren
+    if (is_user_logged_in() && is_admin()) {
+        return str_replace('https://wp.aykutaskeri.de', 'https://aykutaskeri.de', $permalink);
+    }
+    return $permalink;
+}, 10, 2);
+
+/**
  * ============================================
  * DEVELOPMENT HELPERS
  * ============================================
