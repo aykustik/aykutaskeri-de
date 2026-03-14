@@ -91,6 +91,14 @@
 
 - Status: todo
 - Priority: medium
+- Notes: **#34: WP-Subdomain Hinweis-Link auf Hauptdomain**
+  - Hinweis \"Dieser Inhalt wird im Next.js Frontend dargestellt\"
+  - Link \"Im Frontend ansehen\" soll auf aykutaskeri.de verweisen, nicht wp. Subdomain
+
+---
+
+- Status: todo
+- Priority: medium
 - Notes: **#1: Like-Funktion für Skills (Gamification)**
   - Ursprüngliches Issue für Skill-Interaktionen
   - Eventuell redundant durch UX-001/UX-002
