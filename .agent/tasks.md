@@ -122,7 +122,7 @@
   - Auth via WP Session Cookie (CORS korrekt)
   - Mit Post-ID: direkter Link zum Post-Editor
   - Ohne Post-ID: Link zum WP Dashboard
-  - Plugin: contact-api.php → headless-api.php
+   - Plugin: headless-api.php
   - Branch: feature/20-admin-toolbar
 
 ---
@@ -296,7 +296,7 @@
 - ✅ Kontaktformular vollständig umgebaut (Issue #6):
 
 - ✅ Kontaktformular vollständig umgebaut (Issue #6):
-  - Mu-Plugin `contact-api.php` v1.2 → `/wp-content/mu-plugins/` (lokal: `contact-api.php`)
+  - Mu-Plugin `headless-api.php` v1.2 → `/wp-content/mu-plugins/`
   - SMTP via WP Mail SMTP, Empfänger aus ACF `e_mail`, Reply-To: Absender-E-Mail
   - From-Name: `{ansprechpartner} von {firma}` oder nur `{firma}`
   - Betreff: `Positive/Negative Rückmeldung von {firma} auf „aykutaskeri.de"`

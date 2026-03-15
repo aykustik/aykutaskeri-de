@@ -6,7 +6,8 @@
  * Es enthält kein Frontend-Design, sondern nur WordPress-Konfiguration.
  * 
  * Alle Features sind in MU-Plugins ausgelagert:
- * - contact-api.php (Kontaktformular API)
+ * - headless-api.php (Kontaktformular API + Admin-Toolbar)
+ * - samesite-cookie.php (SameSite Cookie Fix)
  * - toolkit-replacement.php (Performance & Security)
  * 
  * @package AykutAskeriHeadless

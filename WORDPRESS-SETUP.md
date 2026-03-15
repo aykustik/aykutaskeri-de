@@ -17,7 +17,8 @@ Dokumentation des Headless CMS Setups mit Next.js Frontend.
 │  │       └── cv/[slug]/                                    │
 │  │                                                         │
 │  ├── mu-plugins/             ← MU-Plugins (versioniert)    │
-│  │   ├── contact-api.php                                   │
+│  │   ├── headless-api.php                                 
+│  │   ├── samesite-cookie.php
 │  │   └── toolkit-replacement.php                          │
 │  │                                                         │
 │  ├── wp-theme/               ← WP Theme (versioniert)      │
@@ -38,7 +39,7 @@ Dokumentation des Headless CMS Setups mit Next.js Frontend.
 │   NEXT.JS FRONTEND   │      │    WORDPRESS BACKEND     │
 │   (Vercel)           │      │    (All-Inkl)            │
 │                      │      │                          │
-│  aykutaskeri.de      │◄────►│  aykutaskeri.de/wp-json │
+│  aykutaskeri.de      │◄────►│  wp.aykutaskeri.de/wp-json │
 │                      │ REST │                          │
 │  • Static Site       │ API  │  • Headless CMS         │
 │  • ISR               │      │  • ACF Fields           │
@@ -151,8 +152,9 @@ node scripts/acf-cli.js import acf-exports/group_xxx.json
 - RankMath SEO 1.0.265
 - WP Mail SMTP 4.7.1
 
-**MU-Plugins (2):**
-- contact-api.php (Kontaktformular API)
+**MU-Plugins (3):**
+- headless-api.php (Kontaktformular API + Admin-Toolbar)
+- samesite-cookie.php (SameSite Cookie Fix)
 - toolkit-replacement.php (Performance & Security)
 
 **Theme:**
@@ -165,9 +167,9 @@ node scripts/acf-cli.js import acf-exports/group_xxx.json
 - Custom Post Type "cv": `/cv/%postname%/` (aber irrelevant, da Headless)
 
 ### REST API
-- Standard WP REST API: `/wp-json/wp/v2/`
-- ACF Endpoints: `/wp-json/acf/v3/`
-- Custom Contact API: `/wp-json/contact/v1/send`
+- Standard WP REST API: `https://wp.aykutaskeri.de/wp-json/wp/v2/`
+- ACF Endpoints: `https://wp.aykutaskeri.de/wp-json/acf/v3/`
+- Custom Contact API: `https://wp.aykutaskeri.de/wp-json/custom/v1/send-contact`
 
 ### Security
 - XML-RPC deaktiviert (via MU-Plugin)
@@ -224,7 +226,7 @@ wp theme activate aykutaskeri-headless
 wp rewrite flush
 
 # Prüfen
-curl https://aykutaskeri.de/wp-json/wp/v2/cv
+curl https://wp.aykutaskeri.de/wp-json/wp/v2/cv
 ```
 
 ### Deploy-Probleme

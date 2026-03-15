@@ -66,7 +66,7 @@ export function ContactSection({ acf }: ContactProps) {
     const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
 
     try {
-      const res = await fetch('https://aykutaskeri.de/wp-json/custom/v1/send-contact', {
+      const res = await fetch('https://wp.aykutaskeri.de/wp-json/custom/v1/send-contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

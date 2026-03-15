@@ -152,7 +152,7 @@ npm run build
 ```
 
 **API funktioniert nicht:**
-- WordPress erreichbar? `curl https://aykutaskeri.de/wp-json/wp/v2/cv`
+- WordPress erreichbar? `curl https://wp.aykutaskeri.de/wp-json/wp/v2/cv`
 - CORS-Header korrekt?
 - Application Password gültig?
 

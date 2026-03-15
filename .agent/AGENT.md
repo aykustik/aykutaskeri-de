@@ -21,8 +21,8 @@ Zentrale Anleitung für AI-Agenten. Immer zuerst diese Datei lesen.
 
 **CV WordPress Post:** ID `1212`, Slug `9kau1e4q`
 **API Endpoints:**
-- `https://aykutaskeri.de/wp-json/wp/v2/cv?slug=9kau1e4q`
-- `https://aykutaskeri.de/wp-json/acf/v3/cv/1212`
+- `https://wp.aykutaskeri.de/wp-json/wp/v2/cv?slug=9kau1e4q`
+- `https://wp.aykutaskeri.de/wp-json/acf/v3/cv/1212`
 
 ---
 
@@ -164,8 +164,8 @@ Header → Hero → About → Skills → CTA → Experience → Weiterbildung �
 
 ## Kontaktformular
 
-- **Endpoint:** `POST https://aykutaskeri.de/wp-json/custom/v1/send-contact`
-- **Mu-Plugin:** `/wp-content/mu-plugins/contact-api.php` (Version 1.2) — lokal liegt die Datei unter `contact-api.php` im Projektwurzel
+- **Endpoint:** `POST https://wp.aykutaskeri.de/wp-json/custom/v1/send-contact`
+- **Mu-Plugin:** `/wp-content/mu-plugins/headless-api.php` (Version 1.2)
 - **SMTP:** WP Mail SMTP Plugin, From: `kontakt@aykutaskeri.de`
 - **Empfänger (TO):** ACF `e_mail` — wird vom Frontend als `cv_email` mitgeschickt
 - **Reply-To:** E-Mail-Adresse des Formular-Absenders (`absender_email`)
@@ -227,4 +227,4 @@ Das ACF-Feld `bereich` (z.B. "Online-Marketing") wird an mehreren Stellen mit fe
 4. **next/image braucht `remotePatterns`** in `next.config.js` für `aykutaskeri.de`
 5. **`prose`-Klassen ohne Plugin:** `@tailwindcss/typography` ist NICHT installiert. Alle Prose-Styles sind manuell in globals.css. Niemals `prose-slate`, `prose-sm` etc. als Ersatz für eigene Styles behandeln — sie funktionieren nur weil wir `.prose-sm` selbst definiert haben.
 6. **Kontaktformular `noValidate`:** Das `<form>` hat `noValidate` — Browser-Validierung ist bewusst deaktiviert. Eigene Validierungslogik in Contact.tsx. `type="email"` bleibt für Autofill-Support.
-7. **Mu-Plugin contact-api.php:** Liegt lokal im Projektwurzel (nicht in `src/`). Muss bei Änderungen manuell nach `/wp-content/mu-plugins/contact-api.php` hochgeladen werden — kein automatisches Deployment.
+7. **Mu-Plugin headless-api.php:** Liegt im `mu-plugins/` Ordner. Muss bei Änderungen manuell nach `/wp-content/mu-plugins/` hochgeladen werden — kein automatisches Deployment.

@@ -24,8 +24,9 @@ aykutaskeri.de/
 │       └── cv/[slug]/
 │
 ├── mu-plugins/               # WordPress MU-Plugins
-│   ├── contact-api.php
-│   └── toolkit-replacement.php
+│   ├── headless-api.php      # Kontaktformular API + Admin-Toolbar
+│   ├── samesite-cookie.php  # SameSite Cookie Fix
+│   └── toolkit-replacement.php # Performance & Security
 │
 ├── wp-theme/                 # WordPress Headless Theme
 │   ├── style.css
@@ -110,8 +111,9 @@ node scripts/acf-cli.js import acf-exports/group_xxx.json
 - RankMath SEO 1.0.265
 - WP Mail SMTP 4.7.1
 
-**MU-Plugins (2):**
-- contact-api.php
+**MU-Plugins (3):**
+- headless-api.php
+- samesite-cookie.php
 - toolkit-replacement.php
 
 ## 🔧 Wartung

@@ -65,7 +65,7 @@ Für jeden CV-Post können individuelle SEO-Einstellungen vorgenommen werden:
 ### Basis-URL
 
 ```
-https://aykutaskeri.de/wp-json/rankmath/v1/getHead
+https://wp.aykutaskeri.de/wp-json/rankmath/v1/getHead
 ```
 
 ### Request
@@ -226,14 +226,14 @@ RankMath generiert strukturierte Daten als `<script type="application/ld+json">`
 
 ```bash
 # RankMath API testen
-curl "https://aykutaskeri.de/wp-json/rankmath/v1/getHead?url=https://aykutaskeri.de/cv/9kau1e4q/"
+curl "https://wp.aykutaskeri.de/wp-json/rankmath/v1/getHead?url=https://aykutaskeri.de/cv/9kau1e4q/"
 ```
 
 ### Validierung
 
 1. **Meta-Tags prüfen:**
    ```bash
-   curl -s "https://aykutaskeri.de/wp-json/rankmath/v1/getHead?url=https://aykutaskeri.de/cv/9kau1e4q/" | jq '.head'
+   curl -s "https://wp.aykutaskeri.de/wp-json/rankmath/v1/getHead?url=https://aykutaskeri.de/cv/9kau1e4q/" | jq '.head'
    ```
 
 2. **Frontend Meta-Tags:**
