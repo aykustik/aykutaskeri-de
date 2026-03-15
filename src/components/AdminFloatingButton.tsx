@@ -16,7 +16,8 @@ export function AdminFloatingButton({ postId }: AdminFloatingButtonProps) {
   const [authStatus, setAuthStatus] = useState<AuthStatus | null>(null);
 
   useEffect(() => {
-    fetch('/api/auth-status', {
+    fetch('https://wp.aykutaskeri.de/wp-json/custom/v1/auth-status', {
+      credentials: 'include',
       cache: 'no-store',
     })
       .then((res) => res.json())
