@@ -9,6 +9,7 @@ import { WeiterbildungSection, AusbildungSection } from './Education';
 import { PortfolioSection } from './Portfolio';
 import { ContactSection } from './Contact';
 import { PrintCV } from './PrintCV';
+import { AdminFloatingButton } from './AdminFloatingButton';
 
 interface CVPageProps { cv: CVPage }
 
@@ -51,6 +52,8 @@ export function CVPageComponent({ cv }: CVPageProps) {
 
       <PortfolioSection acf={acf} />
       <ContactSection acf={acf} />
+
+      <AdminFloatingButton postId={cv.id} />
 
       <footer className="section-dark text-slate-400 py-8 no-print text-center text-sm">
         <div className="section-container">

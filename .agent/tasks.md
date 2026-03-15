@@ -89,11 +89,13 @@
 
 ---
 
-- Status: todo
+- Status: completed
 - Priority: medium
-- Notes: **#34: WP-Subdomain Hinweis-Link auf Hauptdomain**
-  - Hinweis \"Dieser Inhalt wird im Next.js Frontend dargestellt\"
-  - Link \"Im Frontend ansehen\" soll auf aykutaskeri.de verweisen, nicht wp. Subdomain
+- Notes: **#34: WP-Subdomain Hinweis-Link auf Hauptdomain — GELÖST**
+  - Issue: #34 (geschlossen)
+  - Ursache: home_url-Filter in functions.php hatte Slash-Bug → `aykutaskeri.dewp-json`
+  - Lösung: REST-Pfade (wp-json) vom Filter ausgenommen, ltrim-Slash-Fix
+  - Lokal und Live synchronisiert, commit f1cb55e
 
 ---
 
@@ -113,10 +115,15 @@
 
 ---
 
-- Status: todo
+- Status: in_progress
 - Priority: medium
-- Notes: **#20: Frontend Admin/Editor Navigation**
-  - Navigation für eingeloggte WordPress User im Frontend
+- Notes: **#20: Admin Floating Button für eingeloggte WP-User**
+  - Rundes Edit-Icon (kein Text), unten links floating, no-print
+  - Auth via WP Session Cookie (CORS korrekt)
+  - Mit Post-ID: direkter Link zum Post-Editor
+  - Ohne Post-ID: Link zum WP Dashboard
+  - Plugin: contact-api.php → headless-api.php
+  - Branch: feature/20-admin-toolbar
 
 ---
 
@@ -234,6 +241,25 @@
 <!-- NOTES-START -->
 
 ## Erledigte Punkte (diese Session)
+
+- ✅ **REST API abgesichert (mu-plugin toolkit-replacement.php)**:
+  - `/wp/v2/cv` und `/acf/v3/*` nur noch mit Auth erreichbar
+  - `/wp/v2/users` gesperrt (kein öffentlicher Username-Leak)
+  - Auth via ki-agent Application Password (Principle of Least Privilege)
+
+- ✅ **WP_AUTH_HEADER in Vercel und .env.local korrekt gesetzt**:
+  - ki-agent App-PW #1 → `.env.local` (Dev)
+  - ki-agent App-PW #2 → Vercel Production (separates Passwort)
+
+- ✅ **home_url-Slash-Bug behoben (Issue #34)**:
+  - functions.php: REST-Pfade vom home_url-Filter ausgenommen
+  - Lokale functions.php mit Live-Version synchronisiert
+  - Issue #34 geschlossen, commit f1cb55e
+
+- ✅ **Git aufgeräumt**:
+  - main auf commit a794b2e zurückgesetzt
+  - main und staging synchronisiert
+  - Alle Feature-/Fix-Branches außer main und staging gelöscht
 
 - ✅ **13 GitHub Issues für Online-CV Recruiter-UX Epic erstellt**:
   - Issues #21-#33 erstellt aus `.agent/online-cv-recruiter-ux-epic.md`
