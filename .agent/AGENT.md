@@ -195,6 +195,95 @@ Header → Hero → About → Skills → CTA → Experience → Weiterbildung �
 
 ---
 
+## Headless Auth System
+
+### Problemstellung
+
+Der normale WordPress-REST-Cookie-Auth mit Nonce funktioniert im Headless-Kontext nicht zuverlässig:
+- Nonce ist für Cross-Origin-Requests umständlich
+- `is_user_logged_in()` im REST-Kontext erkennt durchgereichte Cookies nicht
+
+### Lösung
+
+Serverseitige Cookie-Validierung via Next.js als Vermittlungsschicht:
+
+```
+Browser → Next.js (/api/auth/status) → WordPress (headless-auth/v1/status)
+         ← JSON Response ← Cookie-Validierung ←
+```
+
+### WordPress-Endpoint
+
+- **URL:** `GET /wp-json/headless-auth/v1/status`
+- **Mu-Plugin:** `headless-api.php`
+- **Cookie-Validierung:** Direkt via `wp_validate_auth_cookie()` (nicht is_user_logged_in)
+- **Caching:** Keines (immer frisch)
+
+### Next.js Server-Route
+
+- **URL:** `GET /api/auth/status`
+- **Zweck:** Serverseitige Cookie-Weiterleitung an WordPress
+- **Technologie:** App Router (`src/app/api/auth/status/route.ts`)
+- **Credentials:** `include` (Cookie durchreichen)
+
+### Response-Struktur
+
+| Feld | Typ | Beschreibung |
+|------|-----|--------------|
+| `logged_in` | boolean | Ob User eingeloggt |
+| `can_edit` | boolean | Ob User `edit_posts` Capability hat |
+| `roles` | string[] | WordPress-Rollen des Users |
+| `user` | object? | `{id, display_name, email}` |
+
+**Beispiel-Response (eingeloggt mit Schreibrechten):**
+```json
+{
+  "logged_in": true,
+  "can_edit": true,
+  "roles": ["administrator"],
+  "user": {
+    "id": 1,
+    "display_name": "Aykut Askeri",
+    "email": "admin@example.com"
+  }
+}
+```
+
+**Beispiel-Response (nicht eingeloggt):**
+```json
+{
+  "logged_in": false,
+  "can_edit": false,
+  "roles": [],
+  "user": null
+}
+```
+
+### Berechtigungsprüfung
+
+- **Capability für `can_edit`:** `edit_posts`
+- **Typische Rollen mit dieser Capability:** `administrator`, `editor`, `author`
+- **Hinweis:** Rollen sind ergänzende Debug-/UI-Information – die finale Berechtigungsentscheidung erfolgt capability-basiert.
+
+### AdminFloatingButton
+
+- **Logik:** Zeige Button wenn `can_edit === true`
+- **Fetch:** `/api/auth/status` (server-to-server, nicht client-seitig direkt zu WP)
+- **Fallback:** Bei Fehler → Button nicht anzeigen
+
+### Cookie-Voraussetzungen
+
+Für funktionierende Auth-Erkennung:
+
+| Attribut | Wert | Hinweis |
+|----------|------|---------|
+| Domain | `.aykutaskeri.de` | Mit Punkt für Subdomains |
+| Path | `/` | Ganzes Domain |
+| Secure | `true` | Nur HTTPS |
+| SameSite | `None` | Für Cross-Origin |
+
+---
+
 ## Bereich-Feld Verwendung
 
 Das ACF-Feld `bereich` (z.B. "Online-Marketing") wird an mehreren Stellen mit festem Suffix verwendet:

@@ -100,6 +100,7 @@ node scripts/acf-cli.js import acf-exports/group_xxx.json
 - **REST API:** WordPress REST API
 - **ACF Integration:** ACF to REST API
 - **Custom Endpoints:** Contact Form API
+- **Auth:** Custom Headless-Auth (Cookie-validierung via Next.js Server-Route)
 
 ## 📝 Aktive Plugins
 

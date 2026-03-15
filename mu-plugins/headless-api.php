@@ -2,11 +2,11 @@
 /**
  * Plugin Name: Headless API
  * Description: REST-API Endpoints für das Next.js Headless-Frontend auf aykutaskeri.de
- * Version: 1.0
+ * Version: 1.1
  *
  * Endpoints:
  * - POST /wp-json/custom/v1/send-contact  — Kontaktformular
- * - GET  /wp-json/custom/v1/auth-status   — Login-Status für Admin Floating Button
+ * - GET  /wp-json/headless-auth/v1/status — Login-Status (robust, Cookie-basiert)
  */
 
 if (!defined('ABSPATH')) {
@@ -181,33 +181,103 @@ add_action('rest_api_init', function() {
     ]);
 
     // ============================================================================
-    // ENDPOINT: Auth-Status
-    // GET /wp-json/custom/v1/auth-status
+    // ENDPOINT: Auth-Status (robust, Cookie-basiert)
+    // GET /wp-json/headless-auth/v1/status
     //
-    // Gibt zurück ob der aktuelle Browser-User in WordPress eingeloggt ist.
-    // Wird vom AdminFloatingButton im Next.js Frontend genutzt.
-    // Authentifizierung läuft ausschließlich über den WP Session Cookie —
-    // kein Token, kein separates Auth-System nötig.
+    // Validiert den WordPress-Login-Cookie direkt via WordPress-Core-Funktionen.
+    // Anders als der alte /custom/v1/auth-status Endpoint nutzt dieser NICHT
+    // is_user_logged_in() im REST-Kontext (das funktioniert ohne Nonce nicht zuverlässig),
+    // sondern parst und validiert den Cookie explizit.
+    //
+    // Response:
+    // - logged_in: boolean
+    // - can_edit: boolean (Capability "edit_posts")
+    // - roles: string[] (WordPress-Rollen des Users)
+    // - user: {id, display_name, email} | null
     // ============================================================================
 
-    register_rest_route('custom/v1', '/auth-status', [
+    register_rest_route('headless-auth/v1', '/status', [
         'methods'  => 'GET',
         'callback' => function(WP_REST_Request $request) {
-            $logged_in = is_user_logged_in();
+            // Cookie-Header aus dem Request holen
+            $cookie_header = $request->get_header('cookie');
 
-            if (!$logged_in) {
+            if (empty($cookie_header)) {
                 return rest_ensure_response([
                     'logged_in' => false,
+                    'can_edit'  => false,
+                    'roles'     => [],
+                    'user'      => null,
                 ]);
             }
 
-            $user      = wp_get_current_user();
-            $can_edit  = user_can($user, 'edit_posts');
+            // LOGGED_IN_COOKIE parsen
+            $cookie_name = LOGGED_IN_COOKIE;
+            $cookie_value = null;
+
+            // Cookie aus dem Header extrahieren
+            $cookies = explode(';', $cookie_header);
+            foreach ($cookies as $cookie) {
+                $cookie = trim($cookie);
+                if (strpos($cookie, $cookie_name . '=') === 0) {
+                    $cookie_value = substr($cookie, strlen($cookie_name . '='));
+                    break;
+                }
+            }
+
+            if (empty($cookie_value)) {
+                return rest_ensure_response([
+                    'logged_in' => false,
+                    'can_edit'  => false,
+                    'roles'     => [],
+                    'user'      => null,
+                ]);
+            }
+
+            // Cookie validieren mit WordPress-Core
+            $user_id = wp_validate_auth_cookie($cookie_value, 'logged_in');
+
+            if (!$user_id) {
+                // Auch den alten Cookie-Typ versuchen (WP < 4.5 Kompatibilität)
+                $user_id = wp_validate_auth_cookie($cookie_value, 'auth');
+            }
+
+            if (!$user_id) {
+                return rest_ensure_response([
+                    'logged_in' => false,
+                    'can_edit'  => false,
+                    'roles'     => [],
+                    'user'      => null,
+                ]);
+            }
+
+            // User-Objekt holen
+            $user = get_userdata($user_id);
+
+            if (!$user) {
+                return rest_ensure_response([
+                    'logged_in' => false,
+                    'can_edit'  => false,
+                    'roles'     => [],
+                    'user'      => null,
+                ]);
+            }
+
+            // Capability prüfen: edit_posts
+            $can_edit = user_can($user, 'edit_posts');
+
+            // Rollen als Array (sauber, stabil)
+            $roles = is_array($user->roles) ? array_values($user->roles) : [];
 
             return rest_ensure_response([
-                'logged_in'    => true,
-                'display_name' => $user->display_name,
-                'can_edit'     => $can_edit,
+                'logged_in' => true,
+                'can_edit'  => $can_edit,
+                'roles'     => $roles,
+                'user'      => [
+                    'id'          => $user->ID,
+                    'display_name' => $user->display_name,
+                    'email'       => $user->user_email,
+                ],
             ]);
         },
         'permission_callback' => '__return_true',

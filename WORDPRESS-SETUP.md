@@ -170,6 +170,11 @@ node scripts/acf-cli.js import acf-exports/group_xxx.json
 - Standard WP REST API: `https://wp.aykutaskeri.de/wp-json/wp/v2/`
 - ACF Endpoints: `https://wp.aykutaskeri.de/wp-json/acf/v3/`
 - Custom Contact API: `https://wp.aykutaskeri.de/wp-json/custom/v1/send-contact`
+- **Headless Auth Endpoint:** `https://wp.aykutaskeri.de/wp-json/headless-auth/v1/status`
+  - Validiert WordPress-Login-Cookie serverseitig
+  - Keine Nonce erforderlich
+  - Response: logged_in, can_edit, roles, user
+  - Wird vom AdminFloatingButton genutzt
 
 ### Security
 - XML-RPC deaktiviert (via MU-Plugin)

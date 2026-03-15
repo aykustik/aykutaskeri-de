@@ -4,8 +4,13 @@ import { useEffect, useState } from 'react';
 
 interface AuthStatus {
   logged_in: boolean;
-  display_name?: string;
-  can_edit?: boolean;
+  can_edit: boolean;
+  roles: string[];
+  user?: {
+    id: number;
+    display_name: string;
+    email: string;
+  } | null;
 }
 
 interface AdminFloatingButtonProps {
@@ -16,17 +21,16 @@ export function AdminFloatingButton({ postId }: AdminFloatingButtonProps) {
   const [authStatus, setAuthStatus] = useState<AuthStatus | null>(null);
 
   useEffect(() => {
-    fetch('https://wp.aykutaskeri.de/wp-json/custom/v1/auth-status', {
+    fetch('/api/auth/status', {
       credentials: 'include',
       cache: 'no-store',
     })
       .then((res) => res.json())
       .then((data: AuthStatus) => setAuthStatus(data))
-      .catch(() => setAuthStatus({ logged_in: false }));
+      .catch(() => setAuthStatus({ logged_in: false, can_edit: false, roles: [], user: null }));
   }, []);
 
-  // Nicht eingeloggt oder keine Edit-Rechte → nichts rendern
-  if (!authStatus?.logged_in || !authStatus?.can_edit) {
+  if (!authStatus?.can_edit) {
     return null;
   }
 
@@ -67,7 +71,6 @@ export function AdminFloatingButton({ postId }: AdminFloatingButtonProps) {
         (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1)';
       }}
     >
-      {/* Pencil / Edit Icon */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
