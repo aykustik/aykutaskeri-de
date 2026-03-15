@@ -16,6 +16,10 @@ interface AuthStatusResponse {
 export async function GET(request: NextRequest): Promise<NextResponse<AuthStatusResponse>> {
   const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'https://wp.aykutaskeri.de/wp-json';
 
+  const cookieHeader = request.headers.get('cookie') || '';
+  console.log('[auth/status] Cookie header:', cookieHeader ? 'present' : 'missing');
+  console.log('[auth/status] WP API URL:', WP_API_URL);
+
   try {
     const cookieHeader = request.headers.get('cookie') || '';
 

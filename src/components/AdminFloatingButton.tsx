@@ -21,13 +21,23 @@ export function AdminFloatingButton({ postId }: AdminFloatingButtonProps) {
   const [authStatus, setAuthStatus] = useState<AuthStatus | null>(null);
 
   useEffect(() => {
+    console.log('[AdminFloatingButton] Fetching auth status...');
     fetch('/api/auth/status', {
       credentials: 'include',
       cache: 'no-store',
     })
-      .then((res) => res.json())
-      .then((data: AuthStatus) => setAuthStatus(data))
-      .catch(() => setAuthStatus({ logged_in: false, can_edit: false, roles: [], user: null }));
+      .then((res) => {
+        console.log('[AdminFloatingButton] Response status:', res.status);
+        return res.json();
+      })
+      .then((data: AuthStatus) => {
+        console.log('[AdminFloatingButton] Auth data:', data);
+        setAuthStatus(data);
+      })
+      .catch((err) => {
+        console.error('[AdminFloatingButton] Fetch error:', err);
+        setAuthStatus({ logged_in: false, can_edit: false, roles: [], user: null });
+      });
   }, []);
 
   if (!authStatus?.can_edit) {
