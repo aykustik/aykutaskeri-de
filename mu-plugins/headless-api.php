@@ -18,27 +18,48 @@ if (!defined('ABSPATH')) {
 // Muss vor rest_api_init laufen damit OPTIONS Preflight korrekt beantwortet wird
 // ============================================================================
 
-add_action('init', function() {
-    $allowed_origins = [
+/**
+ * Hilfsfunktion: Prüft ob Origin erlaubt ist
+ */
+function headless_api_is_allowed_origin(string $origin): bool {
+    $allowed = [
         'https://aykutaskeri.de',
         'https://staging.aykutaskeri.de',
         'http://localhost:3000',
     ];
+    return in_array($origin, $allowed, true)
+        || (strlen($origin) > 0 && preg_match('#^https://aykutaskeri(-[a-z0-9]+)?-aykustik\.vercel\.app$#', $origin));
+}
 
-    $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-
-    if (in_array($origin, $allowed_origins, true)) {
-        header('Access-Control-Allow-Origin: ' . $origin);
-        header('Access-Control-Allow-Credentials: true');
-        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-        header('Access-Control-Allow-Headers: Content-Type, Authorization');
-    }
-
-    // OPTIONS Preflight sofort beantworten
+// OPTIONS Preflight früh abfangen (vor WordPress-Routing)
+add_action('init', function() {
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-        status_header(200);
-        exit;
+        $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+        if (headless_api_is_allowed_origin($origin)) {
+            header('Access-Control-Allow-Origin: ' . $origin);
+            header('Access-Control-Allow-Credentials: true');
+            header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+            header('Access-Control-Allow-Headers: Content-Type, Authorization');
+            status_header(200);
+            exit;
+        }
     }
+});
+
+// CORS-Header für alle REST API Responses setzen
+add_action('rest_api_init', function() {
+    remove_filter('rest_pre_serve_request', 'rest_send_cors_headers');
+
+    add_filter('rest_pre_serve_request', function($served, $result, $request, $server) {
+        $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+        if (headless_api_is_allowed_origin($origin)) {
+            header('Access-Control-Allow-Origin: ' . $origin);
+            header('Access-Control-Allow-Credentials: true');
+            header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+            header('Access-Control-Allow-Headers: Content-Type, Authorization');
+        }
+        return $served;
+    }, 10, 4);
 });
 
 // ============================================================================
