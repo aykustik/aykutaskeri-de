@@ -1,0 +1,4017 @@
+[
+    {
+        "key": "group_61439dee3d920",
+        "title": "Unternehmensdaten",
+        "fields": [
+            {
+                "key": "field_61439e84bc069",
+                "label": "Firma",
+                "name": "firma",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Name der Firma",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_61439edcbc06a",
+                "label": "Stellenbezeichnung",
+                "name": "stellenbezeichnung",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Stellenbezeichnung der Bewerbung",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_61439e2ebc068",
+                "label": "Ansprechpartner",
+                "name": "ansprechpartner",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Ansprache und Name des APs eingeben, z. B. \"Herr Askeri\" oder \"Aykut\". Wird im Text als Anrede angegeben.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "z. B. Aykut oder Herr Askeri",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_69b19554012d6",
+                "label": "Ansprechpartner E-Mail",
+                "name": "ansprechpartner_e-mail",
+                "aria-label": "",
+                "type": "email",
+                "instructions": "Ansprache und Name des APs eingeben, z. B. \"Herr Askeri\" oder \"Aykut\". Wird im Text als Anrede angegeben.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_61439f23bc06b",
+                "label": "Anstellungsart Gewünscht",
+                "name": "anstellungsart_gewunscht",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Gewünschte Anstellungsart der Firma z. B. Vollzeit oder Freelancer",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0,
+        "display_title": ""
+    },
+    {
+        "key": "group_61439ff22439a",
+        "title": "Bewerberdaten",
+        "fields": [
+            {
+                "key": "field_616b2fe846398",
+                "label": "Profilbild",
+                "name": "profilbild",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpeg,jpg,png,gif"
+            },
+            {
+                "key": "field_6143a0c49c655",
+                "label": "Vorname",
+                "name": "vorname",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "14",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Aykut",
+                "placeholder": "Aykut",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a1a0e7fb1",
+                "label": "Nachname",
+                "name": "nachname",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "14",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Askeri",
+                "placeholder": "Askeri",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a1b2e7fb2",
+                "label": "Adresse",
+                "name": "adresse",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Straße + Hausnummer",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "14",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Am Rosengart 79",
+                "placeholder": "Am Rosengart 79",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a1d9e7fb3",
+                "label": "PLZ",
+                "name": "plz",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "Postleitzahl",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "14",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 50827,
+                "placeholder": 50827,
+                "prepend": "",
+                "append": "",
+                "min": "",
+                "max": "",
+                "step": ""
+            },
+            {
+                "key": "field_6143a1f9e7fb4",
+                "label": "Ort",
+                "name": "ort",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Wohnort",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "14",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Köln",
+                "placeholder": "z. B. Köln",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a27fe7fb6",
+                "label": "E-Mail",
+                "name": "e-mail",
+                "aria-label": "",
+                "type": "email",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "14",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "kontakt@aykutaskeri.de",
+                "placeholder": "z. B. kontakt@aykutaskeri.de",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_6143a236e7fb5",
+                "label": "Telefon",
+                "name": "telefon",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "14",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "0172 \/ 94 29 588",
+                "placeholder": "0172 \/ 94 29 588",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a00b9c653",
+                "label": "Bereich",
+                "name": "bereich",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Wird für Sub-Headline \"ich liebe\", Profil-Sidebar \"Enthusiast\" sowie CTA \"Erfahrung\" verwendet",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Online-Marketing",
+                "placeholder": "z. B. Online-Marketing",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a09b9c654",
+                "label": "Beworbene Anstellungsart",
+                "name": "beworbene_anstellungsart",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Gewünschte Anstellungsart des Bewerbers z. B. Vollzeit \/ Freelancer",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Vollzeit",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b3292cf765",
+                "label": "Das zeichnet mich aus",
+                "name": "das_zeichnet_mich_aus",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "Genutzt für Profil-Sidebar",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b32d2cf766",
+                "label": "Das mag ich nicht",
+                "name": "das_mag_ich_nicht",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "Genutzt für Profil-Sidebar",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b31cbdc6cb",
+                "label": "Facebook-Link",
+                "name": "facebook-link",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_616b31d9dc6cc",
+                "label": "LinkedIn-Link",
+                "name": "linkedin-link",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_616b31f4dc6cd",
+                "label": "Xing-Link",
+                "name": "xing-link",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 1,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616b334ea170d",
+        "title": "Bewerberdaten - Sprachen",
+        "fields": [
+            {
+                "key": "field_616b411b2a5e6",
+                "label": "Sprachen anzeigen",
+                "name": "sprachen_anzeigen",
+                "aria-label": "",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "100",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": [
+                    "Keine Sprache anzeigen",
+                    "Eine Sprache anzeigen",
+                    "Zwei Sprachen",
+                    "Drei Sprachen"
+                ],
+                "allow_null": 0,
+                "other_choice": 0,
+                "default_value": "ja",
+                "layout": "vertical",
+                "return_format": "value",
+                "save_other_choice": 0
+            },
+            {
+                "key": "field_616b334ea2e6e",
+                "label": "Sprache 1",
+                "name": "sprache_1",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_616b411b2a5e6",
+                            "operator": "!=",
+                            "value": "0"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Deutsch",
+                "placeholder": "Deutsch",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b338c14b80",
+                "label": "Sprache 2",
+                "name": "sprache_2",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_616b411b2a5e6",
+                            "operator": "!=",
+                            "value": "0"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Deutsch",
+                "placeholder": "Deutsch",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b338e14b81",
+                "label": "Sprache 3",
+                "name": "sprache_3",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_616b411b2a5e6",
+                            "operator": "!=",
+                            "value": "0"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Deutsch",
+                "placeholder": "Deutsch",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b334ea2f75",
+                "label": "Sprache 1 Stärke",
+                "name": "sprache_1_starke",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_616b411b2a5e6",
+                            "operator": "!=",
+                            "value": "0"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 90,
+                "placeholder": 90,
+                "prepend": "",
+                "append": "",
+                "min": "",
+                "max": "",
+                "step": ""
+            },
+            {
+                "key": "field_616b33b214b82",
+                "label": "Sprache 2 Stärke",
+                "name": "sprache_2_starke",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_616b411b2a5e6",
+                            "operator": "!=",
+                            "value": "0"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 90,
+                "placeholder": 90,
+                "prepend": "",
+                "append": "",
+                "min": "",
+                "max": "",
+                "step": ""
+            },
+            {
+                "key": "field_616b33b714b83",
+                "label": "Sprache 3 Stärke",
+                "name": "sprache_3_starke",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_616b411b2a5e6",
+                            "operator": "!=",
+                            "value": "0"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": 90,
+                "placeholder": 90,
+                "prepend": "",
+                "append": "",
+                "min": "",
+                "max": "",
+                "step": ""
+            },
+            {
+                "key": "field_616b334ea3014",
+                "label": "Sprache 1 Farbe",
+                "name": "sprache_1_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-accent)",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_616b411b2a5e6",
+                            "operator": "!=",
+                            "value": "0"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-accent)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_616b33f314b84",
+                "label": "Sprache 2 Farbe",
+                "name": "sprache_2_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_616b411b2a5e6",
+                            "operator": "!=",
+                            "value": "0"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-accent)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_616b33ff14b85",
+                "label": "Sprache 3 Farbe",
+                "name": "sprache_3_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-accent)",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_616b411b2a5e6",
+                            "operator": "!=",
+                            "value": "0"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-accent)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 1,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_6143a0cc8048e",
+        "title": "About",
+        "fields": [
+            {
+                "key": "field_6143a0de992c5",
+                "label": "Über mich Text",
+                "name": "uber_mich_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Kurzum: Ich finde Antworten. Keine Ausreden.\r\n\r\nEs macht Spaß etwas zu verkaufen, aber es macht mir keinen Spaß etwas aufzudrängen. Ich finde, um Kunden zu überzeugen ist Empathie notwendig. Wenn ich den Standpunkt meines Gegenüber einnehme, ihn\/sie verstehe und das Problem aus der entsprechenden Perspektive betrachte, wird das ganze \"Benefit-Bla-Bla\" obsolet. Stattdessen kommt der ernsthafte Wunsch auf, das Problem meines Gegenüber zu lösen und ihn glücklich zu machen.\r\n\r\nDiesen Ansatz zu verfolgen und zu verbreiten, hat mich immer am weitesten gebracht. Glückliche Kunden = Saubere KPIs = Glückliches Unternehmen = Aykut hat Spaß.",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 1,
+                "delay": 0
+            },
+            {
+                "key": "field_6143a16a992c6",
+                "label": "Bereich 1",
+                "name": "bereich_1",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Online-Marketer",
+                "placeholder": "Online-Marketer",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a315992ca",
+                "label": "Bereich 1 Text",
+                "name": "bereich_1_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Max 100 Zeichen",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Nutzerorientierte Ansprache mit gezielten Maßnahmen. Social Ads, Search Ads, SEO, und mehr.",
+                "placeholder": "Nutzerorientierte Ansprache mit gezielten Maßnahmen. Social Ads, Search Ads, SEO, und mehr.",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b297b19572",
+                "label": "Bereich 1 Icon",
+                "name": "bereich_1_icon",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpeg,jpg,png,gif,svg"
+            },
+            {
+                "key": "field_6143a2e7992c7",
+                "label": "Bereich 2",
+                "name": "bereich_2",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Web-Controller",
+                "placeholder": "Web-Controller",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a37a992cb",
+                "label": "Bereich 2 Text",
+                "name": "bereich_2_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Max 100 Zeichen",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Google Tag Manager, Google Analytics, Search Console, SISTRIX und ahrefs sind meine Lieblings-Tools.",
+                "placeholder": "Google Tag Manager, Google Analytics, Search Console, SISTRIX und ahrefs sind meine Lieblings-Tools.",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b29e9a484e",
+                "label": "Bereich 2 Icon",
+                "name": "bereich_2_icon",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpeg,jpg,png,gif,svg"
+            },
+            {
+                "key": "field_6143a2f4992c8",
+                "label": "Bereich 3",
+                "name": "bereich_3",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Web-Designer",
+                "placeholder": "Web-Designer",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a3ac992cc",
+                "label": "Bereich 3 Text",
+                "name": "bereich_3_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Max 100 Zeichen",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Mit Wordpress & Elementor gestalte ich Ad-Landingpages und SEO-Websites.",
+                "placeholder": "Mit Wordpress & Elementor gestalte ich Ad-Landingpages und SEO-Websites.",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b29faa484f",
+                "label": "Bereich 3 Icon",
+                "name": "bereich_3_icon",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpeg,jpg,png,gif,svg"
+            },
+            {
+                "key": "field_6143a2fe992c9",
+                "label": "Bereich 4",
+                "name": "bereich_4",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Berater",
+                "placeholder": "Berater",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a3d1992cd",
+                "label": "Bereich 4 Text",
+                "name": "bereich_4_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Max 100 Zeichen",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Ich habe Spaß daran mit und für Kunden Strategien und Konzepte auszuarbeiten.",
+                "placeholder": "Ich habe Spaß daran mit und für Kunden Strategien und Konzepte auszuarbeiten.",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b2a02a4850",
+                "label": "Bereich 4 Icon",
+                "name": "bereich_4_icon",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpeg,jpg,png,gif,svg"
+            },
+            {
+                "key": "field_6143a414fbe93",
+                "label": "CTA-Header",
+                "name": "cta-header",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Über 6 Jahre Erfahrung",
+                "placeholder": "Über 6 Jahre Erfahrung",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a43ffbe94",
+                "label": "CTA-Text",
+                "name": "cta-text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Ich kenne sowohl die Agentur- als auch Inhouse-Perspektive im Online-Marketing und habe auch als Freelancer in Projekt-Teams gearbeitet.",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 1,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 2,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_6143a4914a25f",
+        "title": "Skillset",
+        "fields": [
+            {
+                "key": "field_6143a87ec0f0c",
+                "label": "Skills Text",
+                "name": "skills_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Manchmal stelle ich fest, dass ich etwas noch nicht kann, was ich regelmäßig benötige. Spätestens dann setze ich mir ein Ziel und erweitere meinen Kenntnisstand bis zur Zielerreichung. In einigen Bereichen bin ich Experte und in vielen Bereichen kenne ich mich sehr gut aus. So kann ich mit unterschiedlichen Fachbereichen effektiv kommunizieren und sie besser unterstützen.",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_6143a49af1256",
+                "label": "Hard Skill 1",
+                "name": "hard_skill_1",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a4d2f1257",
+                "label": "Hard Skill 2",
+                "name": "hard_skill_2",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a4d3f1258",
+                "label": "Hard Skill 3",
+                "name": "hard_skill_3",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a4d5f1259",
+                "label": "Hard Skill 4",
+                "name": "hard_skill_4",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b218cbda46",
+                "label": "Hard Skill 1 Stärke",
+                "name": "hard_skill_1_starke",
+                "aria-label": "",
+                "type": "range",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "min": "",
+                "max": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_616b21fc9866b",
+                "label": "Hard Skill 2 Stärke",
+                "name": "hard_skill_2_starke",
+                "aria-label": "",
+                "type": "range",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "min": "",
+                "max": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_616b22069866c",
+                "label": "Hard Skill 3 Stärke",
+                "name": "hard_skill_3_starke",
+                "aria-label": "",
+                "type": "range",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "min": "",
+                "max": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_616b220f9866d",
+                "label": "Hard Skill 4 Stärke",
+                "name": "hard_skill_4_starke",
+                "aria-label": "",
+                "type": "range",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "min": "",
+                "max": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_616b2476455b7",
+                "label": "Hard Skill 1 Farbe",
+                "name": "hard_skill_1_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-primary)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_616b24d0455b8",
+                "label": "Hard Skill 2 Farbe",
+                "name": "hard_skill_2_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-primary)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_616b24d1455b9",
+                "label": "Hard Skill 3 Farbe",
+                "name": "hard_skill_3_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-primary)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_616b24d3455ba",
+                "label": "Hard Skill 4 Farbe",
+                "name": "hard_skill_4_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-primary)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_6143a4d6f125a",
+                "label": "Hard Skill 5",
+                "name": "hard_skill_5",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a4d7f125b",
+                "label": "Hard Skill 6",
+                "name": "hard_skill_6",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a4d8f125c",
+                "label": "Hard Skill 7",
+                "name": "hard_skill_7",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a4d9f125d",
+                "label": "Hard Skill 8",
+                "name": "hard_skill_8",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b221a9866e",
+                "label": "Hard Skill 5 Stärke",
+                "name": "hard_skill_5_starke",
+                "aria-label": "",
+                "type": "range",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "min": "",
+                "max": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_616b22219866f",
+                "label": "Hard Skill 6 Stärke",
+                "name": "hard_skill_6_starke",
+                "aria-label": "",
+                "type": "range",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "min": "",
+                "max": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_616b223998670",
+                "label": "Hard Skill 7 Stärke",
+                "name": "hard_skill_7_starke",
+                "aria-label": "",
+                "type": "range",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "min": "",
+                "max": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_616b223f98671",
+                "label": "Hard Skill 8 Stärke",
+                "name": "hard_skill_8_starke",
+                "aria-label": "",
+                "type": "range",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "min": "",
+                "max": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_616b24e8455bb",
+                "label": "Hard Skill 5 Farbe",
+                "name": "hard_skill_5_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-primary)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_616b24f6455bc",
+                "label": "Hard Skill 6 Farbe",
+                "name": "hard_skill_6_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-primary)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_616b24f7455bd",
+                "label": "Hard Skill 7 Farbe",
+                "name": "hard_skill_7_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-primary)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_616b24f8455be",
+                "label": "Hard Skill 8 Farbe",
+                "name": "hard_skill_8_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-primary)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_6143a4daf125e",
+                "label": "Hard Skill 9",
+                "name": "hard_skill_9",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a4dcf125f",
+                "label": "Hard Skill 10",
+                "name": "hard_skill_10",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a4dcf1260",
+                "label": "Hard Skill 11",
+                "name": "hard_skill_11",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a4def1261",
+                "label": "Hard Skill 12",
+                "name": "hard_skill_12",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b224798672",
+                "label": "Hard Skill 9 Stärke",
+                "name": "hard_skill_9_starke",
+                "aria-label": "",
+                "type": "range",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "min": "",
+                "max": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_616b225098673",
+                "label": "Hard Skill 10 Stärke",
+                "name": "hard_skill_10_starke",
+                "aria-label": "",
+                "type": "range",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "min": "",
+                "max": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_616b225898674",
+                "label": "Hard Skill 11 Stärke",
+                "name": "hard_skill_11_starke",
+                "aria-label": "",
+                "type": "range",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "min": "",
+                "max": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_616b226298675",
+                "label": "Hard Skill 12 Stärke",
+                "name": "hard_skill_12_starke",
+                "aria-label": "",
+                "type": "range",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "min": "",
+                "max": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_616b250e455bf",
+                "label": "Hard Skill 9 Farbe",
+                "name": "hard_skill_9_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-primary)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_616b2519455c0",
+                "label": "Hard Skill 10 Farbe",
+                "name": "hard_skill_10_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-primary)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_616b2522455c1",
+                "label": "Hard Skill 11 Farbe",
+                "name": "hard_skill_11_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-primary)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_616b2526455c2",
+                "label": "Hard Skill 12 Farbe",
+                "name": "hard_skill_12_farbe",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "Standardwert: var(--e-global-color-primary)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "var(--e-global-color-primary)",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "custom_palette_source": "",
+                "palette_colors": "",
+                "show_color_wheel": true
+            },
+            {
+                "key": "field_6143a74d943f1",
+                "label": "Soft Skill 1",
+                "name": "soft_skill_1",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Teamwork",
+                "placeholder": "Teamwork",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a76f943f2",
+                "label": "Soft Skill 2",
+                "name": "soft_skill_2",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Gelassenheit",
+                "placeholder": "Gelassenheit",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a770943f3",
+                "label": "Soft Skill 3",
+                "name": "soft_skill_3",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Effizienz",
+                "placeholder": "Effizienz",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a771943f4",
+                "label": "Soft Skill 4",
+                "name": "soft_skill_4",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Empathie",
+                "placeholder": "Empathie",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a772943f5",
+                "label": "Soft Skill 5",
+                "name": "soft_skill_5",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Verantwortungsbewusstsein",
+                "placeholder": "Verantwortungsbewusstsein",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_6143a774943f6",
+                "label": "Soft Skill 6",
+                "name": "soft_skill_6",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Motivation",
+                "placeholder": "Motivation",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 3,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616afc1cd0b0e",
+        "title": "Berufserfahrung",
+        "fields": [
+            {
+                "key": "field_616afc25761ed",
+                "label": "Berufserfahrung Text",
+                "name": "berufserfahrung_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 5,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616af60123314",
+        "title": "Berufserfahrung 1",
+        "fields": [
+            {
+                "key": "field_616af8c49e442",
+                "label": "Berufserfahrung 1 Zeitraum",
+                "name": "berufserfahrung_1_zeitraum",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Juni 2020 - Heute",
+                "placeholder": "Juni 2020 - Heute",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616af84e9e440",
+                "label": "Berufserfahrung 1 Titel",
+                "name": "berufserfahrung_1_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "CMO E-Commerce",
+                "placeholder": "CMO E-Commerce",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616af90c9e443",
+                "label": "Berufserfahrung 1 Beschreibung",
+                "name": "berufserfahrung_1_beschreibung",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Elektro-Chopper.de in Hamburg\r\n<ul><li>Konzeptentwicklung<\/li>\r\n<li>Webdesign<\/li>\r\n<li>SEO<\/li>\r\n<li>Steuerung Marketing<\/li>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 5,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616afac49ffe5",
+        "title": "Berufserfahrung 2",
+        "fields": [
+            {
+                "key": "field_616afac4a101d",
+                "label": "Berufserfahrung 2 Zeitraum",
+                "name": "berufserfahrung_2_zeitraum",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Juni 2020 - Heute",
+                "placeholder": "Juni 2020 - Heute",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616afac4a0fb2",
+                "label": "Berufserfahrung 2 Titel",
+                "name": "berufserfahrung_2_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "CMO E-Commerce",
+                "placeholder": "CMO E-Commerce",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616afac4a1051",
+                "label": "Berufserfahrung 2 Beschreibung",
+                "name": "berufserfahrung_2_beschreibung",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Elektro-Chopper.de in Hamburg\r\n<ul><li>Konzeptentwicklung<\/li>\r\n<li>Webdesign<\/li>\r\n<li>SEO<\/li>\r\n<li>Steuerung Marketing<\/li>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 5,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616afac66fb88",
+        "title": "Berufserfahrung 3",
+        "fields": [
+            {
+                "key": "field_616afac67094d",
+                "label": "Berufserfahrung 3 Zeitraum",
+                "name": "berufserfahrung_3_zeitraum",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Juni 2020 - Heute",
+                "placeholder": "Juni 2020 - Heute",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616afac6708e3",
+                "label": "Berufserfahrung 3 Titel",
+                "name": "berufserfahrung_3_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "CMO E-Commerce",
+                "placeholder": "CMO E-Commerce",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616afac670982",
+                "label": "Berufserfahrung 3 Beschreibung",
+                "name": "berufserfahrung_3_beschreibung",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Elektro-Chopper.de in Hamburg\r\n<ul><li>Konzeptentwicklung<\/li>\r\n<li>Webdesign<\/li>\r\n<li>SEO<\/li>\r\n<li>Steuerung Marketing<\/li>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 5,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616afac9a0c0c",
+        "title": "Berufserfahrung 4",
+        "fields": [
+            {
+                "key": "field_616afac9a1ae9",
+                "label": "Berufserfahrung 4 Zeitraum",
+                "name": "berufserfahrung_4_zeitraum",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Juni 2020 - Heute",
+                "placeholder": "Juni 2020 - Heute",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616afac9a1a80",
+                "label": "Berufserfahrung 4 Titel",
+                "name": "berufserfahrung_4_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "CMO E-Commerce",
+                "placeholder": "CMO E-Commerce",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616afac9a1b22",
+                "label": "Berufserfahrung 4 Beschreibung",
+                "name": "berufserfahrung_4_beschreibung",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Elektro-Chopper.de in Hamburg\r\n<ul><li>Konzeptentwicklung<\/li>\r\n<li>Webdesign<\/li>\r\n<li>SEO<\/li>\r\n<li>Steuerung Marketing<\/li>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 5,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616afac7e49c8",
+        "title": "Berufserfahrung 5",
+        "fields": [
+            {
+                "key": "field_616afac7e59c6",
+                "label": "Berufserfahrung 5 Zeitraum",
+                "name": "berufserfahrung_5_zeitraum",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Juni 2020 - Heute",
+                "placeholder": "Juni 2020 - Heute",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616afac7e594f",
+                "label": "Berufserfahrung 5 Titel",
+                "name": "berufserfahrung_5_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "CMO E-Commerce",
+                "placeholder": "CMO E-Commerce",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616afac7e59fc",
+                "label": "Berufserfahrung 5 Beschreibung",
+                "name": "berufserfahrung_5_beschreibung",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Elektro-Chopper.de in Hamburg\r\n<ul><li>Konzeptentwicklung<\/li>\r\n<li>Webdesign<\/li>\r\n<li>SEO<\/li>\r\n<li>Steuerung Marketing<\/li>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 5,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616af6480f7d5",
+        "title": "Aus- & Weiterbildung",
+        "fields": [
+            {
+                "key": "field_616b15c9abf2f",
+                "label": "Weiterbildung Text",
+                "name": "weiterbildung_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Man kann nie genug wissen.<\/p>\r\n<p>Ich halte mich durch ständige Teilnahme an Seminaren auf dem neuesten Stand im Online-Marketing und erweitere stetig mein Skillset durch Online-Kurse und Workshops.<\/p>\r\n<p>Dabei orientiere ich mich an effektiven Bereicherungen bei der täglichen Arbeit, aber auch an Themen, mit denen ich nur entfernt zutun habe. So gewinne ich regelmäßig neue Perspektiven und Erkenntnisse.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b16a793916",
+                "label": "Weiterbildung 1 Titel",
+                "name": "weiterbildung_1_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b16bc93917",
+                "label": "Weiterbildung 1 Inhalt",
+                "name": "weiterbildung_1_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b17115a6f3",
+                "label": "Weiterbildung 2 Titel",
+                "name": "weiterbildung_2_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b17145a6f4",
+                "label": "Weiterbildung 2 Inhalt",
+                "name": "weiterbildung_2_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b174d5a6f6",
+                "label": "Weiterbildung 3 Titel",
+                "name": "weiterbildung_3_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b17465a6f5",
+                "label": "Weiterbildung 3 Inhalt",
+                "name": "weiterbildung_3_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b17565a6f7",
+                "label": "Weiterbildung 4 Titel",
+                "name": "weiterbildung_4_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b17615a6f8",
+                "label": "Weiterbildung 4 Inhalt",
+                "name": "weiterbildung_4_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b177f5a6fa",
+                "label": "Weiterbildung 5 Titel",
+                "name": "weiterbildung_5_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b17785a6f9",
+                "label": "Weiterbildung 5 Inhalt",
+                "name": "weiterbildung_5_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b17c8b97bd",
+                "label": "Weiterbildung 6 Titel",
+                "name": "weiterbildung_6_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b17bfb97bc",
+                "label": "Weiterbildung 6 Inhalt",
+                "name": "weiterbildung_6_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b17dab97bf",
+                "label": "Weiterbildung 7 Titel",
+                "name": "weiterbildung_7_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b17d1b97be",
+                "label": "Weiterbildung 7 Inhalt",
+                "name": "weiterbildung_7_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b17eab97c1",
+                "label": "Weiterbildung 8 Titel",
+                "name": "weiterbildung_8_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b17e2b97c0",
+                "label": "Weiterbildung 8 Inhalt",
+                "name": "weiterbildung_8_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b17fab97c3",
+                "label": "Weiterbildung 9 Titel",
+                "name": "weiterbildung_9_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b17f3b97c2",
+                "label": "Weiterbildung 9 Inhalt",
+                "name": "weiterbildung_9_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b181cb97c7",
+                "label": "Weiterbildung 10 Titel",
+                "name": "weiterbildung_10_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b1806b97c4",
+                "label": "Weiterbildung 10 Inhalt",
+                "name": "weiterbildung_10_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b1825b97c8",
+                "label": "Weiterbildung 11 Titel",
+                "name": "weiterbildung_11_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b180db97c5",
+                "label": "Weiterbildung 11 Inhalt",
+                "name": "weiterbildung_11_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b182eb97c9",
+                "label": "Weiterbildung 12 Titel",
+                "name": "weiterbildung_12_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b1814b97c6",
+                "label": "Weiterbildung 12 Inhalt",
+                "name": "weiterbildung_12_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b18962ffe0",
+                "label": "Ausbildung Text",
+                "name": "ausbildung_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Man kann nie genug wissen.<\/p>\r\n<p>Ich halte mich durch ständige Teilnahme an Seminaren auf dem neuesten Stand im Online-Marketing und erweitere stetig mein Skillset durch Online-Kurse und Workshops.<\/p>\r\n<p>Dabei orientiere ich mich an effektiven Bereicherungen bei der täglichen Arbeit, aber auch an Themen, mit denen ich nur entfernt zutun habe. So gewinne ich regelmäßig neue Perspektiven und Erkenntnisse.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b18592ffdf",
+                "label": "Ausbildung 1 Titel",
+                "name": "ausbildung_1_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b18482ffda",
+                "label": "Ausbildung 1 Inhalt",
+                "name": "ausbildung_1_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b18582ffde",
+                "label": "Ausbildung 2 Titel",
+                "name": "ausbildung_2_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b184a2ffdb",
+                "label": "Ausbildung 2 Inhalt",
+                "name": "ausbildung_2_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616b18582ffdd",
+                "label": "Ausbildung 3 Titel",
+                "name": "ausbildung_3_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Hülle einen Teil in span, für eine Darstellung mit dünnem Text",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "LANDINGPAGES & FUNNEL <span>- Video-Kurs 2020<\/span>",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616b184b2ffdc",
+                "label": "Ausbildung 3 Inhalt",
+                "name": "ausbildung_3_inhalt",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Video-Kurs-Reihe zum Aufbau von Landingpages und unterschiedlichen Strategien bei der Funnel-Bildung.<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 6,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616afc369046c",
+        "title": "Portfolio",
+        "fields": [
+            {
+                "key": "field_616afc3b47025",
+                "label": "Portfolio Text",
+                "name": "portfolio_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 7,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616af0fda89c0",
+        "title": "Portfolio 1",
+        "fields": [
+            {
+                "key": "field_616af14ecc21d",
+                "label": "Portfolio 1 Titel",
+                "name": "portfolio_1_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616af16bcc21f",
+                "label": "Portfolio 1 Text",
+                "name": "portfolio_1_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616af123cc21c",
+                "label": "Portfolio 1 Bild",
+                "name": "portfolio_1_bild",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_616af17acc220",
+                "label": "Portfolio 1 Link",
+                "name": "portfolio_1_link",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 7,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616af1a91b8e8",
+        "title": "Portfolio 2",
+        "fields": [
+            {
+                "key": "field_616af1a91c796",
+                "label": "Portfolio 2 Titel",
+                "name": "portfolio_2_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616af1a91c7cb",
+                "label": "Portfolio 2 Text",
+                "name": "portfolio_2_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616af1a91c800",
+                "label": "Portfolio 2 Bild",
+                "name": "portfolio_2_bild",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_616af1a91c840",
+                "label": "Portfolio 2 Link",
+                "name": "portfolio_2_link",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 7,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616af1d4f135e",
+        "title": "Portfolio 3",
+        "fields": [
+            {
+                "key": "field_616af1d4f1fad",
+                "label": "Portfolio 3 Titel",
+                "name": "portfolio_3_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616af1d4f1fe3",
+                "label": "Portfolio 3 Text",
+                "name": "portfolio_3_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616af1d4f2018",
+                "label": "Portfolio 3 Bild",
+                "name": "portfolio_3_bild",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_616af1d4f204c",
+                "label": "Portfolio 3 Link",
+                "name": "portfolio_3_link",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 7,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616af1d7e14ac",
+        "title": "Portfolio 4",
+        "fields": [
+            {
+                "key": "field_616af1d7e252e",
+                "label": "Portfolio 4 Titel",
+                "name": "portfolio_4_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616af1d7e2564",
+                "label": "Portfolio 4 Text",
+                "name": "portfolio_4_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616af1d7e2599",
+                "label": "Portfolio 4 Bild",
+                "name": "portfolio_4_bild",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_616af1d7e25cd",
+                "label": "Portfolio 4 Link",
+                "name": "portfolio_4_link",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 7,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616aff2dab696",
+        "title": "Portfolio 5",
+        "fields": [
+            {
+                "key": "field_616aff2dacf16",
+                "label": "Portfolio 5 Titel",
+                "name": "portfolio_5_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616aff2dacf4c",
+                "label": "Portfolio 5 Text",
+                "name": "portfolio_5_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616aff2dacf81",
+                "label": "Portfolio 5 Bild",
+                "name": "portfolio_5_bild",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_616aff2dacfb5",
+                "label": "Portfolio 5 Link",
+                "name": "portfolio_5_link",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 7,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616aff2fa7e06",
+        "title": "Portfolio 6",
+        "fields": [
+            {
+                "key": "field_616aff2fa8c1b",
+                "label": "Portfolio 6 Titel",
+                "name": "portfolio_6_titel",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_616aff2fa8c50",
+                "label": "Portfolio 6 Text",
+                "name": "portfolio_6_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "visual",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_616aff2fa8c85",
+                "label": "Portfolio 6 Bild",
+                "name": "portfolio_6_bild",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_616aff2fa8cba",
+                "label": "Portfolio 6 Link",
+                "name": "portfolio_6_link",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 7,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616b14ceb43f9",
+        "title": "Kontakt",
+        "fields": [
+            {
+                "key": "field_616b14ceb5a16",
+                "label": "Kontakt Text",
+                "name": "kontakt_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "<p>Ich bedanke mich für Deine Zeit und Aufmerksamkeit, wenn Du bis hier hin gescrollt hast und freue mich natürlich sehr über eine postive Rückmeldung.<\/p>\r\n<p>Nutze das Textfeld für ein kurzes Feedback oder Informationen zu den nächsten Schritten wie z. B. Terminvorschläge für ein Telefonat oder Kaffee vor Ort.<\/p>\r\n<p>Ich bin gespannt darauf, Euch kennenzulernen. Bis bald!<\/p>",
+                "tabs": "visual",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 8,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "group_616b1f3c31a98",
+        "title": "Copyright",
+        "fields": [
+            {
+                "key": "field_616b1f3c32cf6",
+                "label": "Copyright Text",
+                "name": "copyright_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "© 2021 Copyright Aykut Askeri. Dies ist eine persönliche Website.",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "cv"
+                }
+            ]
+        ],
+        "menu_order": 9,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
+    },
+    {
+        "key": "post_type_69b1fdd4574e8",
+        "title": "CVs",
+        "menu_order": 0,
+        "active": true,
+        "post_type": "cv",
+        "advanced_configuration": true,
+        "import_source": "cptui",
+        "import_date": 1773272532,
+        "labels": {
+            "name": "CVs",
+            "singular_name": "CV",
+            "menu_name": "CVs",
+            "all_items": "Alle CVs",
+            "add_new": "Neu",
+            "add_new_item": "Neue CV hinzufügen",
+            "edit_item": "CV bearbeiten",
+            "new_item": "CV hinzufügen",
+            "view_item": "CV anzeigen",
+            "view_items": "CVs anzeigen",
+            "search_items": "CVs durchsuchen",
+            "not_found": "No CVs found",
+            "not_found_in_trash": "No CVs found in trash",
+            "parent_item_colon": "Übergeordnet CV:",
+            "archives": "CV archives",
+            "attributes": "CVs attributes",
+            "featured_image": "Featured image for this CV",
+            "set_featured_image": "Set featured image for this CV",
+            "remove_featured_image": "Remove featured image for this CV",
+            "use_featured_image": "Use as featured image for this CV",
+            "insert_into_item": "Insert into CV",
+            "uploaded_to_this_item": "Upload to this CV",
+            "filter_items_list": "Filter CVs list",
+            "filter_by_date": "",
+            "items_list_navigation": "CVs list navigation",
+            "items_list": "CVs list",
+            "item_published": "CV published",
+            "item_published_privately": "CV published privately.",
+            "item_reverted_to_draft": "CV reverted to draft.",
+            "item_scheduled": "CV scheduled",
+            "item_updated": "CV updated.",
+            "item_link": "",
+            "item_link_description": "",
+            "parent": "Übergeordnet CV:",
+            "name_admin_bar": "CV"
+        },
+        "description": "",
+        "public": true,
+        "hierarchical": false,
+        "exclude_from_search": true,
+        "publicly_queryable": true,
+        "show_ui": true,
+        "show_in_menu": true,
+        "admin_menu_parent": "",
+        "show_in_admin_bar": true,
+        "show_in_nav_menus": true,
+        "show_in_rest": true,
+        "rest_base": "",
+        "rest_namespace": "wp\/v2",
+        "rest_controller_class": "",
+        "menu_position": "",
+        "menu_icon": "",
+        "rename_capabilities": false,
+        "singular_capability_name": "post",
+        "plural_capability_name": "posts",
+        "supports": [
+            "title",
+            "editor",
+            "thumbnail",
+            "excerpt",
+            "custom-fields",
+            "revisions"
+        ],
+        "taxonomies": [],
+        "has_archive": false,
+        "has_archive_slug": "",
+        "rewrite": {
+            "permalink_rewrite": "post_type_key",
+            "slug": "",
+            "feeds": false,
+            "pages": true,
+            "with_front": true
+        },
+        "query_var": "post_type_key",
+        "query_var_name": "",
+        "can_export": true,
+        "delete_with_user": false,
+        "register_meta_box_cb": "",
+        "enter_title_here": ""
+    }
+]

@@ -17,13 +17,27 @@
 
 ---
 
-- Status: todo
+- Status: completed
 - Priority: medium
-- Notes: **Hero/Intro-Section: Buttons unter Text oder rechts?**
-  - Issue: #10
-  - Aktuell: Buttons rechts neben dem Text (Flexbox mit md:justify-between)
-  - Frage: Sollen die Buttons unter dem Textinhalt platziert werden?
-  - Nächste Schritte: Visuelle Evaluierung, Decision treffen, ggf. CSS anpassen
+- Notes: **Hero/Intro-Section: Buttons unter Text - GELÖST**
+  - Issue: #10 (geschlossen)
+  - Änderungen: Buttons jetzt unter dem Text, horizontal nebeneinander
+  - Button-Texte aktualisiert: "Skills ansehen" und "Kontakt aufnehmen"
+  - Icons: Beide mit Pfeil-nach-unten für Scroll-Aktionen
+  - CTA-Section: Button-Text und Icon angeglichen
+  - Kontaktformular: Paper Plane Icon (Telegram-Style)
+  - Status: Auf Production deployed
+
+---
+
+- Status: completed
+- Priority: medium
+- Notes: **CTA-Button Shadow-Animation - GELÖST**
+  - Issue: #19 (geschlossen)
+  - Problem: Animation wurde bei Hover unterbrochen
+  - Lösung: box-shadow durch filter: drop-shadow() ersetzt
+  - Ergebnis: Sanfte Animation ohne Unterbrechung (9/10 Punkte)
+  - Status: Auf Production deployed
 
 ---
 
@@ -65,26 +79,168 @@
 
 ---
 
+- Status: completed
+- Priority: medium
+- Notes: **Print-Ansicht: Enthusiast-Suffix - GELÖST**
+  - Issue: #15 (geschlossen)
+  - Problem: Im Print-Header fehlte "-Enthusiast" hinter dem Bereich-Text
+  - Lösung: PrintCV.tsx aktualisiert, Suffix hinzugefügt
+  - Status: Auf Production deployed
+
+---
+
 - Status: todo
 - Priority: medium
-- Notes: **Print-Ansicht: Enthusiast-Suffix fehlt im Header**
-  - Issue: #15
-  - Problem: Im Print-Header fehlt "-Enthusiast" hinter dem Bereich-Text
-  - Screen zeigt korrekt: "Online-Marketing-Enthusiast"
-  - Print zeigt nur: "Online-Marketing"
-  - Möglicherweise andere Komponente/Layout für Print verwendet
+- Notes: **#34: WP-Subdomain Hinweis-Link auf Hauptdomain**
+  - Hinweis \"Dieser Inhalt wird im Next.js Frontend dargestellt\"
+  - Link \"Im Frontend ansehen\" soll auf aykutaskeri.de verweisen, nicht wp. Subdomain
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **#1: Like-Funktion für Skills (Gamification)**
+  - Ursprüngliches Issue für Skill-Interaktionen
+  - Eventuell redundant durch UX-001/UX-002
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **#4: On-Demand ISR einrichten**
+  - WordPress-Änderungen ohne Deploy sichtbar machen
+  - Draft/Preview-Problem lösen
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **#20: Frontend Admin/Editor Navigation**
+  - Navigation für eingeloggte WordPress User im Frontend
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **[UX-002] Top-3-Skills: Fokussierte Skill-Auswahl** — Issue #22
+  - Besucher können maximal 3 Skills als besonders relevant markieren
+  - Higher signal value für Gesprächseinstieg
+  - Blockiert: Session-Context Infrastructure
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **[UX-003] Bookmark-System: Gesprächspunkte merken** — Issue #23
+  - Skills, Experience, Education, Portfolio bookmarkbar
+  - Inhalte werden an Kontaktformular übergeben
+  - Blockiert: Session-Context Infrastructure
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **[UX-006] Formular-Kontext: Session-Daten integrieren** — Issue #26
+  - Kontaktformular erweitert POST-Body um Session-Kontext
+  - Backend API muss neue Felder akzeptieren
+  - Blockiert: Issue #22, #23
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **[UX-007] Kontext-Vorschau: Transparenz im Formular** — Issue #27
+  - Session-Kontext für Besucher sichtbar machen
+  - Einzelne Einträge vor Absenden entfernbar
+  - Blockiert: Issue #26
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **[UX-011] Datenfilter: Nur verdichtete Signale** — Issue #31
+  - Filterlogik für Formular-Daten
+  - Keine Event-Logs oder technische Debug-Info
+  - Blockiert: Issue #26
+
+---
+
+- Status: todo
+- Priority: high
+- Notes: **[UX-012] Datenschutz: Transparenzkonzept** — Issue #32
+  - Datenschutzkonzept für alle Features
+  - DSGVO-Konformität prüfen
+  - Blockiert: Issue #26, #27
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **[UX-001] Skill-Favoriten: Dezente Markierung** — Issue #21
+  - Alternative zu Top-3: Freie Mehrfachauswahl
+  - Kann mit Issue #2 zusammengelegt werden
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **[UX-005] Interessensbereiche: Mehrfachauswahl** — Issue #25
+  - SEO, UX/UI, CRO, Webdesign, Branding, B2B, Strategie
+  - Chips-Auswahl
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **[UX-008] Analytics: Aggregierte Insights** — Issue #28
+  - Meistmarkierte Skills, häufigste Interaktionen
+  - Privacy-first, keine Einzelnutzer-Überwachung
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **[UX-009] Section-Tracking: Meistbesuchte Bereiche** — Issue #29
+  - IntersectionObserver für Section-Views
+  - Keine invasive Tiefenmessung
+
+---
+
+- Status: todo
+- Priority: medium
+- Notes: **[UX-013] Abschlussfrage: Qualitative Selbsteinschätzung** — Issue #33
+  - Optionale Frage vor Kontaktformular
+  - Was hat Sie besonders angesprochen?
 
 ---
 
 - Status: todo
 - Priority: low
-- Notes: `ausbildung_text` und `weiterbildung_text` sind in WordPress identisch — Aykut muss das in WP korrigieren
+- Notes: **[UX-004] Rollenwahl: Perspektivische Personalisierung** — Issue #24
+  - Recruiter, CEO/Founder, Marketing Lead
+  - Optional, für spätere UI-Personalisierung
+
+---
+
+- Status: todo
+- Priority: low
+- Notes: **[UX-010] Session-Widget: Floating Übersicht** — Issue #30
+  - Persistente UI für gemerkte Inhalte
+  - Desktop: Floating, Mobile: Bottom-Bar
+  - Blockiert: Issue #22, #23
 
 <!-- TASKS-END -->
 
 <!-- NOTES-START -->
 
 ## Erledigte Punkte (diese Session)
+
+- ✅ **13 GitHub Issues für Online-CV Recruiter-UX Epic erstellt**:
+  - Issues #21-#33 erstellt aus `.agent/online-cv-recruiter-ux-epic.md`
+  - Phase 1 (High): #22, #23, #26, #27, #31, #32
+  - Phase 2 (Medium): #21, #25, #28, #29, #33
+  - Phase 3 (Low): #24, #30
+  - Alle Issues in `tasks.md` unter "Offene Tasks" dokumentiert
 
 - ✅ **Issue #18: Frontend-Bilder 403 Error behoben**:
   - wp.aykutaskeri.de zu next.config.js remotePatterns hinzugefügt
