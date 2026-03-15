@@ -46,6 +46,53 @@ add_action('init', function() {
     }
 });
 
+// ============================================================================
+// SAMESITE=NONE: WordPress-Login-Cookie für Cross-Origin-Requests freigeben
+//
+// Browser blockieren standardmäßig Cookies von fremden Domains (SameSite=Lax).
+// Da das Next.js Frontend (aykutaskeri.de) Cookies von wp.aykutaskeri.de
+// mitsenden muss, werden die WP-Auth-Cookies beim Login mit
+// SameSite=None; Secure neu gesetzt.
+//
+// Betrifft nur den Login-Vorgang — danach trägt der Browser den Cookie
+// automatisch bei jedem credentials: 'include' Fetch mit.
+// ============================================================================
+
+add_action('set_logged_in_cookie', function(
+    string $logged_in_cookie,
+    int $expire,
+    int $expiration,
+    int $user_id,
+    string $scheme,
+    string $token
+) {
+    // Standard-Cookie-Name ermitteln
+    $cookie_name = LOGGED_IN_COOKIE;
+
+    // Cookie mit SameSite=None; Secure überschreiben
+    // (PHP 7.3+ unterstützt SameSite als Array-Option)
+    if (PHP_VERSION_ID >= 70300) {
+        setcookie($cookie_name, $logged_in_cookie, [
+            'expires'  => $expire,
+            'path'     => COOKIEPATH,
+            'domain'   => COOKIE_DOMAIN,
+            'secure'   => true,
+            'httponly' => true,
+            'samesite' => 'None',
+        ]);
+    } else {
+        // Fallback für ältere PHP-Versionen
+        header(sprintf(
+            'Set-Cookie: %s=%s; expires=%s; path=%s; domain=%s; Secure; HttpOnly; SameSite=None',
+            $cookie_name,
+            rawurlencode($logged_in_cookie),
+            gmdate('D, d M Y H:i:s T', $expire),
+            COOKIEPATH,
+            COOKIE_DOMAIN
+        ), false);
+    }
+}, 10, 6);
+
 // CORS-Header für alle REST API Responses setzen
 add_action('rest_api_init', function() {
     remove_filter('rest_pre_serve_request', 'rest_send_cors_headers');
