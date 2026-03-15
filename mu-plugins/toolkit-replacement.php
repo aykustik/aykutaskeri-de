@@ -403,5 +403,91 @@ add_action('admin_notices', function() {
 });
 
 /* ============================================================================
+   SECTION 8: REST API SICHERHEIT
+   ============================================================================
+   Schützt sensible REST-API-Endpunkte vor unautorisierten Zugriffen.
+   
+   HINTERGRUND:
+   - /wp/v2/users ist öffentlich und gibt Benutzernamen preis (Brute-Force-Risiko)
+   - /wp/v2/cv soll nur mit gültigem Application Password abrufbar sein,
+     da die CVs personenbezogene Daten enthalten (Adresse, Telefon, E-Mail)
+   - /acf/v3/* ist intern und soll nie öffentlich zugänglich sein
+   
+   AUTH-MECHANISMUS:
+   - Application Passwords (WP Core Feature seit 5.6)
+   - User: ki-agent (dedizierter API-User, kein Admin)
+   - Header: Authorization: Basic base64(username:app-password)
+   ============================================================================ */
+
+/**
+ * /wp/v2/users Endpunkt für nicht-authentifizierte Anfragen sperren
+ *
+ * Ohne diese Einschränkung gibt WordPress öffentlich alle Benutzernamen preis,
+ * was Brute-Force-Angriffe auf Login und XML-RPC erleichtert.
+ *
+ * @since 1.1.0
+ */
+add_filter('rest_endpoints', function($endpoints) {
+    // Users-Endpunkt nur für authentifizierte Admins
+    $users_routes = [
+        '/wp/v2/users',
+        '/wp/v2/users/(?P<id>[\d]+)',
+    ];
+    foreach ($users_routes as $route) {
+        if (!isset($endpoints[$route])) {
+            continue;
+        }
+        foreach (array_keys($endpoints[$route]) as $key) {
+            if (!isset($endpoints[$route][$key]['permission_callback'])) {
+                continue;
+            }
+            $endpoints[$route][$key]['permission_callback'] = '__return_false';
+        }
+    }
+    return $endpoints;
+});
+
+/**
+ * /wp/v2/cv und /acf/v3/* Endpunkte auf authentifizierte Anfragen beschränken
+ *
+ * CVs enthalten personenbezogene Daten (Adresse, Telefon, E-Mail).
+ * ACF-Endpunkte sind intern und nicht für öffentlichen Zugriff gedacht.
+ * Zugriff nur mit gültigem Application Password (ki-agent User).
+ *
+ * Wir nutzen rest_authentication_errors statt rest_pre_dispatch, da dieser
+ * Hook stabiler ist und direkt in den WP Auth-Flow eingreift.
+ *
+ * @since 1.1.0
+ */
+add_filter('rest_authentication_errors', function($result) {
+    // Bereits ein Auth-Fehler vorhanden? Nicht überschreiben.
+    if ( ! empty( $result ) ) {
+        return $result;
+    }
+
+    $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+
+    $protected_prefixes = [
+        '/wp-json/wp/v2/cv',
+        '/wp-json/acf/v3/',
+    ];
+
+    foreach ($protected_prefixes as $prefix) {
+        if (strpos($request_uri, $prefix) === 0) {
+            if (!is_user_logged_in()) {
+                return new WP_Error(
+                    'rest_forbidden',
+                    'Authentifizierung erforderlich.',
+                    ['status' => 401]
+                );
+            }
+            break;
+        }
+    }
+
+    return $result;
+});
+
+/* ============================================================================
    END OF PLUGIN
    ============================================================================ */

@@ -162,6 +162,38 @@ add_filter('login_headertext', function() {
 });
 
 /**
+ * Frontend URL für eingeloggte User korrigieren
+ * Der "Seite anzeigen" Link in der WP-Admin Topbar soll auf die Hauptdomain zeigen.
+ *
+ * WICHTIG: REST-API-Pfade (wp-json) werden ausdrücklich ausgenommen,
+ * da WordPress rest_url() intern über home_url() aufbaut und sonst
+ * der Slash zwischen Domain und Pfad fehlt (z.B. "aykutaskeri.dewp-json").
+ *
+ * @since 1.0.1
+ */
+add_filter('home_url', function($url, $path, $scheme) {
+    // Nur für eingeloggte User im Admin-Bereich
+    if (!is_user_logged_in() || !is_admin()) {
+        return $url;
+    }
+
+    // REST-API-Pfade NICHT umschreiben (würde rest_url() kaputtmachen)
+    if (strpos($path, 'wp-json') !== false || strpos($path, 'wp-login') !== false) {
+        return $url;
+    }
+
+    return 'https://aykutaskeri.de/' . ltrim($path, '/');
+}, 10, 3);
+
+add_filter('post_link', function($permalink, $post) {
+    // Für eingeloggte User: URL zur Hauptdomain korrigieren
+    if (is_user_logged_in() && is_admin()) {
+        return str_replace('https://wp.aykutaskeri.de', 'https://aykutaskeri.de', $permalink);
+    }
+    return $permalink;
+}, 10, 2);
+
+/**
  * ============================================
  * DEVELOPMENT HELPERS
  * ============================================
