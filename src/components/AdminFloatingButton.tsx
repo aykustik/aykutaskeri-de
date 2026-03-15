@@ -12,14 +12,11 @@ interface AdminFloatingButtonProps {
   postId?: number;
 }
 
-const WP_BASE = 'https://wp.aykutaskeri.de';
-
 export function AdminFloatingButton({ postId }: AdminFloatingButtonProps) {
   const [authStatus, setAuthStatus] = useState<AuthStatus | null>(null);
 
   useEffect(() => {
-    fetch(`${WP_BASE}/wp-json/custom/v1/auth-status`, {
-      credentials: 'include',
+    fetch('/api/auth-status', {
       cache: 'no-store',
     })
       .then((res) => res.json())
@@ -33,8 +30,8 @@ export function AdminFloatingButton({ postId }: AdminFloatingButtonProps) {
   }
 
   const editUrl = postId
-    ? `${WP_BASE}/wp-admin/post.php?post=${postId}&action=edit`
-    : `${WP_BASE}/wp-admin/`;
+    ? `https://wp.aykutaskeri.de/wp-admin/post.php?post=${postId}&action=edit`
+    : `https://wp.aykutaskeri.de/wp-admin/`;
 
   return (
     <a
